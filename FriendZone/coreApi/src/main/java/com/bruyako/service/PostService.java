@@ -9,7 +9,5 @@ import java.util.List;
  */
 public interface PostService {
 
-    public void addPost(Post post);
     public void editPost(Post post);
-    public List<Post> getAllPostFotContact(Post post);
 }

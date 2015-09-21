@@ -12,14 +12,9 @@ import java.util.Set;
  */
 public interface ContactService {
 
-    public void addContact(Contact contact);
-    public void deleteContact(Contact contact);
     public void editContact(Contact contact);
-    public void createContact(String firstName, String lastName, LocalDate date);
-    public void addHobby(String title, String description);
-    public void addPlace(String title, double longitude, double latitude, String description);
-    public void addFriendship(Contact contact);
-    public void deleteFriendship(Contact contact);
+    public void getAllContactByFirstName();
+    public void createContact(String firstName, String lastName, LocalDate birthDate);
     public Set<Contact> getFriendList(Contact contact);
     public List<Message> getConversation(Contact firstContact, Contact secondContact);
 }

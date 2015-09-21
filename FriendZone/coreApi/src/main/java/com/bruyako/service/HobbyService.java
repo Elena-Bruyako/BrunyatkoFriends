@@ -1,6 +1,5 @@
 package com.bruyako.service;
 
-import com.bruyako.model.Contact;
 import com.bruyako.model.Hobby;
 
 import java.util.Set;
@@ -10,7 +9,5 @@ import java.util.Set;
  */
 public interface HobbyService {
 
-    public void addHobby(Hobby hobby);
     public void editHobby(Hobby hobby);
-    public Set<Contact> getAllContactsWithHobby(Hobby hobby);
 }

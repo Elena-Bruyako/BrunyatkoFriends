@@ -15,7 +15,6 @@
     <name>Web Application</name>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -29,4 +28,5 @@
     <build>
         <finalName>webapp</finalName>
     </build>
+
 </project>

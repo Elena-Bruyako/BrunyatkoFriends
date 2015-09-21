@@ -14,42 +14,17 @@ import java.util.Set;
 public class ContactImpl implements ContactService {
 
     @Override
-    public void addContact(Contact contact) {
-
-    }
-
-    @Override
-    public void deleteContact(Contact contact) {
-
-    }
-
-    @Override
     public void editContact(Contact contact) {
 
     }
 
     @Override
-    public void createContact(String firstName, String lastName, LocalDate date) {
+    public void getAllContactByFirstName() {
 
     }
 
     @Override
-    public void addHobby(String title, String description) {
-
-    }
-
-    @Override
-    public void addPlace(String title, double longitude, double latitude, String description) {
-
-    }
-
-    @Override
-    public void addFriendship(Contact contact) {
-
-    }
-
-    @Override
-    public void deleteFriendship(Contact contact) {
+    public void createContact(String firstName, String lastName, LocalDate birthDate) {
 
     }
 
