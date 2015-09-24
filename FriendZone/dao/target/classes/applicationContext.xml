@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
 	   					   http://www.springframework.org/schema/context
-	                        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	                        http://www.springframework.org/schema/context/spring-context-2.5.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="Elena" class="com.bruyako.daoService.ContactDao">
-        <constructor-arg name="contactId" value="1"/>
-        <constructor-arg name="firstName" value="Elena"/>
-        <constructor-arg name="lastName" value="Bruyako"/>
-
+    <bean id="dateEditor" class="org.springframework.beans.propertyeditors.CustomDateEditor">
+        <constructor-arg>
+            <bean class="java.text.SimpleDateFormat">
+                <constructor-arg value="yyyy-MM-dd" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg value="true" />
     </bean>
 
-    <context:component-scan base-package="com.bruyako.daoService"/>
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.time.LocalDate">
+                    <ref bean="dateEditor" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+    <bean id="ContactBean" class="com.bruyako.model.Contact">
+        <property name="contactId" value="1"/>
+        <property name="firstName" value="Elena"/>
+        <property name="lastName" value="Bruyako"/>
+        <property name="birthDate" value="1990-08-02"/>
+    </bean>
+
+
+    <context:component-scan base-package="com.bruyako"/>
 
 </beans>

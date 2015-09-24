@@ -1,44 +1,69 @@
 package com.bruyako.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * Created by brunyatko on 07.09.15.
  */
-public class Post {
+public class Post implements Serializable{
 
-    private static int postId;
-    private static String content;
-    private static LocalDate date;
+    private int postId;
+    private String content;
+    private LocalDate date;
 
-    public Post(int postId,  String content, LocalDate date) {
-
-        this.postId = postId;
-        this.content = content;
-        this.date = date;
-    }
-
-    public static int getPostId() {
+    public int getPostId() {
         return postId;
     }
 
-    public static void setPostId(int postId) {
-        Post.postId = postId;
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 
-    public static String getContent() {
+    public String getContent() {
         return content;
     }
 
-    public static void setContent(String content) {
-        Post.content = content;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public static LocalDate getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public static void setDate(LocalDate date) {
-        Post.date = date;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Post post = (Post) o;
+
+        if (postId != post.postId) return false;
+        if (content != null ? !content.equals(post.content) : post.content != null) return false;
+        if (date != null ? !date.equals(post.date) : post.date != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = postId;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "postId=" + postId +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                '}';
     }
 }

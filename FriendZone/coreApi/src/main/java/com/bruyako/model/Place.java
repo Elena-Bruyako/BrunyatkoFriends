@@ -1,62 +1,96 @@
 package com.bruyako.model;
 
+import java.io.Serializable;
+
 /**
  * Created by brunyatko on 07.09.15.
  */
-public class Place {
+public class Place implements Serializable{
 
-    private static int placeId;
-    private static String title;
-    private static double longitude;
-    private static double latitude;
-    private static String description;
+    private int placeId;
+    private String title;
+    private double longitude;
+    private double latitude;
+    private String description;
 
-    public Place(int placeId, String title, double longitude, double latitude, String description) {
-
-        this.placeId = placeId;
-        this.title = title;
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.description = description;
-    }
-
-    public static int getPlaceId() {
+    public int getPlaceId() {
         return placeId;
     }
 
-    public static void setPlaceId(int placeId) {
-        Place.placeId = placeId;
+    public void setPlaceId(int placeId) {
+        this.placeId = placeId;
     }
 
-    public static String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public static void setTitle(String title) {
-        Place.title = title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public static double getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public static void setLongitude(double longitude) {
-        Place.longitude = longitude;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
-    public static double getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public static void setLatitude(double latitude) {
-        Place.latitude = latitude;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public static String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public static void setDescription(String description) {
-        Place.description = description;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Place place = (Place) o;
+
+        if (Double.compare(place.latitude, latitude) != 0) return false;
+        if (Double.compare(place.longitude, longitude) != 0) return false;
+        if (placeId != place.placeId) return false;
+        if (description != null ? !description.equals(place.description) : place.description != null) return false;
+        if (title != null ? !title.equals(place.title) : place.title != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = placeId;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        temp = Double.doubleToLongBits(longitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(latitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "placeId=" + placeId +
+                ", title='" + title + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

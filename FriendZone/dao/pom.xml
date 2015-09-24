@@ -19,6 +19,11 @@
             <artifactId>coreApi</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.bruyako</groupId>
+            <artifactId>coreImpl</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
