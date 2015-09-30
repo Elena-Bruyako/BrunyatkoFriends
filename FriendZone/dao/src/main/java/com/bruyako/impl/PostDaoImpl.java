@@ -2,14 +2,14 @@ package com.bruyako.impl;
 
 import com.bruyako.dao.PostDao;
 import com.bruyako.model.Post;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
 /**
  * Created by brunyatko on 21.09.15.
  */
-@Service
+@Repository
 public class PostDaoImpl implements PostDao {
 
     @Override
@@ -19,11 +19,6 @@ public class PostDaoImpl implements PostDao {
 
     @Override
     public void add(Post post) {
-
-    }
-
-    @Override
-    public void create(Post post) {
 
     }
 
@@ -38,7 +33,7 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public void remove(String s) {
+    public void remove(Post post) {
 
     }
 

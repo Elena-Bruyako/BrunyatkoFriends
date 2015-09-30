@@ -5,6 +5,8 @@ import com.bruyako.model.Contact;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by brunyatko on 21.09.15.
@@ -12,19 +14,28 @@ import java.util.Collection;
 @Service
 public class ContactDaoImpl implements ContactDao {
 
+    private Map<Long, Contact> contactsMap = new HashMap<>();
+    private Map<Contact, Contact> friendsMap = new HashMap<>();
+
+
     @Override
     public Collection<Contact> getAllContact() {
-        return null;
+        return contactsMap.values();
+    }
+
+    @Override
+    public void addFriendship(Contact firstContact, Contact secondContact) {
+        friendsMap.put(firstContact, secondContact);
+    }
+
+    @Override
+    public void removeFriendship(Contact firstContact, Contact secondContact) {
+        friendsMap.remove(firstContact, secondContact);
     }
 
     @Override
     public void add(Contact contact) {
-
-    }
-
-    @Override
-    public void create(Contact contact) {
-
+        contactsMap.put(contact.getContactId(), contact);
     }
 
     @Override
@@ -33,17 +44,22 @@ public class ContactDaoImpl implements ContactDao {
     }
 
     @Override
-    public Contact get(String s) {
-        return null;
+    public Contact get(Long id) {
+        return contactsMap.get(id);
     }
 
     @Override
-    public void remove(String s) {
-
+    public void remove(Contact contact) {
+        contactsMap.remove(contact);
     }
 
     @Override
     public Contact update(Contact contact) {
-        return null;
+
+        Long key = contact.getContactId();
+
+        contactsMap.put(key, contact);
+
+        return contactsMap.get(key);
     }
 }
