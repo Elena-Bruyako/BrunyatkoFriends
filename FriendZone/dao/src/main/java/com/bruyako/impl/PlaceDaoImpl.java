@@ -4,6 +4,7 @@ import com.bruyako.dao.PlaceDao;
 import com.bruyako.model.Place;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,35 +15,44 @@ import java.util.Map;
 @Service
 public class PlaceDaoImpl implements PlaceDao {
 
-    private Map<String, Place> placeMaps = new HashMap<>();
+    private Map<String, Place> placesMap = new HashMap<>();
+
+    Place place = new Place();
+
+    @PostConstruct
+    public void init(){
+
+        place.setTitle("Country");
+        place.setDescription("See Georgia");
+        place.setLatitude(45.1254656);
+        place.setLongitude(56.2135465);
+
+        placesMap.put(place.getTitle(), place);
+    }
+
 
     @Override
-    public void add(Place place) {
-        placeMaps.put(place.getTitle(), place);
+    public Collection<Place> getAllContactsForPlace(Place place) {
+        return null;
     }
 
     @Override
-    public void edit(Place place) {
+    public void create(Place place) {
+        placesMap.put(place.getTitle(), place);
+    }
 
+    @Override
+    public void delete(Place place) {
+        placesMap.remove(place);
+    }
+
+    @Override
+    public Place update(String s) {
+        return null;
     }
 
     @Override
     public Place get(String s) {
-        return null;
-    }
-
-    @Override
-    public Collection<Place> getAllContactsForPlace() {
-        return placeMaps.values();
-    }
-
-    @Override
-    public void remove(Place place) {
-        placeMaps.remove(place);
-    }
-
-    @Override
-    public Place update(Place place) {
-        return null;
+        return placesMap.get(s);
     }
 }

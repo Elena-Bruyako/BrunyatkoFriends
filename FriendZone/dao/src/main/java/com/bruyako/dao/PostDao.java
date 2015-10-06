@@ -11,6 +11,6 @@ import java.util.Collection;
 @Service
 public interface PostDao extends AbstractDao<Post, String> {
 
-    Collection<Post> getAllPostForContact();
+    Collection<Post> getAllPostsForContact(Post post);
 
 }

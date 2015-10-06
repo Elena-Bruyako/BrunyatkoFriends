@@ -14,7 +14,8 @@ public interface ContactDao extends AbstractDao<Contact, Long> {
     Collection<Contact> getAllContact();
 
     void addFriendship(Contact firstContact, Contact secondContact);
-    void removeFriendship(Contact firstContact, Contact secondContact);
+
+    void deleteFriendship(Contact firstContact, Contact secondContact);
 
 }
 

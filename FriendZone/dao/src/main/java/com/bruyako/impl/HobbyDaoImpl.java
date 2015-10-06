@@ -4,6 +4,7 @@ import com.bruyako.dao.HobbyDao;
 import com.bruyako.model.Hobby;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,36 +15,42 @@ import java.util.Map;
 @Service
 public class HobbyDaoImpl implements HobbyDao {
 
-
     private Map<String, Hobby> hobbiesMaps = new HashMap<>();
 
-    @Override
-    public Collection<Hobby> getAllContactsWithHobby() {
-        return hobbiesMaps.values();
-    }
+    Hobby hobby = new Hobby();
 
-    @Override
-    public void add(Hobby hobby) {
+    @PostConstruct
+    public void init(){
+
+        hobby.setTitle("Photo");
+        hobby.setDescription("Taking a picture");
+
         hobbiesMaps.put(hobby.getTitle(), hobby);
     }
 
     @Override
-    public void edit(Hobby hobby) {
-
-    }
-
-    @Override
-    public Hobby get(String s) {
+    public Collection<Hobby> getAllContactsWithHobby(Hobby hobby) {
         return null;
     }
 
     @Override
-    public void remove(Hobby hobby) {
+    public void create(Hobby hobby) {
+        hobbiesMaps.put(hobby.getTitle(), hobby);
+    }
+
+    @Override
+    public void delete(Hobby hobby) {
         hobbiesMaps.remove(hobby);
     }
 
     @Override
-    public Hobby update(Hobby hobby) {
+    public Hobby update(String s) {
         return null;
     }
+
+    @Override
+    public Hobby get(String s) {
+        return hobbiesMaps.get(s);
+    }
+
 }

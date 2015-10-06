@@ -8,19 +8,10 @@ import java.time.LocalDateTime;
  */
 public class Message implements Serializable {
 
-    private int messageId;
     private LocalDateTime date;
     private Contact from;
     private Contact to;
     private String content;
-
-    public int getMessageId() {
-        return messageId;
-    }
-
-    public void setMessageId(int messageId) {
-        this.messageId = messageId;
-    }
 
     public LocalDateTime getDate() {
         return date;
@@ -61,7 +52,6 @@ public class Message implements Serializable {
 
         Message message = (Message) o;
 
-        if (messageId != message.messageId) return false;
         if (content != null ? !content.equals(message.content) : message.content != null) return false;
         if (date != null ? !date.equals(message.date) : message.date != null) return false;
         if (from != null ? !from.equals(message.from) : message.from != null) return false;
@@ -72,8 +62,7 @@ public class Message implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = messageId;
-        result = 31 * result + (date != null ? date.hashCode() : 0);
+        int result = date != null ? date.hashCode() : 0;
         result = 31 * result + (from != null ? from.hashCode() : 0);
         result = 31 * result + (to != null ? to.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
@@ -81,10 +70,10 @@ public class Message implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String
+    toString() {
         return "Message{" +
-                "messageId=" + messageId +
-                ", date=" + date +
+                "date=" + date +
                 ", from=" + from +
                 ", to=" + to +
                 ", content='" + content + '\'' +

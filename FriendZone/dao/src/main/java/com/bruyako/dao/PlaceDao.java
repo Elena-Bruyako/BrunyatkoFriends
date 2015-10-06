@@ -12,6 +12,6 @@ import java.util.Collection;
 public interface PlaceDao extends AbstractDao<Place, String> {
 
 
-    Collection<Place> getAllContactsForPlace();
+    Collection<Place> getAllContactsForPlace(Place place);
 }
 

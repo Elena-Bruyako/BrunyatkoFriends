@@ -8,16 +8,16 @@ import java.time.LocalDate;
  */
 public class Post implements Serializable{
 
-    private int postId;
+    private String title;
     private String content;
     private LocalDate date;
 
-    public int getPostId() {
-        return postId;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPostId(int postId) {
-        this.postId = postId;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -43,16 +43,16 @@ public class Post implements Serializable{
 
         Post post = (Post) o;
 
-        if (postId != post.postId) return false;
         if (content != null ? !content.equals(post.content) : post.content != null) return false;
         if (date != null ? !date.equals(post.date) : post.date != null) return false;
+        if (title != null ? !title.equals(post.title) : post.title != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = postId;
+        int result = title != null ? title.hashCode() : 0;
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
@@ -61,7 +61,7 @@ public class Post implements Serializable{
     @Override
     public String toString() {
         return "Post{" +
-                "postId=" + postId +
+                "title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", date=" + date +
                 '}';

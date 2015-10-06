@@ -7,19 +7,10 @@ import java.io.Serializable;
  */
 public class Place implements Serializable{
 
-    private int placeId;
     private String title;
     private double longitude;
     private double latitude;
     private String description;
-
-    public int getPlaceId() {
-        return placeId;
-    }
-
-    public void setPlaceId(int placeId) {
-        this.placeId = placeId;
-    }
 
     public String getTitle() {
         return title;
@@ -62,7 +53,6 @@ public class Place implements Serializable{
 
         if (Double.compare(place.latitude, latitude) != 0) return false;
         if (Double.compare(place.longitude, longitude) != 0) return false;
-        if (placeId != place.placeId) return false;
         if (description != null ? !description.equals(place.description) : place.description != null) return false;
         if (title != null ? !title.equals(place.title) : place.title != null) return false;
 
@@ -73,8 +63,7 @@ public class Place implements Serializable{
     public int hashCode() {
         int result;
         long temp;
-        result = placeId;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = title != null ? title.hashCode() : 0;
         temp = Double.doubleToLongBits(longitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(latitude);
@@ -86,8 +75,7 @@ public class Place implements Serializable{
     @Override
     public String toString() {
         return "Place{" +
-                "placeId=" + placeId +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
                 ", description='" + description + '\'' +

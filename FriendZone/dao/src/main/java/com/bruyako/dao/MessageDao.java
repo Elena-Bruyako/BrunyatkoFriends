@@ -10,9 +10,10 @@ import java.util.Collection;
  * Created by brunyatko on 21.09.15.
  */
 @Service
-public interface MessageDao {
+public interface MessageDao extends AbstractDao<Message, String> {
 
     Collection<Message> getConversation(Contact firstContact, Contact secondContact);
+
     void storeMessage(Message message);
 
 }

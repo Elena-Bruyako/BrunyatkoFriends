@@ -4,6 +4,8 @@ import com.bruyako.dao.ContactDao;
 import com.bruyako.model.Contact;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,9 +16,20 @@ import java.util.Map;
 @Service
 public class ContactDaoImpl implements ContactDao {
 
+    private static long id = 1;
     private Map<Long, Contact> contactsMap = new HashMap<>();
-    private Map<Contact, Contact> friendsMap = new HashMap<>();
+    Contact contact = new Contact();
 
+    @PostConstruct
+    public void init() {
+
+        contact.setContactId(1);
+        contact.setFirstName("Elena");
+        contact.setLastName("Bruyako");
+        contact.setBirthDate(LocalDate.of(1990, 8, 02));
+
+        contactsMap.put(contact.getContactId(), contact);
+    }
 
     @Override
     public Collection<Contact> getAllContact() {
@@ -25,41 +38,32 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override
     public void addFriendship(Contact firstContact, Contact secondContact) {
-        friendsMap.put(firstContact, secondContact);
+
     }
 
     @Override
-    public void removeFriendship(Contact firstContact, Contact secondContact) {
-        friendsMap.remove(firstContact, secondContact);
+    public void deleteFriendship(Contact firstContact, Contact secondContact) {
+
     }
 
     @Override
-    public void add(Contact contact) {
+    public void create(Contact contact) {
+        contact.setContactId(id++);
         contactsMap.put(contact.getContactId(), contact);
     }
 
     @Override
-    public void edit(Contact contact) {
+    public void delete(Contact contact) {
+        contactsMap.remove(contact);
+    }
 
+    @Override
+    public Contact update(Long id) {
+        return null;
     }
 
     @Override
     public Contact get(Long id) {
         return contactsMap.get(id);
-    }
-
-    @Override
-    public void remove(Contact contact) {
-        contactsMap.remove(contact);
-    }
-
-    @Override
-    public Contact update(Contact contact) {
-
-        Long key = contact.getContactId();
-
-        contactsMap.put(key, contact);
-
-        return contactsMap.get(key);
     }
 }

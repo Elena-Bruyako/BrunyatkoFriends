@@ -11,5 +11,5 @@ import java.util.Collection;
 @Service
 public interface HobbyDao extends AbstractDao<Hobby, String> {
 
-    Collection<Hobby> getAllContactsWithHobby();
+    Collection<Hobby> getAllContactsWithHobby(Hobby hobby);
 }
