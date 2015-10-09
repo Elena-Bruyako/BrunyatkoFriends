@@ -1,15 +1,13 @@
 package com.bruyako.dao;
 
 import com.bruyako.model.Hobby;
-import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by brunyatko on 21.09.15.
  */
-@Service
-public interface HobbyDao extends AbstractDao<Hobby, String> {
+public interface HobbyDao extends AbstractDao<Hobby> {
 
-    Collection<Hobby> getAllContactsWithHobby(Hobby hobby);
+    List<Hobby> getAllContactsWithHobby(Hobby hobby);
 }

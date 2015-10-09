@@ -5,9 +5,8 @@ import com.bruyako.model.Contact;
 import com.bruyako.model.Message;
 import org.springframework.stereotype.Repository;
 
-import java.security.SecureRandom;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,11 +16,10 @@ import java.util.Map;
 public class MessageDaoImpl implements MessageDao {
 
     private Map<String, Message> messagesMap = new HashMap<>();
-
-    Message message = new Message();
+    private Message message;
 
     @Override
-    public Collection<Message> getConversation(Contact firstContact, Contact secondContact) {
+    public List<Message> getConversation(Contact firstContact, Contact secondContact) {
         return null;
     }
 
@@ -36,17 +34,17 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     @Override
-    public void delete(Message message) {
+    public void delete(Long id) {
 
     }
 
     @Override
-    public Message update(String s) {
-        return null;
+    public void update(Message message) {
+
     }
 
     @Override
-    public Message get(String s) {
+    public List<Message> getAll() {
         return null;
     }
 

@@ -1,16 +1,14 @@
 package com.bruyako.dao;
 
 import com.bruyako.model.Post;
-import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by brunyatko on 21.09.15.
  */
-@Service
-public interface PostDao extends AbstractDao<Post, String> {
+public interface PostDao extends AbstractDao<Post> {
 
-    Collection<Post> getAllPostsForContact(Post post);
+    List<Post> getAllPostsForContact(Post post);
 
 }

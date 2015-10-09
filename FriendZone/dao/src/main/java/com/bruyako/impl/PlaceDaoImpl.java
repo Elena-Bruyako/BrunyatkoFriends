@@ -2,22 +2,21 @@ package com.bruyako.impl;
 
 import com.bruyako.dao.PlaceDao;
 import com.bruyako.model.Place;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by brunyatko on 21.09.15.
  */
-@Service
+@Repository
 public class PlaceDaoImpl implements PlaceDao {
 
     private Map<String, Place> placesMap = new HashMap<>();
-
-    Place place = new Place();
+    private Place place;
 
     @PostConstruct
     public void init(){
@@ -32,7 +31,7 @@ public class PlaceDaoImpl implements PlaceDao {
 
 
     @Override
-    public Collection<Place> getAllContactsForPlace(Place place) {
+    public List<Place> getAllContactsForPlace(Place place) {
         return null;
     }
 
@@ -42,17 +41,18 @@ public class PlaceDaoImpl implements PlaceDao {
     }
 
     @Override
-    public void delete(Place place) {
-        placesMap.remove(place);
+    public void delete(Long id) {
+
     }
 
     @Override
-    public Place update(String s) {
+    public void update(Place place) {
+
+    }
+
+    @Override
+    public List<Place> getAll() {
         return null;
     }
 
-    @Override
-    public Place get(String s) {
-        return placesMap.get(s);
-    }
 }

@@ -4,8 +4,8 @@ import com.bruyako.dao.PostDao;
 import com.bruyako.model.Post;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,11 +15,10 @@ import java.util.Map;
 public class PostDaoImpl implements PostDao {
 
     private Map<String, Post> postsMap = new HashMap<>();
-
-    Post post = new Post();
+    private Post post;
 
     @Override
-    public Collection<Post> getAllPostsForContact(Post post) {
+    public List<Post> getAllPostsForContact(Post post) {
         return null;
     }
 
@@ -29,17 +28,18 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public void delete(Post post) {
-        postsMap.remove(post);
+    public void delete(Long id) {
+
     }
 
     @Override
-    public Post update(String s) {
+    public void update(Post post) {
+
+    }
+
+    @Override
+    public List<Post> getAll() {
         return null;
     }
 
-    @Override
-    public Post get(String s) {
-        return postsMap.get(s);
-    }
 }

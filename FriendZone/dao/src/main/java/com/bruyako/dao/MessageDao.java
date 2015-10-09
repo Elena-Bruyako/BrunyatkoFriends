@@ -2,17 +2,15 @@ package com.bruyako.dao;
 
 import com.bruyako.model.Contact;
 import com.bruyako.model.Message;
-import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by brunyatko on 21.09.15.
  */
-@Service
-public interface MessageDao extends AbstractDao<Message, String> {
+public interface MessageDao extends AbstractDao<Message> {
 
-    Collection<Message> getConversation(Contact firstContact, Contact secondContact);
+    List<Message> getConversation(Contact from, Contact to);
 
     void storeMessage(Message message);
 

@@ -1,17 +1,15 @@
 package com.bruyako.dao;
 
 import com.bruyako.model.Place;
-import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by brunyatko on 21.09.15.
  */
-@Service
-public interface PlaceDao extends AbstractDao<Place, String> {
+public interface PlaceDao extends AbstractDao<Place> {
 
 
-    Collection<Place> getAllContactsForPlace(Place place);
+    List<Place> getAllContactsForPlace(Place place);
 }
 

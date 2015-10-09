@@ -2,22 +2,21 @@ package com.bruyako.impl;
 
 import com.bruyako.dao.HobbyDao;
 import com.bruyako.model.Hobby;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by brunyatko on 21.09.15.
  */
-@Service
+@Repository
 public class HobbyDaoImpl implements HobbyDao {
 
     private Map<String, Hobby> hobbiesMaps = new HashMap<>();
-
-    Hobby hobby = new Hobby();
+    private Hobby hobby;
 
     @PostConstruct
     public void init(){
@@ -29,7 +28,7 @@ public class HobbyDaoImpl implements HobbyDao {
     }
 
     @Override
-    public Collection<Hobby> getAllContactsWithHobby(Hobby hobby) {
+    public List<Hobby> getAllContactsWithHobby(Hobby hobby) {
         return null;
     }
 
@@ -39,18 +38,18 @@ public class HobbyDaoImpl implements HobbyDao {
     }
 
     @Override
-    public void delete(Hobby hobby) {
-        hobbiesMaps.remove(hobby);
+    public void delete(Long id) {
+
     }
 
     @Override
-    public Hobby update(String s) {
+    public void update(Hobby hobby) {
+
+    }
+
+    @Override
+    public List<Hobby> getAll() {
         return null;
-    }
-
-    @Override
-    public Hobby get(String s) {
-        return hobbiesMaps.get(s);
     }
 
 }

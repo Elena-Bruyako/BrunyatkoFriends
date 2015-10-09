@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * Created by brunyatko on 24.09.15.
  */
-public interface AbstractDao<T, P> {
+public interface AbstractDao<T> {
 
     void create(T t);
-    void delete(T t);
-    T update(P p);
-    T get(P p);
+    void delete(Long id);
+    void update(T t);
+    List<T> getAll();
 }
 
