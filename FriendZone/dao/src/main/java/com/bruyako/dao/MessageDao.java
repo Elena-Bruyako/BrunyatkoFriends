@@ -1,6 +1,5 @@
 package com.bruyako.dao;
 
-import com.bruyako.model.Contact;
 import com.bruyako.model.Message;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public interface MessageDao{
 
-    List<Message> getConversation(Contact from, Contact to);
+    List<Message> getConversation(Long contactFrom, Long contactTo);
 
     void storeMessage(Message message);
 

@@ -10,11 +10,27 @@ import java.util.List;
  */
 public class Message implements Serializable {
 
+    private Long id;
     private LocalDateTime date;
     private Contact from;
     private Contact to;
     private String content;
     private List<Contact> conversation = new LinkedList<>();
+
+    public Message(LocalDateTime date, Contact from, Contact to, String content) {
+        this.date = date;
+        this.from = from;
+        this.to = to;
+        this.content = content;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDateTime getDate() {
         return date;
@@ -64,8 +80,11 @@ public class Message implements Serializable {
         Message message = (Message) o;
 
         if (content != null ? !content.equals(message.content) : message.content != null) return false;
+        if (conversation != null ? !conversation.equals(message.conversation) : message.conversation != null)
+            return false;
         if (date != null ? !date.equals(message.date) : message.date != null) return false;
         if (from != null ? !from.equals(message.from) : message.from != null) return false;
+        if (id != null ? !id.equals(message.id) : message.id != null) return false;
         if (to != null ? !to.equals(message.to) : message.to != null) return false;
 
         return true;
@@ -73,18 +92,20 @@ public class Message implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = date != null ? date.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (from != null ? from.hashCode() : 0);
         result = 31 * result + (to != null ? to.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (conversation != null ? conversation.hashCode() : 0);
         return result;
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "Message{" +
-                "date=" + date +
+                "id=" + id +
+                ", date=" + date +
                 ", from=" + from +
                 ", to=" + to +
                 ", content='" + content + '\'' +

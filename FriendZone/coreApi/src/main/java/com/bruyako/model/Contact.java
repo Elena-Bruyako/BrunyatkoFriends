@@ -20,6 +20,15 @@ public class Contact implements Serializable{
     private List<Message> conversation;
     private List<Contact> friends;
 
+    public Contact() {
+    }
+
+    public Contact(String firstName, String lastName, LocalDate birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+    }
+
     public long getContactId() {
         return contactId;
     }
@@ -130,10 +139,10 @@ public class Contact implements Serializable{
     @Override
     public String toString() {
         return "Contact{" +
-                "birthDate=" + birthDate +
-                ", contactId=" + contactId +
+                "contactId=" + contactId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
                 '}';
     }
 }

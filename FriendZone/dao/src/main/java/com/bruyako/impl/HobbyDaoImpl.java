@@ -5,11 +5,7 @@ import com.bruyako.model.Contact;
 import com.bruyako.model.Hobby;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by brunyatko on 21.09.15.
@@ -17,47 +13,60 @@ import java.util.Map;
 @Repository
 public class HobbyDaoImpl implements HobbyDao {
 
-    private Map<String, Hobby> hobbiesMaps = new HashMap<>();
-
-    @PostConstruct
-    public void init(){
-
-        Hobby hobby = new Hobby();
-
-        hobby.setTitle("Photo");
-        hobby.setDescription("Taking a picture");
-
-        hobbiesMaps.put(hobby.getTitle(), hobby);
-    }
+    private static long id = 1;
+    private Map<Long, Hobby> hobbiesMaps = new HashMap<>();
 
     @Override
-    public List<Contact> getAllContactsWithHobby(Hobby hobby) {
-        return null;
+    public Set<Contact> getAllContactsWithHobby(Hobby hobby) {
+
+        return hobby.getHobbiesOfContact();
     }
 
     @Override
     public void create(Hobby hobby) {
-        hobbiesMaps.put(hobby.getTitle(), hobby);
+
+        hobby.setId(id++);
+        hobbiesMaps.put(hobby.getId(), hobby);
     }
 
     @Override
     public void delete(Hobby hobby) {
 
-    }
+        Long tmp = null;
 
-    @Override
-    public void update(Hobby hobby) {
-
+        for (Map.Entry entry : hobbiesMaps.entrySet()) {
+            if (entry.getValue().equals(hobby)) {
+                tmp = (Long) entry.getKey();
+                break;
+            }
+        }
+        hobbiesMaps.remove(tmp);
     }
 
     @Override
     public List<Hobby> getAll() {
-        return null;
+
+        List<Hobby> allHobbies = new ArrayList<>();
+
+        for (Map.Entry entry : hobbiesMaps.entrySet()) {
+            allHobbies.add((Hobby) entry.getValue());
+        }
+
+        return allHobbies;
     }
 
     @Override
     public Hobby getById(Long id) {
-        return null;
+
+        Hobby hobbyById = null;
+
+        for (Map.Entry entry : hobbiesMaps.entrySet()) {
+            if (entry.getKey().equals(id)) {
+                hobbyById = (Hobby) entry.getValue();
+            }
+        }
+
+        return hobbyById;
     }
 
 }

@@ -4,10 +4,10 @@ import com.bruyako.dao.ContactDao;
 import com.bruyako.model.Contact;
 import com.bruyako.model.Hobby;
 import com.bruyako.model.Place;
+import com.bruyako.model.Post;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,27 +21,16 @@ public class ContactDaoImpl implements ContactDao {
     private static long id = 1;
     private Map<Long, Contact> contactsMap = new HashMap<>();
 
-    @PostConstruct
-    public void init() {
+    @Override
+    public void addFriendship(Contact contact, Contact secondContact) {
 
-        Contact contact = new Contact();
-
-        contact.setContactId(1);
-        contact.setFirstName("Elena");
-        contact.setLastName("Bruyako");
-        contact.setBirthDate(LocalDate.of(1990, 8, 02));
-
-        contactsMap.put(contact.getContactId(), contact);
+        contact.getFriends().add(secondContact);
     }
 
     @Override
-    public void addFriendship(Contact firstContact, Contact secondContact) {
+    public void deleteFriendship(Contact contact, Contact secondContact) {
 
-    }
-
-    @Override
-    public void deleteFriendship(Contact firstContact, Contact secondContact) {
-
+        contact.getFriends().remove(secondContact);
     }
 
     @Override
@@ -52,11 +41,19 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public void addHobbyToContact(Contact contact, Hobby hobby) {
 
+        contact.getHobbies().add(hobby);
     }
 
     @Override
     public void addPlaceToContact(Contact contact, Place place) {
 
+        contact.getPlaces().add(place);
+    }
+
+    @Override
+    public void addPostToContact(Contact contact, Post post) {
+
+        contact.getPosts().add(post);
     }
 
     @Override
@@ -80,19 +77,28 @@ public class ContactDaoImpl implements ContactDao {
     }
 
     @Override
-    public void update(Contact contact) {
-
-
-    }
-
-    @Override
     public List<Contact> getAll() {
-        return null;
+
+        List<Contact> allContacts = new ArrayList<>();
+
+        for (Map.Entry entry : contactsMap.entrySet()) {
+            allContacts.add((Contact)entry.getValue());
+        }
+
+        return allContacts;
     }
 
     @Override
     public Contact getById(Long id) {
-        return null;
+
+        Contact contactById = null;
+        for (Map.Entry entry : contactsMap.entrySet()) {
+            if (entry.getKey().equals(id)) {
+                contactById = (Contact) entry.getValue();
+            }
+        }
+
+        return contactById;
     }
 
 }

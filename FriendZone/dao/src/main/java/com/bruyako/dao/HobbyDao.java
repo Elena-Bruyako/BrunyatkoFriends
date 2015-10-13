@@ -3,7 +3,6 @@ package com.bruyako.dao;
 import com.bruyako.model.Contact;
 import com.bruyako.model.Hobby;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -11,6 +10,6 @@ import java.util.Set;
  */
 public interface HobbyDao extends AbstractDao<Hobby, Long> {
 
-    List<Contact> getAllContactsWithHobby(Hobby hobby);
+   Set<Contact> getAllContactsWithHobby(Hobby hobby);
 
 }

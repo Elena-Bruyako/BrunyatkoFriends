@@ -3,6 +3,7 @@ package com.bruyako.impl;
 import com.bruyako.dao.PostDao;
 import com.bruyako.model.Contact;
 import com.bruyako.model.Post;
+import javafx.geometry.Pos;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -13,37 +14,59 @@ import java.util.*;
 @Repository
 public class PostDaoImpl implements PostDao {
 
-    private Map<String, Post> postsMap = new HashMap<>();
-    private Post post;
+    private static long id = 1;
+    private Map<Long, Post> postsMap = new HashMap<>();
 
     @Override
     public Set<Contact> getAllPostsForContact(Post post) {
-        return null;
+        return post.getPostsOfContact();
     }
 
     @Override
     public void create(Post post) {
-        postsMap.put(post.getTitle(), post);
+        post.setId(id++);
+        postsMap.put(post.getId(), post);
     }
 
     @Override
     public void delete(Post post) {
 
-    }
+        Long tmp = null;
 
-    @Override
-    public void update(Post post) {
+        for (Map.Entry entry : postsMap.entrySet()) {
+            if (entry.getValue().equals(post)) {
+                tmp = (Long) entry.getKey();
+                break;
+            }
+        }
+        postsMap.remove(tmp);
 
     }
 
     @Override
     public List<Post> getAll() {
-        return null;
+
+        List<Post> allPosts = new ArrayList<>();
+
+        for (Map.Entry entry : postsMap.entrySet()) {
+            allPosts.add((Post) entry.getValue());
+        }
+
+        return allPosts;
     }
 
     @Override
     public Post getById(Long id) {
-        return null;
+
+        Post postById = null;
+
+        for (Map.Entry entry : postsMap.entrySet()) {
+            if (entry.getKey().equals(id)) {
+                postById = (Post) entry.getValue();
+            }
+        }
+
+        return postById;
     }
 
 }

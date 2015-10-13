@@ -5,7 +5,7 @@ import com.bruyako.model.Contact;
 import com.bruyako.model.Place;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
+
 import java.util.*;
 
 /**
@@ -14,50 +14,59 @@ import java.util.*;
 @Repository
 public class PlaceDaoImpl implements PlaceDao {
 
-    private Map<String, Place> placesMap = new HashMap<>();
-
-    @PostConstruct
-    public void init(){
-
-        Place place = new Place();
-
-        place.setTitle("Country");
-        place.setDescription("See Georgia");
-        place.setLatitude(45.1254656);
-        place.setLongitude(56.2135465);
-
-        placesMap.put(place.getTitle(), place);
-    }
+    private static long id = 1;
+    private Map<Long, Place> placesMap = new HashMap<>();
 
 
     @Override
     public Set<Contact> getAllContactsForPlace(Place place) {
-        return null;
+        return place.getPlacesOfContact();
     }
 
     @Override
     public void create(Place place) {
-        placesMap.put(place.getTitle(), place);
+        place.setId(id++);
+        placesMap.put(place.getId(), place);
     }
 
     @Override
     public void delete(Place place) {
 
-    }
+        Long tmp = null;
 
-    @Override
-    public void update(Place place) {
-
+        for (Map.Entry entry : placesMap.entrySet()) {
+            if (entry.getValue().equals(place)) {
+                tmp = (Long) entry.getKey();
+                break;
+            }
+        }
+        placesMap.remove(tmp);
     }
 
     @Override
     public List<Place> getAll() {
-        return null;
+
+        List<Place> allPlaces = new ArrayList<>();
+
+        for (Map.Entry entry : placesMap.entrySet()) {
+            allPlaces.add((Place) entry.getValue());
+        }
+
+        return allPlaces;
     }
 
     @Override
-    public Place getById(Long aLong) {
-        return null;
+    public Place getById(Long id) {
+
+        Place placeById = null;
+
+        for (Map.Entry entry : placesMap.entrySet()) {
+            if (entry.getKey().equals(id)) {
+                placeById = (Place) entry.getValue();
+            }
+        }
+
+        return placeById;
     }
 
 }

@@ -1,14 +1,10 @@
 package com.bruyako.impl;
 
 import com.bruyako.dao.MessageDao;
-import com.bruyako.model.Contact;
 import com.bruyako.model.Message;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by brunyatko on 21.09.15.
@@ -16,17 +12,18 @@ import java.util.Map;
 @Repository
 public class MessageDaoImpl implements MessageDao {
 
-    private Map<String, Message> messagesMap = new HashMap<>();
-    private Message message;
+    private List<Message> messages = new ArrayList<>();
 
     @Override
-    public List<Message> getConversation(Contact firstContact, Contact secondContact) {
+    public List<Message> getConversation(Long contactFrom, Long contactTo) {
+
+
         return null;
     }
 
     @Override
     public void storeMessage(Message message) {
-
+        messages.add(message);
     }
 
 }

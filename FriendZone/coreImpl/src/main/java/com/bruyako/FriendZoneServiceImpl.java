@@ -5,8 +5,8 @@ import com.bruyako.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 /**
 * Created by brunyatko on 24.09.15.
@@ -54,12 +54,27 @@ public class FriendZoneServiceImpl implements FriendZoneService{
 
     @Override
     public Hobby addHobby(String title, String description) {
-        return null;
+
+        Hobby hobby = new Hobby(title, description);
+        hobbyDao.create(hobby);
+
+        return hobby;
     }
 
     @Override
     public Place addPlace(String title, String description) {
-        return null;
+
+        Place place = new Place(title, description);
+        placeDao.create(place);
+        return place;
+    }
+
+    @Override
+    public Post addPost(String title, String content) {
+
+        Post post = new Post(title, content);
+        postDao.create(post);
+        return post;
     }
 
     @Override
@@ -73,32 +88,45 @@ public class FriendZoneServiceImpl implements FriendZoneService{
     }
 
     @Override
+    public void setPostToContact(Contact contact, Post post) {
+        contactDao.addPostToContact(contact, post);
+    }
+
+    @Override
     public void addFriendship(Contact firstContact, Contact secondContact) {
         contactDao.addFriendship(firstContact, secondContact);
+        contactDao.addFriendship(secondContact, firstContact);
     }
 
     @Override
     public void removeFriendship(Contact firstContact, Contact secondContact) {
         contactDao.deleteFriendship(firstContact, secondContact);
+        contactDao.deleteFriendship(secondContact, firstContact);
     }
 
     @Override
-    public Set<Contact> addFriendList(Contact contact) {
-        return null;
+    public List<Contact> addFriendList(Contact contact) {
+        return contact.getFriends();
     }
 
     @Override
     public List<Message> getConversation(Contact from, Contact to) {
-        return null;
+
+        long idContactFrom = from.getContactId();
+        long idContactTo = to.getContactId();
+
+        return messageDao.getConversation(idContactFrom, idContactTo);
     }
 
     @Override
     public List<Contact> getFriendList(Contact contact) {
-        return null;
+
+        return contact.getFriends();
     }
 
     @Override
     public void sendMessage(String content, Contact from, Contact to) {
-
+        Message message = new Message(LocalDateTime.now(), from, to, content);
+        messageDao.storeMessage(message);
     }
 }

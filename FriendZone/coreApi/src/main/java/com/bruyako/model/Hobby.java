@@ -9,9 +9,23 @@ import java.util.Set;
  */
 public class Hobby implements Serializable {
 
+    private Long id;
     private String title;
     private String description;
     private Set<Contact> hobbiesOfContact = new HashSet<>();
+
+    public Hobby(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -45,6 +59,9 @@ public class Hobby implements Serializable {
         Hobby hobby = (Hobby) o;
 
         if (description != null ? !description.equals(hobby.description) : hobby.description != null) return false;
+        if (hobbiesOfContact != null ? !hobbiesOfContact.equals(hobby.hobbiesOfContact) : hobby.hobbiesOfContact != null)
+            return false;
+        if (id != null ? !id.equals(hobby.id) : hobby.id != null) return false;
         if (title != null ? !title.equals(hobby.title) : hobby.title != null) return false;
 
         return true;
@@ -52,15 +69,18 @@ public class Hobby implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (hobbiesOfContact != null ? hobbiesOfContact.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Hobby{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

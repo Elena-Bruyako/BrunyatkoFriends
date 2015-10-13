@@ -3,7 +3,6 @@ package com.bruyako;
 import com.bruyako.model.*;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by brunyatko on 24.09.15.
@@ -24,15 +23,19 @@ public interface FriendZoneService {
 
     Place addPlace(String title, String description);
 
+    Post addPost(String title, String content);
+
     void setPlaceToContact(Contact contact, Place place);
 
     void setHobbyToContact(Contact contact, Hobby hobby);
+
+    void setPostToContact(Contact contact, Post post);
 
     void addFriendship(Contact firstContact, Contact secondContact);
 
     void removeFriendship(Contact firstContact, Contact secondContact);
 
-    Set<Contact> addFriendList(Contact contact);
+    List<Contact> addFriendList(Contact contact);
 
     List<Message> getConversation(Contact from, Contact to);
 
