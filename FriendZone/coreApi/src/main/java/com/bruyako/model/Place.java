@@ -1,6 +1,8 @@
 package com.bruyako.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by brunyatko on 07.09.15.
@@ -11,6 +13,7 @@ public class Place implements Serializable{
     private double longitude;
     private double latitude;
     private String description;
+    private Set<Contact> placesOfContact = new HashSet<>();
 
     public String getTitle() {
         return title;
@@ -42,6 +45,15 @@ public class Place implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public Set<Contact> getPlacesOfContact() {
+        return placesOfContact;
+    }
+
+    public void setPlacesOfContact(Set<Contact> placesOfContact) {
+        this.placesOfContact = placesOfContact;
     }
 
     @Override

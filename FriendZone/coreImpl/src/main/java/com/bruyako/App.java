@@ -1,5 +1,6 @@
 package com.bruyako;
 
+import com.bruyako.model.Contact;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
@@ -13,7 +14,12 @@ public class App {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         FriendZoneService service = context.getBean(FriendZoneService.class);
 
+        Contact contact = service.getAllContacts().iterator().next();
+
+        System.out.println(contact);
+
         context.close();
+
 
     }
 }

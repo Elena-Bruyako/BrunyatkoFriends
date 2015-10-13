@@ -5,6 +5,7 @@ import com.bruyako.model.Contact;
 import com.bruyako.model.Message;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,26 +27,6 @@ public class MessageDaoImpl implements MessageDao {
     @Override
     public void storeMessage(Message message) {
 
-    }
-
-    @Override
-    public void create(Message message) {
-
-    }
-
-    @Override
-    public void delete(Long id) {
-
-    }
-
-    @Override
-    public void update(Message message) {
-
-    }
-
-    @Override
-    public List<Message> getAll() {
-        return null;
     }
 
 }

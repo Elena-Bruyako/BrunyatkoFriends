@@ -1,6 +1,8 @@
 package com.bruyako.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by brunyatko on 07.09.15.
@@ -9,6 +11,7 @@ public class Hobby implements Serializable {
 
     private String title;
     private String description;
+    private Set<Contact> hobbiesOfContact = new HashSet<>();
 
     public String getTitle() {
         return title;
@@ -24,6 +27,14 @@ public class Hobby implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Contact> getHobbiesOfContact() {
+        return hobbiesOfContact;
+    }
+
+    public void setHobbiesOfContact(Set<Contact> hobbiesOfContact) {
+        this.hobbiesOfContact = hobbiesOfContact;
     }
 
     @Override

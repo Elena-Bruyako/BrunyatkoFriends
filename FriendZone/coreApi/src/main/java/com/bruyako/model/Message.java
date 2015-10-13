@@ -2,6 +2,8 @@ package com.bruyako.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by brunyatko on 07.09.15.
@@ -12,6 +14,7 @@ public class Message implements Serializable {
     private Contact from;
     private Contact to;
     private String content;
+    private List<Contact> conversation = new LinkedList<>();
 
     public LocalDateTime getDate() {
         return date;
@@ -43,6 +46,14 @@ public class Message implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<Contact> getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(List<Contact> conversation) {
+        this.conversation = conversation;
     }
 
     @Override

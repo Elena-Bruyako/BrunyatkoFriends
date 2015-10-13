@@ -1,12 +1,11 @@
 package com.bruyako.impl;
 
 import com.bruyako.dao.PostDao;
+import com.bruyako.model.Contact;
 import com.bruyako.model.Post;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by brunyatko on 21.09.15.
@@ -18,7 +17,7 @@ public class PostDaoImpl implements PostDao {
     private Post post;
 
     @Override
-    public List<Post> getAllPostsForContact(Post post) {
+    public Set<Contact> getAllPostsForContact(Post post) {
         return null;
     }
 
@@ -28,7 +27,7 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Post post) {
 
     }
 
@@ -39,6 +38,11 @@ public class PostDaoImpl implements PostDao {
 
     @Override
     public List<Post> getAll() {
+        return null;
+    }
+
+    @Override
+    public Post getById(Long id) {
         return null;
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by brunyatko on 21.09.15.
  */
-public interface MessageDao extends AbstractDao<Message> {
+public interface MessageDao{
 
     List<Message> getConversation(Contact from, Contact to);
 

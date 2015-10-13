@@ -1,10 +1,12 @@
 package com.bruyako.impl;
 
 import com.bruyako.dao.HobbyDao;
+import com.bruyako.model.Contact;
 import com.bruyako.model.Hobby;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +18,11 @@ import java.util.Map;
 public class HobbyDaoImpl implements HobbyDao {
 
     private Map<String, Hobby> hobbiesMaps = new HashMap<>();
-    private Hobby hobby;
 
     @PostConstruct
     public void init(){
+
+        Hobby hobby = new Hobby();
 
         hobby.setTitle("Photo");
         hobby.setDescription("Taking a picture");
@@ -28,7 +31,7 @@ public class HobbyDaoImpl implements HobbyDao {
     }
 
     @Override
-    public List<Hobby> getAllContactsWithHobby(Hobby hobby) {
+    public List<Contact> getAllContactsWithHobby(Hobby hobby) {
         return null;
     }
 
@@ -38,7 +41,7 @@ public class HobbyDaoImpl implements HobbyDao {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Hobby hobby) {
 
     }
 
@@ -49,6 +52,11 @@ public class HobbyDaoImpl implements HobbyDao {
 
     @Override
     public List<Hobby> getAll() {
+        return null;
+    }
+
+    @Override
+    public Hobby getById(Long id) {
         return null;
     }
 
