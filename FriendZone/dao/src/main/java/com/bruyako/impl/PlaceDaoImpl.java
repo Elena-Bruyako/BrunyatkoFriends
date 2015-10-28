@@ -3,6 +3,8 @@ package com.bruyako.impl;
 import com.bruyako.dao.PlaceDao;
 import com.bruyako.model.Contact;
 import com.bruyako.model.Place;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
@@ -14,8 +16,11 @@ import java.util.*;
 @Repository
 public class PlaceDaoImpl implements PlaceDao {
 
-    private static long id = 1;
-    private Map<Long, Place> placesMap = new HashMap<>();
+    @Autowired
+    private SessionFactory sessionFactory;
+
+//    private static long id = 1;
+//    private Map<Long, Place> placesMap = new HashMap<>();
 
 
     @Override
@@ -25,48 +30,57 @@ public class PlaceDaoImpl implements PlaceDao {
 
     @Override
     public void create(Place place) {
-        place.setId(id++);
-        placesMap.put(place.getId(), place);
+
+        sessionFactory.getCurrentSession().save(place);
+//        place.setId(id++);
+//        placesMap.put(place.getId(), place);
     }
 
     @Override
     public void delete(Place place) {
 
-        Long tmp = null;
+        sessionFactory.getCurrentSession().delete(place);
 
-        for (Map.Entry entry : placesMap.entrySet()) {
-            if (entry.getValue().equals(place)) {
-                tmp = (Long) entry.getKey();
-                break;
-            }
-        }
-        placesMap.remove(tmp);
+//        Long tmp = null;
+//
+//        for (Map.Entry entry : placesMap.entrySet()) {
+//            if (entry.getValue().equals(place)) {
+//                tmp = (Long) entry.getKey();
+//                break;
+//            }
+//        }
+//        placesMap.remove(tmp);
     }
 
     @Override
     public List<Place> getAll() {
 
-        List<Place> allPlaces = new ArrayList<>();
+        return sessionFactory.getCurrentSession().createQuery("FROM Place").list();
 
-        for (Map.Entry entry : placesMap.entrySet()) {
-            allPlaces.add((Place) entry.getValue());
-        }
-
-        return allPlaces;
+//        List<Place> allPlaces = new ArrayList<>();
+//
+//        for (Map.Entry entry : placesMap.entrySet()) {
+//            allPlaces.add((Place) entry.getValue());
+//        }
+//
+//        return allPlaces;
     }
 
     @Override
     public Place getById(Long id) {
 
-        Place placeById = null;
+        Place place = sessionFactory.getCurrentSession().get(Place.class, id);
+        return place;
 
-        for (Map.Entry entry : placesMap.entrySet()) {
-            if (entry.getKey().equals(id)) {
-                placeById = (Place) entry.getValue();
-            }
-        }
-
-        return placeById;
+//        Place placeById = null;
+//
+//        for (Map.Entry entry : placesMap.entrySet()) {
+//            if (entry.getKey().equals(id)) {
+//                placeById = (Place) entry.getValue();
+//            }
+//        }
+//
+//        return placeById;
     }
 
 }

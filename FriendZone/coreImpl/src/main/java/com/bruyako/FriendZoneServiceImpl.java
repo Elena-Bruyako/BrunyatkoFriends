@@ -29,7 +29,6 @@ public class FriendZoneServiceImpl implements FriendZoneService{
     @Override
     public void createContact(Contact contact) {
         contactDao.create(contact);
-
     }
 
     @Override

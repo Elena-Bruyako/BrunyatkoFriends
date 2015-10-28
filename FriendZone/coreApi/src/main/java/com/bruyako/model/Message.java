@@ -1,5 +1,6 @@
 package com.bruyako.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
@@ -8,14 +9,32 @@ import java.util.List;
 /**
  * Created by brunyatko on 07.09.15.
  */
+@Entity
+@Table(name = "MESSAGE")
 public class Message implements Serializable {
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "MESSAGE_TIME")
     private LocalDateTime date;
+
+    @Column(name = "MESSAGE_FROM")
     private Contact from;
+
+    @Column(name = "MESSAGE_TO")
     private Contact to;
+
+    @Column(name = "CONTENT")
     private String content;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "conversation")
     private List<Contact> conversation = new LinkedList<>();
+
+    public Message() {
+    }
 
     public Message(LocalDateTime date, Contact from, Contact to, String content) {
         this.date = date;

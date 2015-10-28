@@ -1,6 +1,6 @@
 package com.bruyako;
 
-import com.bruyako.model.Contact;
+import com.bruyako.dao.ContactDao;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
@@ -14,9 +14,9 @@ public class App {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         FriendZoneService service = context.getBean(FriendZoneService.class);
 
-        Contact contact = service.getAllContacts().iterator().next();
+        ContactDao contactDao = context.getBean(ContactDao.class);
 
-        System.out.println(contact);
+        System.out.println(contactDao.getAll());
 
         context.close();
 

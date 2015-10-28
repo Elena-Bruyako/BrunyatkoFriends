@@ -1,5 +1,6 @@
 package com.bruyako.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,14 +8,32 @@ import java.util.Set;
 /**
  * Created by brunyatko on 07.09.15.
  */
+@Entity
+@Table(name = "PLACE")
 public class Place implements Serializable{
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "TITLE", nullable = false)
     private String title;
+
+    @Column(name = "LONGITUDE")
     private double longitude;
+
+    @Column(name = "LATITUDE")
     private double latitude;
+
+    @Column(name = "DESCRIPTION", nullable = false)
     private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "places")
     private Set<Contact> placesOfContact = new HashSet<>();
+
+    public Place() {
+    }
 
     public Place(String description, String title) {
         this.description = description;

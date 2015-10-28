@@ -1,5 +1,6 @@
 package com.bruyako.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -8,13 +9,29 @@ import java.util.Set;
 /**
  * Created by brunyatko on 07.09.15.
  */
+@Entity
+@Table(name = "POST")
 public class Post implements Serializable{
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "TITLE", nullable = false)
     private String title;
+
+    @Column(name = "CONTENT", nullable = false)
     private String content;
+
+    @Column(name = "DATE")
     private LocalDate date;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "posts")
     private Set<Contact> postsOfContact = new HashSet<>();
+
+    public Post() {
+    }
 
     public Post(String title, String content) {
         this.title = title;

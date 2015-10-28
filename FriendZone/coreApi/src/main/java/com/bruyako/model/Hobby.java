@@ -1,5 +1,6 @@
 package com.bruyako.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,12 +8,26 @@ import java.util.Set;
 /**
  * Created by brunyatko on 07.09.15.
  */
+@Entity
+@Table(name = "HOBBY")
 public class Hobby implements Serializable {
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "TITLE", nullable = false)
     private String title;
+
+    @Column(name = "DESCRIPTION", nullable = false)
     private String description;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "hobbies")
     private Set<Contact> hobbiesOfContact = new HashSet<>();
+
+    public Hobby() {
+    }
 
     public Hobby(String title, String description) {
         this.title = title;
