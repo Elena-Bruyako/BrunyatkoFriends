@@ -18,15 +18,13 @@ public class MessageDaoImpl implements MessageDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-//    private List<Message> messages = new ArrayList<>();
-
     @Override
-    public List<Message> getConversation(Long contactFrom, Long contactTo) {
+    public List<Message> getConversation(Long contactFromId, Long contactToId) {
 
-        Query query = sessionFactory.getCurrentSession().createQuery("FROM Message M  WHERE (M.contactFrom = :contactFrom AND M.contactTo = :contactTo) " +
-                "OR (M.contactIdFrom = :id2 AND M.contactIdTo = :id1) ORDER BY message_time ASC ");
-        query.setParameter("contactFrom", contactFrom);
-        query.setParameter("contactTo", contactTo);
+        Query query = sessionFactory.getCurrentSession().createQuery("FROM Message M  WHERE (M.contactFromId = :contactFromId AND M.contactToId = :contactToId) " +
+                "OR (M.contactFromId = :contactToId AND M.contactToId = :contactFromId) ORDER BY message_time ASC ");
+        query.setParameter("contactFromId", contactFromId);
+        query.setParameter("contactToId", contactToId);
 
         return query.list();
 
@@ -34,7 +32,6 @@ public class MessageDaoImpl implements MessageDao {
 
     @Override
     public void storeMessage(Message message) {
-//        messages.add(message);
         sessionFactory.getCurrentSession().saveOrUpdate(message);
     }
 

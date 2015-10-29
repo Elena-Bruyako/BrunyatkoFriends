@@ -1,0 +1,11 @@
+com/bruyako/dao/PostDao.class
+com/bruyako/dao/PlaceDao.class
+com/bruyako/impl/PostDaoImpl.class
+com/bruyako/impl/MessageDaoImpl.class
+com/bruyako/dao/MessageDao.class
+com/bruyako/impl/PlaceDaoImpl.class
+com/bruyako/dao/ContactDao.class
+com/bruyako/dao/HobbyDao.class
+com/bruyako/dao/AbstractDao.class
+com/bruyako/impl/HobbyDaoImpl.class
+com/bruyako/impl/ContactDaoImpl.class

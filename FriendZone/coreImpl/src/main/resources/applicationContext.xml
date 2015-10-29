@@ -26,7 +26,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <array>
-                <value>com.bruyako</value>
+                <value>com.bruyako.model</value>
             </array>
         </property>
         <property name="hibernateProperties">

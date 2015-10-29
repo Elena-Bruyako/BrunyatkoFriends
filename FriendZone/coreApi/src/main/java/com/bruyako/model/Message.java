@@ -2,7 +2,9 @@ package com.bruyako.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,13 +21,13 @@ public class Message implements Serializable {
     private Long id;
 
     @Column(name = "MESSAGE_TIME")
-    private LocalDateTime date;
+    private Timestamp date;
 
-    @Column(name = "MESSAGE_FROM")
-    private Contact from;
+    @Column(name = "CONTACT_FROM_ID")
+    private Long contactFromId;
 
-    @Column(name = "MESSAGE_TO")
-    private Contact to;
+    @Column(name = "CONTACT_TO_ID")
+    private Long contactToId;
 
     @Column(name = "CONTENT")
     private String content;
@@ -36,10 +38,10 @@ public class Message implements Serializable {
     public Message() {
     }
 
-    public Message(LocalDateTime date, Contact from, Contact to, String content) {
+    public Message(Timestamp date, Long contactFromId, Long contactToId, String content) {
         this.date = date;
-        this.from = from;
-        this.to = to;
+        this.contactFromId = contactFromId;
+        this.contactToId = contactToId;
         this.content = content;
     }
 
@@ -51,28 +53,28 @@ public class Message implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
-    public Contact getFrom() {
-        return from;
+    public Long getContactFromId() {
+        return contactFromId;
     }
 
-    public void setFrom(Contact from) {
-        this.from = from;
+    public void setContactFromId(Long contactFromId) {
+        this.contactFromId = contactFromId;
     }
 
-    public Contact getTo() {
-        return to;
+    public Long getContactToId() {
+        return contactToId;
     }
 
-    public void setTo(Contact to) {
-        this.to = to;
+    public void setContactToId(Long contactToId) {
+        this.contactToId = contactToId;
     }
 
     public String getContent() {
@@ -98,13 +100,14 @@ public class Message implements Serializable {
 
         Message message = (Message) o;
 
+        if (contactFromId != null ? !contactFromId.equals(message.contactFromId) : message.contactFromId != null)
+            return false;
+        if (contactToId != null ? !contactToId.equals(message.contactToId) : message.contactToId != null) return false;
         if (content != null ? !content.equals(message.content) : message.content != null) return false;
         if (conversation != null ? !conversation.equals(message.conversation) : message.conversation != null)
             return false;
         if (date != null ? !date.equals(message.date) : message.date != null) return false;
-        if (from != null ? !from.equals(message.from) : message.from != null) return false;
         if (id != null ? !id.equals(message.id) : message.id != null) return false;
-        if (to != null ? !to.equals(message.to) : message.to != null) return false;
 
         return true;
     }
@@ -113,8 +116,8 @@ public class Message implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (from != null ? from.hashCode() : 0);
-        result = 31 * result + (to != null ? to.hashCode() : 0);
+        result = 31 * result + (contactFromId != null ? contactFromId.hashCode() : 0);
+        result = 31 * result + (contactToId != null ? contactToId.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (conversation != null ? conversation.hashCode() : 0);
         return result;
@@ -125,8 +128,8 @@ public class Message implements Serializable {
         return "Message{" +
                 "id=" + id +
                 ", date=" + date +
-                ", from=" + from +
-                ", to=" + to +
+                ", contactFromId=" + contactFromId +
+                ", contactToId=" + contactToId +
                 ", content='" + content + '\'' +
                 '}';
     }

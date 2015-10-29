@@ -22,9 +22,6 @@ public class ContactDaoImpl implements ContactDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-//    private static long id = 1;
-//    private Map<Long, Contact> contactsMap = new HashMap<>();
-
     @Override
     public void addFriendship(Contact contact, Contact secondContact) {
 
@@ -69,36 +66,18 @@ public class ContactDaoImpl implements ContactDao {
     public void create(Contact contact) {
 
         sessionFactory.getCurrentSession().save(contact);
-//        contact.setContactId(id++);
-//        contactsMap.put(contact.getContactId(), contact);
     }
 
     @Override
     public void delete(Contact contact) {
 
         sessionFactory.getCurrentSession().delete(contact);
-//        Long tmp = null;
-//        for (Map.Entry entry : contactsMap.entrySet()) {
-//            if (entry.getValue().equals(contact)) {
-//                tmp = (Long) entry.getKey();
-//                break;
-//            }
-//        }
-//        contactsMap.remove(tmp);
     }
 
     @Override
     public List<Contact> getAll() {
 
-        return sessionFactory.getCurrentSession().createQuery("from Contact").list();
-
-//        List<Contact> allContacts = new ArrayList<>();
-//
-//        for (Map.Entry entry : contactsMap.entrySet()) {
-//            allContacts.add((Contact)entry.getValue());
-//        }
-
-//        return allContacts;
+        return sessionFactory.getCurrentSession().createCriteria(Contact.class).list();
     }
 
     @Override
@@ -106,14 +85,5 @@ public class ContactDaoImpl implements ContactDao {
 
         Contact contact = sessionFactory.getCurrentSession().get(Contact.class, id);
         return contact;
-
-//        Contact contactById = null;
-//        for (Map.Entry entry : contactsMap.entrySet()) {
-//            if (entry.getKey().equals(id)) {
-//                contactById = (Contact) entry.getValue();
-//            }
-//        }
-//
-//        return contactById;
     }
 }

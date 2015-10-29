@@ -41,6 +41,6 @@ public interface FriendZoneService {
 
     List<Contact> getFriendList(Contact contact);
 
-    void sendMessage(String content, Contact from, Contact to);
+    void sendMessage(String content, Long from, Long to);
 
 }

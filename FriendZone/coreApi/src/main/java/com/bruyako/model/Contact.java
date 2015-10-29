@@ -2,7 +2,7 @@ package com.bruyako.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +25,7 @@ public class Contact implements Serializable{
     private String lastName;
 
     @Column(name = "BIRTH_DATE")
-    private LocalDate birthDate;
+    private Date birthDate;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "CONTACT_HOBBY", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "HOBBY_ID"))
@@ -35,8 +35,7 @@ public class Contact implements Serializable{
     @JoinTable(name = "CONTACT_PLACE", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "PLACE_ID"))
     private Set<Place> places;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinTable(name = "CONTACT_POST", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "POST_ID"))
+    @OneToMany(mappedBy = "postOfContact")
     private Set<Post> posts;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
@@ -50,7 +49,7 @@ public class Contact implements Serializable{
     public Contact() {
     }
 
-    public Contact(String firstName, String lastName, LocalDate birthDate) {
+    public Contact(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -80,11 +79,11 @@ public class Contact implements Serializable{
         this.lastName = lastName;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 

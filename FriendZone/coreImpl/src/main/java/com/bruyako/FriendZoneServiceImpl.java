@@ -4,7 +4,10 @@ import com.bruyako.dao.*;
 import com.bruyako.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -42,6 +45,7 @@ public class FriendZoneServiceImpl implements FriendZoneService{
     }
 
     @Override
+    @Transactional
     public List<Contact> getAllContacts() {
         return contactDao.getAll();
     }
@@ -111,10 +115,10 @@ public class FriendZoneServiceImpl implements FriendZoneService{
     @Override
     public List<Message> getConversation(Contact from, Contact to) {
 
-        long idContactFrom = from.getContactId();
-        long idContactTo = to.getContactId();
+        long contactFromId = from.getContactId();
+        long contactToId = to.getContactId();
 
-        return messageDao.getConversation(idContactFrom, idContactTo);
+        return messageDao.getConversation(contactFromId, contactToId);
     }
 
     @Override
@@ -124,8 +128,8 @@ public class FriendZoneServiceImpl implements FriendZoneService{
     }
 
     @Override
-    public void sendMessage(String content, Contact from, Contact to) {
-        Message message = new Message(LocalDateTime.now(), from, to, content);
+    public void sendMessage(String content, Long from, Long to) {
+        Message message = new Message(Timestamp.valueOf(LocalDateTime.now()), from, to, content);
         messageDao.storeMessage(message);
     }
 }

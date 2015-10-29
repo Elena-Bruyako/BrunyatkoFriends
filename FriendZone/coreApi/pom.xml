@@ -11,11 +11,11 @@
 
     <artifactId>coreApi</artifactId>
 
-    <name>Core-Api</name>
-
     <properties>
         <hibernate.version>5.0.2.Final</hibernate.version>
     </properties>
+
+    <name>Core-Api</name>
 
     <dependencies>
         <dependency>
