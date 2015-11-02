@@ -1,17 +1,23 @@
 package com.bruyako.impl;
 
-import com.bruyako.dao.HobbyDao;
-import com.bruyako.model.Contact;
-import com.bruyako.model.Hobby;
+import com.bruyako.HobbyDao;
+import com.bruyako.entity.Contact;
+import com.bruyako.entity.Hobby;
+import com.bruyako.model.ContactDto;
+import com.bruyako.model.HobbyDto;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+
+import static com.bruyako.converters.EntityDtoConverter.convert;
 
 /**
  * Created by brunyatko on 21.09.15.
  */
+@Transactional
 @Repository
 public class HobbyDaoImpl implements HobbyDao {
 
@@ -19,33 +25,38 @@ public class HobbyDaoImpl implements HobbyDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public Set<Contact> getAllContactsWithHobby(Hobby hobby) {
+    public Set<HobbyDto> getAllHobbyForContact(Long contactDtoId) {
 
-        return hobby.getHobbiesOfContact();
+
+        return null;
+
     }
 
     @Override
-    public void create(Hobby hobby) {
+    public Long create(HobbyDto hobbyDto) {
 
+        Hobby hobby = convert(hobbyDto);
         sessionFactory.getCurrentSession().save(hobby);
+        return hobby.getId();
     }
 
     @Override
-    public void delete(Hobby hobby) {
+    public void delete(HobbyDto hobbyDto) {
 
+        Hobby hobby = convert(hobbyDto);
         sessionFactory.getCurrentSession().delete(hobby);
+
     }
 
     @Override
-    public List<Hobby> getAll() {
+    public HobbyDto getById(Long id) {
 
-        return sessionFactory.getCurrentSession().createQuery("FROM Hobby").list();
+        List<Hobby> hobbies = sessionFactory.getCurrentSession().createQuery("select h from Hobby h where h.id = :id").setParameter("id", id).list();
+        if (hobbies.isEmpty()) {
+            return null;
+        } else {
+            return convert(hobbies.get(0));
+        }
     }
 
-    @Override
-    public Hobby getById(Long id) {
-
-        Hobby hobby = sessionFactory.getCurrentSession().get(Hobby.class, id);
-        return hobby;
-    }
 }

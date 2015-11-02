@@ -1,5 +1,6 @@
-com/bruyako/model/Message.class
-com/bruyako/model/Post.class
-com/bruyako/model/Contact.class
-com/bruyako/model/Hobby.class
-com/bruyako/model/Place.class
+com/bruyako/model/ContactDto.class
+com/bruyako/model/PostDto.class
+com/bruyako/model/PlaceDto.class
+com/bruyako/model/MessageDto.class
+com/bruyako/FriendZoneService.class
+com/bruyako/model/HobbyDto.class

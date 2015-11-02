@@ -1,4 +1,4 @@
-package com.bruyako.dao;
+package com.bruyako;
 
 import java.util.List;
 
@@ -7,9 +7,8 @@ import java.util.List;
  */
 public interface AbstractDao<T, P> {
 
-    void create(T t);
+    P create(T t);
     void delete(T t);
-    List<T> getAll();
     T getById(P p);
 }
 

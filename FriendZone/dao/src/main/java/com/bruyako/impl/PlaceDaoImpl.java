@@ -1,18 +1,23 @@
 package com.bruyako.impl;
 
-import com.bruyako.dao.PlaceDao;
-import com.bruyako.model.Contact;
-import com.bruyako.model.Place;
+import com.bruyako.PlaceDao;
+import com.bruyako.entity.Place;
+import com.bruyako.model.ContactDto;
+import com.bruyako.model.PlaceDto;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.*;
 
+import static com.bruyako.converters.EntityDtoConverter.convert;
+
 /**
  * Created by brunyatko on 21.09.15.
  */
+@Transactional
 @Repository
 public class PlaceDaoImpl implements PlaceDao {
 
@@ -20,32 +25,34 @@ public class PlaceDaoImpl implements PlaceDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public Set<Contact> getAllContactsForPlace(Place place) {
-        return place.getPlacesOfContact();
+    public Set<PlaceDto> getAllPlaceForContact(ContactDto contactDto) {
+        return null;
     }
 
+    @Transactional(readOnly = false)
     @Override
-    public void create(Place place) {
+    public Long create(PlaceDto placeDto) {
 
+        Place place = convert(placeDto);
         sessionFactory.getCurrentSession().save(place);
+        return place.getId();
     }
 
     @Override
-    public void delete(Place place) {
+    public void delete(PlaceDto placeDto) {
 
+        Place place = convert(placeDto);
         sessionFactory.getCurrentSession().delete(place);
     }
 
     @Override
-    public List<Place> getAll() {
+    public PlaceDto getById(Long id) {
 
-        return sessionFactory.getCurrentSession().createQuery("FROM Place").list();
-    }
-
-    @Override
-    public Place getById(Long id) {
-
-        Place place = sessionFactory.getCurrentSession().get(Place.class, id);
-        return place;
+        List<Place> places = sessionFactory.getCurrentSession().createQuery("select p from Place p where p.id = :id").setParameter("id", id).list();
+        if (places.isEmpty()) {
+            return null;
+        } else {
+            return convert(places.get(0));
+        }
     }
 }

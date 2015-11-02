@@ -1,44 +1,26 @@
 package com.bruyako.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by brunyatko on 07.09.15.
  */
-@Entity
-@Table(name = "MESSAGE")
-public class Message implements Serializable {
+public class MessageDto implements Serializable {
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "MESSAGE_TIME")
     private Timestamp date;
-
-    @Column(name = "CONTACT_FROM_ID")
     private Long contactFromId;
-
-    @Column(name = "CONTACT_TO_ID")
     private Long contactToId;
-
-    @Column(name = "CONTENT")
     private String content;
+    private List<ContactDto> conversation = new LinkedList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "conversation")
-    private List<Contact> conversation = new LinkedList<>();
-
-    public Message() {
+    public MessageDto() {
     }
 
-    public Message(Timestamp date, Long contactFromId, Long contactToId, String content) {
+    public MessageDto(Timestamp date, Long contactFromId, Long contactToId, String content) {
         this.date = date;
         this.contactFromId = contactFromId;
         this.contactToId = contactToId;
@@ -85,11 +67,11 @@ public class Message implements Serializable {
         this.content = content;
     }
 
-    public List<Contact> getConversation() {
+    public List<ContactDto> getConversation() {
         return conversation;
     }
 
-    public void setConversation(List<Contact> conversation) {
+    public void setConversation(List<ContactDto> conversation) {
         this.conversation = conversation;
     }
 
@@ -98,7 +80,7 @@ public class Message implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Message message = (Message) o;
+        MessageDto message = (MessageDto) o;
 
         if (contactFromId != null ? !contactFromId.equals(message.contactFromId) : message.contactFromId != null)
             return false;

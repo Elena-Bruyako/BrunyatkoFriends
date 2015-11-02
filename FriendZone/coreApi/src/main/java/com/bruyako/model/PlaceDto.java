@@ -1,6 +1,5 @@
 package com.bruyako.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,34 +7,19 @@ import java.util.Set;
 /**
  * Created by brunyatko on 07.09.15.
  */
-@Entity
-@Table(name = "PLACE")
-public class Place implements Serializable{
+public class PlaceDto implements Serializable{
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "TITLE", nullable = false)
     private String title;
-
-    @Column(name = "LONGITUDE")
     private double longitude;
-
-    @Column(name = "LATITUDE")
     private double latitude;
-
-    @Column(name = "DESCRIPTION", nullable = false)
     private String description;
+    private Set<ContactDto> placesOfContact = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "places")
-    private Set<Contact> placesOfContact = new HashSet<>();
-
-    public Place() {
+    public PlaceDto() {
     }
 
-    public Place(String description, String title) {
+    public PlaceDto(String description, String title) {
         this.description = description;
         this.title = title;
     }
@@ -81,11 +65,11 @@ public class Place implements Serializable{
     }
 
 
-    public Set<Contact> getPlacesOfContact() {
+    public Set<ContactDto> getPlacesOfContact() {
         return placesOfContact;
     }
 
-    public void setPlacesOfContact(Set<Contact> placesOfContact) {
+    public void setPlacesOfContact(Set<ContactDto> placesOfContact) {
         this.placesOfContact = placesOfContact;
     }
 
@@ -94,7 +78,7 @@ public class Place implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Place place = (Place) o;
+        PlaceDto place = (PlaceDto) o;
 
         if (Double.compare(place.latitude, latitude) != 0) return false;
         if (Double.compare(place.longitude, longitude) != 0) return false;

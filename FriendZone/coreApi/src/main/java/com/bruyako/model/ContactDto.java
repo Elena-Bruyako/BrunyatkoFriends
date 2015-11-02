@@ -1,6 +1,5 @@
 package com.bruyako.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -9,47 +8,22 @@ import java.util.Set;
 /**
  * Created by brunyatko on 07.09.15.
  */
-@Entity
-@Table(name = "CONTACT")
-public class Contact implements Serializable{
+public class ContactDto implements Serializable{
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long contactId;
-
-    @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
-
-    @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
-
-    @Column(name = "BIRTH_DATE")
     private Date birthDate;
+    private Set<HobbyDto> hobbies;
+    private Set<PlaceDto> places;
+    private Set<PostDto> posts;
+    private List<MessageDto> conversation;
+    private List<ContactDto> friends;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinTable(name = "CONTACT_HOBBY", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "HOBBY_ID"))
-    private Set<Hobby> hobbies;
-
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinTable(name = "CONTACT_PLACE", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "PLACE_ID"))
-    private Set<Place> places;
-
-    @OneToMany(mappedBy = "postOfContact")
-    private Set<Post> posts;
-
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinTable(name = "MESSAGE", joinColumns = @JoinColumn(name = "CONTACT_FROM_ID"), inverseJoinColumns = @JoinColumn(name = "CONTACT_TO_ID"))
-    private List<Message> conversation;
-
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinTable(name = "CONTACT_FRIENDSHIP", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "FRIEND_ID"))
-    private List<Contact> friends;
-
-    public Contact() {
+    public ContactDto() {
     }
 
-    public Contact(String firstName, String lastName, Date birthDate) {
+    public ContactDto(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -87,43 +61,43 @@ public class Contact implements Serializable{
         this.birthDate = birthDate;
     }
 
-    public Set<Hobby> getHobbies() {
+    public Set<HobbyDto> getHobbies() {
         return hobbies;
     }
 
-    public void setHobbies(Set<Hobby> hobbies) {
+    public void setHobbies(Set<HobbyDto> hobbies) {
         this.hobbies = hobbies;
     }
 
-    public Set<Place> getPlaces() {
+    public Set<PlaceDto> getPlaces() {
         return places;
     }
 
-    public void setPlaces(Set<Place> places) {
+    public void setPlaces(Set<PlaceDto> places) {
         this.places = places;
     }
 
-    public Set<Post> getPosts() {
+    public Set<PostDto> getPosts() {
         return posts;
     }
 
-    public void setPosts(Set<Post> posts) {
+    public void setPosts(Set<PostDto> posts) {
         this.posts = posts;
     }
 
-    public List<Message> getConversation() {
+    public List<MessageDto> getConversation() {
         return conversation;
     }
 
-    public void setConversation(List<Message> conversation) {
+    public void setConversation(List<MessageDto> conversation) {
         this.conversation = conversation;
     }
 
-    public List<Contact> getFriends() {
+    public List<ContactDto> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<Contact> friends) {
+    public void setFriends(List<ContactDto> friends) {
         this.friends = friends;
     }
 
@@ -132,7 +106,7 @@ public class Contact implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Contact contact = (Contact) o;
+        ContactDto contact = (ContactDto) o;
 
         if (contactId != contact.contactId) return false;
         if (birthDate != null ? !birthDate.equals(contact.birthDate) : contact.birthDate != null) return false;

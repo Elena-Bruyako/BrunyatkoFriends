@@ -1,0 +1,107 @@
+package com.bruyako.entity;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+/**
+ * Created by brunyatko on 02.11.15.
+ */
+@Entity
+@Table(name = "PLACE")
+public class Place implements Serializable {
+
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "TITLE", nullable = false)
+    private String title;
+
+    @Column(name = "LONGITUDE")
+    private double longitude;
+
+    @Column(name = "LATITUDE")
+    private double latitude;
+
+    @Column(name = "DESCRIPTION", nullable = false)
+    private String description;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "places")
+    private Set<Contact> placesOfContact;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Contact> getPlacesOfContact() {
+        return placesOfContact;
+    }
+
+    public void setPlacesOfContact(Set<Contact> placesOfContact) {
+        this.placesOfContact = placesOfContact;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Place place = (Place) o;
+        return Objects.equals(id, place.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", description='" + description + '\'' +
+                '}';
+    }
+}

@@ -1,15 +1,16 @@
-package com.bruyako.model;
+package com.bruyako.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
- * Created by brunyatko on 07.09.15.
+ * Created by brunyatko on 02.11.15.
  */
 @Entity
 @Table(name = "POST")
-public class Post implements Serializable{
+public class Post implements Serializable {
 
     @Id
     @Column(name = "ID")
@@ -23,19 +24,12 @@ public class Post implements Serializable{
     private String content;
 
     @Column(name = "DATE")
-    private Date date;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "CONTACT_ID")
     private Contact postOfContact;
 
-    public Post() {
-    }
-
-    public Post(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 
     public Long getId() {
         return id;
@@ -61,11 +55,11 @@ public class Post implements Serializable{
         this.content = content;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -81,27 +75,13 @@ public class Post implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Post post = (Post) o;
-
-        if (content != null ? !content.equals(post.content) : post.content != null) return false;
-        if (date != null ? !date.equals(post.date) : post.date != null) return false;
-        if (id != null ? !id.equals(post.id) : post.id != null) return false;
-        if (postOfContact != null ? !postOfContact.equals(post.postOfContact) : post.postOfContact != null)
-            return false;
-        if (title != null ? !title.equals(post.title) : post.title != null) return false;
-
-        return true;
+        return Objects.equals(id, post.id);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (postOfContact != null ? postOfContact.hashCode() : 0);
-        return result;
+        return Objects.hash(id);
     }
 
     @Override
