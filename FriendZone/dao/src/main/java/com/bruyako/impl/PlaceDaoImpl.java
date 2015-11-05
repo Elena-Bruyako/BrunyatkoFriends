@@ -38,6 +38,7 @@ public class PlaceDaoImpl implements PlaceDao {
         return place.getId();
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void delete(PlaceDto placeDto) {
 

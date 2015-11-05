@@ -32,6 +32,7 @@ public class HobbyDaoImpl implements HobbyDao {
 
     }
 
+    @Transactional(readOnly = false)
     @Override
     public Long create(HobbyDto hobbyDto) {
 
@@ -40,6 +41,7 @@ public class HobbyDaoImpl implements HobbyDao {
         return hobby.getId();
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void delete(HobbyDto hobbyDto) {
 

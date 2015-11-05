@@ -9,25 +9,25 @@ import java.util.Objects;
  * Created by brunyatko on 02.11.15.
  */
 @Entity
-@Table(name = "POST")
+@Table(name = "Post")
 public class Post implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "Post_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "TITLE", nullable = false)
+    @Column(name = "Title", nullable = false)
     private String title;
 
-    @Column(name = "CONTENT", nullable = false)
+    @Column(name = "Content", nullable = false)
     private String content;
 
-    @Column(name = "DATE")
+    @Column(name = "Date_Post")
     private LocalDate date;
 
     @ManyToOne
-    @JoinColumn(name = "CONTACT_ID")
+    @JoinColumn(name = "Contact_id")
     private Contact postOfContact;
 
 

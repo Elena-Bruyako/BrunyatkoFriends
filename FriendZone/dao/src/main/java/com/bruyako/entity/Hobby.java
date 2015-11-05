@@ -9,18 +9,18 @@ import java.util.Set;
  * Created by brunyatko on 02.11.15.
  */
 @Entity
-@Table(name = "HOBBY")
+@Table(name = "Hobby")
 public class Hobby implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "Hobby_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "TITLE", nullable = false)
+    @Column(name = "Title", nullable = false)
     private String title;
 
-    @Column(name = "DESCRIPTION", nullable = false)
+    @Column(name = "Description", nullable = false)
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "hobbies")

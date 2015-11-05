@@ -11,40 +11,40 @@ import java.util.Set;
  * Created by brunyatko on 02.11.15.
  */
 @Entity
-@Table(name = "CONTACT")
+@Table(name = "Contact")
 public class Contact implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "Contact_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long contactId;
 
-    @Column(name = "FIRST_NAME", nullable = false)
+    @Column(name = "First_Name", nullable = false)
     private String firstName;
 
-    @Column(name = "LAST_NAME", nullable = false)
+    @Column(name = "Last_Name", nullable = false)
     private String lastName;
 
-    @Column(name = "BIRTH_DATE")
+    @Column(name = "Birth_Date")
     private LocalDate birthDate;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinTable(name = "CONTACT_HOBBY", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "HOBBY_ID"))
+    @JoinTable(name = "Contact_Hobby", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Hobby_id"))
     private Set<Hobby> hobbies;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinTable(name = "CONTACT_PLACE", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "PLACE_ID"))
+    @JoinTable(name = "Contact_Place", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Place_id"))
     private Set<Place> places;
 
     @OneToMany(mappedBy = "postOfContact")
     private Set<Post> posts;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinTable(name = "MESSAGE", joinColumns = @JoinColumn(name = "CONTACT_FROM_ID"), inverseJoinColumns = @JoinColumn(name = "CONTACT_TO_ID"))
+    @JoinTable(name = "Message", joinColumns = @JoinColumn(name = "Contact_From_id"), inverseJoinColumns = @JoinColumn(name = "Contact_To_id"))
     private List<Message> conversation;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinTable(name = "CONTACT_FRIENDSHIP", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "FRIEND_ID"))
+    @JoinTable(name = "Contact_Friendship", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Friend_id"))
     private Set<Contact> friends;
 
     public long getContactId() {

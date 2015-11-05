@@ -10,24 +10,24 @@ import java.util.Objects;
  * Created by brunyatko on 02.11.15.
  */
 @Entity
-@Table(name = "MESSAGE")
+@Table(name = "Message")
 public class Message implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "Message_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "MESSAGE_TIME")
+    @Column(name = "Message_Time")
     private LocalDateTime date;
 
-    @Column(name = "CONTACT_FROM_ID")
+    @Column(name = "Contact_From_id")
     private Long contactFromId;
 
-    @Column(name = "CONTACT_TO_ID")
+    @Column(name = "Contact_To_id")
     private Long contactToId;
 
-    @Column(name = "CONTENT")
+    @Column(name = "Content")
     private String content;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "conversation")

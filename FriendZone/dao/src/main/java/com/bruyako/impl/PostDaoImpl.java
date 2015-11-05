@@ -39,6 +39,7 @@ public class PostDaoImpl implements PostDao {
         return post.getId();
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void delete(PostDto postDto) {
 

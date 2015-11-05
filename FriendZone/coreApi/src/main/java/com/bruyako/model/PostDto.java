@@ -1,7 +1,7 @@
 package com.bruyako.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Created by brunyatko on 07.09.15.
@@ -11,7 +11,7 @@ public class PostDto implements Serializable{
     private Long id;
     private String title;
     private String content;
-    private Date date;
+    private LocalDate date;
     private ContactDto postOfContact;
 
     public PostDto() {
@@ -46,11 +46,11 @@ public class PostDto implements Serializable{
         this.content = content;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -45,7 +45,7 @@ public class FriendZoneServiceImpl implements FriendZoneService{
 
     @Override
     public List<ContactDto> getAllContacts() {
-        return contactDao.getAll();
+        return contactDao.getAllContacts();
     }
 
     @Override
@@ -127,7 +127,7 @@ public class FriendZoneServiceImpl implements FriendZoneService{
 
     @Override
     public void sendMessage(String content, Long from, Long to) {
-        MessageDto message = new MessageDto(Timestamp.valueOf(LocalDateTime.now()), from, to, content);
-        messageDao.storeMessage(message);
+//        MessageDto message = new MessageDto(Timestamp.valueOf(LocalDateTime.now()), from, to, content);
+//        messageDao.storeMessage(message);
     }
 }

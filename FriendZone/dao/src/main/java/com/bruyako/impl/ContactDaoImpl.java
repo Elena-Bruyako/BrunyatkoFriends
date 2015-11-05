@@ -1,14 +1,8 @@
 package com.bruyako.impl;
 
 import com.bruyako.ContactDao;
-import com.bruyako.entity.Contact;
-import com.bruyako.entity.Hobby;
-import com.bruyako.entity.Place;
-import com.bruyako.entity.Post;
-import com.bruyako.model.ContactDto;
-import com.bruyako.model.HobbyDto;
-import com.bruyako.model.PlaceDto;
-import com.bruyako.model.PostDto;
+import com.bruyako.entity.*;
+import com.bruyako.model.*;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +32,7 @@ public class ContactDaoImpl implements ContactDao {
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void deleteFriendship(ContactDto contactDto, ContactDto secondContactDto) {
 
@@ -90,6 +85,7 @@ public class ContactDaoImpl implements ContactDao {
         return contact.getContactId();
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void delete(ContactDto contactDto) {
 

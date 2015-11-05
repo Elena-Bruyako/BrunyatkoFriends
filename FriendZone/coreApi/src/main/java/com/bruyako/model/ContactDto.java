@@ -1,7 +1,7 @@
 package com.bruyako.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +13,7 @@ public class ContactDto implements Serializable{
     private long contactId;
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private LocalDate birthDate;
     private Set<HobbyDto> hobbies;
     private Set<PlaceDto> places;
     private Set<PostDto> posts;
@@ -23,7 +23,7 @@ public class ContactDto implements Serializable{
     public ContactDto() {
     }
 
-    public ContactDto(String firstName, String lastName, Date birthDate) {
+    public ContactDto(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -53,11 +53,11 @@ public class ContactDto implements Serializable{
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

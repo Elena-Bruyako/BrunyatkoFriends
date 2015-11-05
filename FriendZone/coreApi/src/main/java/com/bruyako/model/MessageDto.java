@@ -1,7 +1,7 @@
 package com.bruyako.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,16 +11,16 @@ import java.util.List;
 public class MessageDto implements Serializable {
 
     private Long id;
-    private Timestamp date;
+    private LocalDateTime date;
     private Long contactFromId;
     private Long contactToId;
     private String content;
-    private List<ContactDto> conversation = new LinkedList<>();
+    private List<ContactDto> conversation;
 
     public MessageDto() {
     }
 
-    public MessageDto(Timestamp date, Long contactFromId, Long contactToId, String content) {
+    public MessageDto(LocalDateTime date, Long contactFromId, Long contactToId, String content) {
         this.date = date;
         this.contactFromId = contactFromId;
         this.contactToId = contactToId;
@@ -35,11 +35,11 @@ public class MessageDto implements Serializable {
         this.id = id;
     }
 
-    public Timestamp getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
