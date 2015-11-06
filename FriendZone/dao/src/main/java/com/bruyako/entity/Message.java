@@ -1,5 +1,7 @@
 package com.bruyako.entity;
 
+import com.bruyako.converters.MyLocalDateTimeToTimestampConverter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,6 +21,7 @@ public class Message implements Serializable {
     private Long id;
 
     @Column(name = "Message_Time")
+    @Convert(converter = MyLocalDateTimeToTimestampConverter.class)
     private LocalDateTime date;
 
     @Column(name = "Contact_From_id")

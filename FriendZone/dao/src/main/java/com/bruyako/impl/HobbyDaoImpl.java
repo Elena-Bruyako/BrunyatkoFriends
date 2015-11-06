@@ -1,7 +1,6 @@
 package com.bruyako.impl;
 
 import com.bruyako.HobbyDao;
-import com.bruyako.entity.Contact;
 import com.bruyako.entity.Hobby;
 import com.bruyako.model.ContactDto;
 import com.bruyako.model.HobbyDto;
@@ -25,11 +24,9 @@ public class HobbyDaoImpl implements HobbyDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public Set<HobbyDto> getAllHobbyForContact(Long contactDtoId) {
-
+    public Set<HobbyDto> getAllHobbyForContact(ContactDto contactDto) {
 
         return null;
-
     }
 
     @Transactional(readOnly = false)
@@ -47,7 +44,6 @@ public class HobbyDaoImpl implements HobbyDao {
 
         Hobby hobby = convert(hobbyDto);
         sessionFactory.getCurrentSession().delete(hobby);
-
     }
 
     @Override
@@ -60,5 +56,4 @@ public class HobbyDaoImpl implements HobbyDao {
             return convert(hobbies.get(0));
         }
     }
-
 }

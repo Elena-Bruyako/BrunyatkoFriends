@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 /**
 * Created by brunyatko on 24.09.15.
@@ -29,13 +29,13 @@ public class FriendZoneServiceImpl implements FriendZoneService{
 
 
     @Override
-    public void createContact(ContactDto contact) {
-        contactDao.create(contact);
+    public void createContact(ContactDto contactDto) {
+        contactDao.create(contactDto);
     }
 
     @Override
-    public void saveContact(ContactDto contact) {
-        contactDao.saveContact(contact);
+    public void saveContact(ContactDto contactDto) {
+        contactDao.saveContact(contactDto);
     }
 
     @Override
@@ -67,6 +67,7 @@ public class FriendZoneServiceImpl implements FriendZoneService{
 
         PlaceDto place = new PlaceDto(title, description);
         placeDao.create(place);
+
         return place;
     }
 
@@ -75,26 +76,31 @@ public class FriendZoneServiceImpl implements FriendZoneService{
 
         PostDto post = new PostDto(title, content);
         postDao.create(post);
+
         return post;
     }
 
     @Override
-    public void setPlaceToContact(ContactDto contact, PlaceDto place) {
-        contactDao.addPlaceToContact(contact, place);
+    public void setPlaceToContact(ContactDto contactDto, PlaceDto placeDto) {
+
+        contactDao.addPlaceToContact(contactDto, placeDto);
     }
 
     @Override
-    public void setHobbyToContact(ContactDto contact, HobbyDto hobby) {
-        contactDao.addHobbyToContact(contact, hobby);
+    public void setHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto) {
+
+        contactDao.addHobbyToContact(contactDto, hobbyDto);
     }
 
     @Override
-    public void setPostToContact(ContactDto contact, PostDto post) {
-        contactDao.addPostToContact(contact, post);
+    public void setPostToContact(ContactDto contactDto, PostDto postDto) {
+
+        contactDao.addPostToContact(contactDto, postDto);
     }
 
     @Override
     public void addFriendship(ContactDto firstContact, ContactDto secondContact) {
+
         contactDao.addFriendship(firstContact, secondContact);
         contactDao.addFriendship(secondContact, firstContact);
     }
@@ -106,8 +112,9 @@ public class FriendZoneServiceImpl implements FriendZoneService{
     }
 
     @Override
-    public List<ContactDto> addFriendList(ContactDto contact) {
-        return contact.getFriends();
+    public Set<ContactDto> addFriendList(ContactDto contactDto) {
+
+        return contactDto.getFriends();
     }
 
     @Override
@@ -120,14 +127,14 @@ public class FriendZoneServiceImpl implements FriendZoneService{
     }
 
     @Override
-    public List<ContactDto> getFriendList(ContactDto contact) {
+    public Set<ContactDto> getFriendList(ContactDto contactDto) {
 
-        return contact.getFriends();
+        return contactDto.getFriends();
     }
 
     @Override
     public void sendMessage(String content, Long from, Long to) {
-//        MessageDto message = new MessageDto(Timestamp.valueOf(LocalDateTime.now()), from, to, content);
-//        messageDao.storeMessage(message);
+        MessageDto message = new MessageDto(LocalDateTime.now(), from, to, content);
+        messageDao.storeMessage(message);
     }
 }

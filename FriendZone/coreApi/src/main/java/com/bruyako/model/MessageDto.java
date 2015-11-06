@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by brunyatko on 07.09.15.
@@ -79,30 +80,19 @@ public class MessageDto implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+       MessageDto messageDto = (MessageDto) o;
+        return Objects.equals(id, messageDto.id) &&
+                Objects.equals(date, messageDto.date) &&
+                Objects.equals(contactFromId, messageDto.contactFromId) &&
+                Objects.equals(contactToId, messageDto.contactToId) &&
+                Objects.equals(content, messageDto.content);
 
-        MessageDto message = (MessageDto) o;
-
-        if (contactFromId != null ? !contactFromId.equals(message.contactFromId) : message.contactFromId != null)
-            return false;
-        if (contactToId != null ? !contactToId.equals(message.contactToId) : message.contactToId != null) return false;
-        if (content != null ? !content.equals(message.content) : message.content != null) return false;
-        if (conversation != null ? !conversation.equals(message.conversation) : message.conversation != null)
-            return false;
-        if (date != null ? !date.equals(message.date) : message.date != null) return false;
-        if (id != null ? !id.equals(message.id) : message.id != null) return false;
-
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (contactFromId != null ? contactFromId.hashCode() : 0);
-        result = 31 * result + (contactToId != null ? contactToId.hashCode() : 0);
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (conversation != null ? conversation.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, date, contactFromId, contactToId, content);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.bruyako.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -14,7 +15,7 @@ public class PlaceDto implements Serializable{
     private double longitude;
     private double latitude;
     private String description;
-    private Set<ContactDto> placesOfContact = new HashSet<>();
+    private Set<ContactDto> placesOfContact;
 
     public PlaceDto() {
     }
@@ -77,33 +78,19 @@ public class PlaceDto implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        PlaceDto placeDto = (PlaceDto) o;
+        return Objects.equals(id, placeDto.id) &&
+                Objects.equals(title, placeDto.title) &&
+                Objects.equals(longitude, placeDto.longitude) &&
+                Objects.equals(latitude, placeDto.latitude) &&
+                Objects.equals(description, placeDto.description);
 
-        PlaceDto place = (PlaceDto) o;
-
-        if (Double.compare(place.latitude, latitude) != 0) return false;
-        if (Double.compare(place.longitude, longitude) != 0) return false;
-        if (description != null ? !description.equals(place.description) : place.description != null) return false;
-        if (id != null ? !id.equals(place.id) : place.id != null) return false;
-        if (placesOfContact != null ? !placesOfContact.equals(place.placesOfContact) : place.placesOfContact != null)
-            return false;
-        if (title != null ? !title.equals(place.title) : place.title != null) return false;
-
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        temp = Double.doubleToLongBits(longitude);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(latitude);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (placesOfContact != null ? placesOfContact.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, title, longitude, latitude, description);
     }
 
     @Override

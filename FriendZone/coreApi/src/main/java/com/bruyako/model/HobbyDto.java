@@ -2,6 +2,7 @@ package com.bruyako.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -12,7 +13,7 @@ public class HobbyDto implements Serializable {
     private Long id;
     private String title;
     private String description;
-    private Set<ContactDto> hobbiesOfContact = new HashSet<>();
+    private Set<ContactDto> hobbiesOfContact;
 
     public HobbyDto() {
     }
@@ -58,25 +59,16 @@ public class HobbyDto implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        HobbyDto hobby = (HobbyDto) o;
-
-        if (description != null ? !description.equals(hobby.description) : hobby.description != null) return false;
-        if (hobbiesOfContact != null ? !hobbiesOfContact.equals(hobby.hobbiesOfContact) : hobby.hobbiesOfContact != null)
-            return false;
-        if (id != null ? !id.equals(hobby.id) : hobby.id != null) return false;
-        if (title != null ? !title.equals(hobby.title) : hobby.title != null) return false;
-
-        return true;
+        HobbyDto hobbyDto = (HobbyDto) o;
+        return Objects.equals(id, hobbyDto.id) &&
+                Objects.equals(title, hobbyDto.title) &&
+                Objects.equals(description, hobbyDto.description);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (hobbiesOfContact != null ? hobbiesOfContact.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, title, description);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.bruyako.entity;
 
+import com.bruyako.converters.MyLocalDateConverter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,8 +27,12 @@ public class Contact implements Serializable {
     @Column(name = "Last_Name", nullable = false)
     private String lastName;
 
-    @Column(name = "Birth_Date")
+    @Column(name = "Birth_Date", nullable = false)
+    @Convert(converter = MyLocalDateConverter.class)
     private LocalDate birthDate;
+
+    @Column(name = "Photo")
+    private String photo;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "Contact_Hobby", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Hobby_id"))
@@ -117,6 +123,14 @@ public class Contact implements Serializable {
 
     public void setFriends(Set<Contact> friends) {
         this.friends = friends;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     @Override

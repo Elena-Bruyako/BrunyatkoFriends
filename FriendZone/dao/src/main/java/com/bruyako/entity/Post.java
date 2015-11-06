@@ -1,8 +1,10 @@
 package com.bruyako.entity;
 
+import com.bruyako.converters.MyLocalDateTimeToTimestampConverter;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -24,7 +26,8 @@ public class Post implements Serializable {
     private String content;
 
     @Column(name = "Date_Post")
-    private LocalDate date;
+    @Convert(converter = MyLocalDateTimeToTimestampConverter.class)
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "Contact_id")
@@ -55,11 +58,11 @@ public class Post implements Serializable {
         this.content = content;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

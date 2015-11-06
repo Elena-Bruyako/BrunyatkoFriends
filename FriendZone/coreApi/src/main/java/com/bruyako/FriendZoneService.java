@@ -3,15 +3,16 @@ package com.bruyako;
 import com.bruyako.model.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by brunyatko on 24.09.15.
  */
 public interface FriendZoneService {
 
-    void createContact(ContactDto contact);
+    void createContact(ContactDto contactDto);
 
-    void saveContact(ContactDto contact);
+    void saveContact(ContactDto contactDto);
 
     ContactDto getContactById (Long id);
 
@@ -25,21 +26,21 @@ public interface FriendZoneService {
 
     PostDto addPost(String title, String content);
 
-    void setPlaceToContact(ContactDto contact, PlaceDto place);
+    void setPlaceToContact(ContactDto contactDto, PlaceDto placeDto);
 
-    void setHobbyToContact(ContactDto contact, HobbyDto hobby);
+    void setHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto);
 
-    void setPostToContact(ContactDto contact, PostDto post);
+    void setPostToContact(ContactDto contactDto, PostDto postDto);
 
     void addFriendship(ContactDto firstContact, ContactDto secondContact);
 
     void removeFriendship(ContactDto firstContact, ContactDto secondContact);
 
-    List<ContactDto> addFriendList(ContactDto contact);
+    Set<ContactDto> addFriendList(ContactDto contactDto);
 
     List<MessageDto> getConversation(ContactDto from, ContactDto to);
 
-    List<ContactDto> getFriendList(ContactDto contact);
+    Set<ContactDto> getFriendList(ContactDto contactDto);
 
     void sendMessage(String content, Long from, Long to);
 

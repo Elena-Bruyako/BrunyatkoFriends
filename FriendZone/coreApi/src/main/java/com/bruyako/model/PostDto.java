@@ -1,7 +1,8 @@
 package com.bruyako.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Created by brunyatko on 07.09.15.
@@ -11,7 +12,7 @@ public class PostDto implements Serializable{
     private Long id;
     private String title;
     private String content;
-    private LocalDate date;
+    private LocalDateTime date;
     private ContactDto postOfContact;
 
     public PostDto() {
@@ -46,11 +47,11 @@ public class PostDto implements Serializable{
         this.content = content;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -66,27 +67,17 @@ public class PostDto implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        PostDto post = (PostDto) o;
-
-        if (content != null ? !content.equals(post.content) : post.content != null) return false;
-        if (date != null ? !date.equals(post.date) : post.date != null) return false;
-        if (id != null ? !id.equals(post.id) : post.id != null) return false;
-        if (postOfContact != null ? !postOfContact.equals(post.postOfContact) : post.postOfContact != null)
-            return false;
-        if (title != null ? !title.equals(post.title) : post.title != null) return false;
-
-        return true;
+       PostDto postDto = (PostDto) o;
+        return Objects.equals(id, postDto.id) &&
+                Objects.equals(title, postDto.title) &&
+                Objects.equals(content, postDto.content) &&
+                Objects.equals(date, postDto.date);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (postOfContact != null ? postOfContact.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, title, content, date);
     }
 
     @Override
