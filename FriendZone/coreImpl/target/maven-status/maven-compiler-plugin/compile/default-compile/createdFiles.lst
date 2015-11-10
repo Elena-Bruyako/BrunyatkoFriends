@@ -1,2 +1,9 @@
+com/bruyako/impl/LikePostServiceImpl.class
+com/bruyako/impl/PhotoServiceImpl.class
+com/bruyako/impl/LikePhotoServiceImpl.class
+com/bruyako/impl/HobbyServiceImpl.class
+com/bruyako/impl/ContactServiceImpl.class
 com/bruyako/App.class
-com/bruyako/FriendZoneServiceImpl.class
+com/bruyako/impl/PlaceServiceImpl.class
+com/bruyako/impl/MessageServiceImpl.class
+com/bruyako/impl/PostServiceImpl.class

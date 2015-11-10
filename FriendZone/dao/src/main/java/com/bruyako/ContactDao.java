@@ -26,6 +26,12 @@ public interface ContactDao extends AbstractDao<ContactDto, Long> {
 
     void addPostToContact(ContactDto contactDto, PostDto postDto);
 
+    void deleteHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto);
+
+    void deletePlaceToContact(ContactDto contactDto, PlaceDto placeDto);
+
+    void deletePostToContact(ContactDto contactDto, PostDto postDto);
+
 }
 
 

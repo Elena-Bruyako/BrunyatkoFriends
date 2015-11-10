@@ -14,6 +14,7 @@ public class PostDto implements Serializable{
     private String content;
     private LocalDateTime date;
     private ContactDto postOfContact;
+    private LikePostDto likePostDto;
 
     public PostDto() {
     }
@@ -61,6 +62,14 @@ public class PostDto implements Serializable{
 
     public void setPostOfContact(ContactDto postOfContact) {
         this.postOfContact = postOfContact;
+    }
+
+    public LikePostDto getLikePostDto() {
+        return likePostDto;
+    }
+
+    public void setLikePostDto(LikePostDto likePostDto) {
+        this.likePostDto = likePostDto;
     }
 
     @Override

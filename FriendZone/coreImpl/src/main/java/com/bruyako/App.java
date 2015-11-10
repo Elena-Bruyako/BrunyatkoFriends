@@ -11,7 +11,6 @@ public class App {
     public static void main(String[] args) {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        FriendZoneService service = context.getBean(FriendZoneService.class);
 
         context.close();
 

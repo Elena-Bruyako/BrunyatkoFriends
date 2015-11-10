@@ -18,6 +18,8 @@ public class EntityDtoConverter {
         }
         Contact contact = new Contact();
         contact.setContactId(contactDto.getContactId());
+        contact.setLogin(contactDto.getLogin());
+        contact.setPassword(contactDto.getPassword());
         contact.setFirstName(contactDto.getFirstName());
         contact.setLastName(contactDto.getLastName());
         contact.setBirthDate(contactDto.getBirthDate());
@@ -32,6 +34,8 @@ public class EntityDtoConverter {
         }
         ContactDto contactDto = new ContactDto();
         contactDto.setContactId(contact.getContactId());
+        contactDto.setLogin(contact.getLogin());
+        contactDto.setPassword(contact.getPassword());
         contactDto.setFirstName(contact.getFirstName());
         contactDto.setLastName(contact.getLastName());
         contactDto.setBirthDate(contact.getBirthDate());
@@ -65,6 +69,62 @@ public class EntityDtoConverter {
         return hobbyDto;
     }
 
+    public static LikePhotoDto convert(LikePhoto likePhoto) {
+
+        if (likePhoto == null){
+            return null;
+        }
+
+        LikePhotoDto likePhotoDto = new LikePhotoDto();
+        likePhotoDto.setLikePhotoId(likePhoto.getLikePhotoId());
+        likePhotoDto.setContactId(likePhoto.getContactId());
+        likePhotoDto.setPhotoId(likePhoto.getPhotoId());
+
+        return likePhotoDto;
+    }
+
+    public static LikePhoto convert(LikePhotoDto likePhotoDto) {
+
+        if (likePhotoDto == null){
+            return null;
+        }
+
+        LikePhoto likePhoto = new LikePhoto();
+        likePhoto.setLikePhotoId(likePhotoDto.getLikePhotoId());
+        likePhoto.setContactId(likePhotoDto.getContactId());
+        likePhoto.setPhotoId(likePhotoDto.getPhotoId());
+
+        return likePhoto;
+    }
+
+    public static LikePostDto convert(LikePost likePost) {
+
+        if (likePost == null){
+            return null;
+        }
+
+        LikePostDto likePostDto = new LikePostDto();
+        likePostDto.setLikePostId(likePost.getLikePostId());
+        likePostDto.setContactId(likePost.getContactId());
+        likePostDto.setPostId(likePost.getPostId());
+
+        return likePostDto;
+    }
+
+    public static LikePost convert(LikePostDto likePostDto) {
+
+        if (likePostDto == null){
+            return null;
+        }
+
+        LikePost likePost = new LikePost();
+        likePost.setLikePostId(likePostDto.getLikePostId());
+        likePost.setContactId(likePostDto.getContactId());
+        likePost.setPostId(likePostDto.getPostId());
+
+        return likePost;
+    }
+
     public static Message convert(MessageDto messageDto){
 
         if (messageDto == null) {
@@ -95,6 +155,32 @@ public class EntityDtoConverter {
         messageDto.setContent(message.getContent());
 
         return messageDto;
+    }
+
+    public static Photo convert(PhotoDto photoDto) {
+
+        if (photoDto == null) {
+            return null;
+        }
+        Photo photo = new Photo();
+        photo.setPhotoId(photoDto.getPhotoId());
+        photo.setName(photoDto.getName());
+        photo.setImg(photoDto.getImg());
+
+        return photo;
+    }
+
+    public static PhotoDto convert(Photo photo) {
+
+        if (photo == null) {
+            return null;
+        }
+        PhotoDto photoDto = new PhotoDto();
+        photoDto.setPhotoId(photo.getPhotoId());
+        photoDto.setName(photo.getName());
+        photoDto.setImg(photo.getImg());
+
+        return photoDto;
     }
 
     public static Place convert(PlaceDto placeDto) {

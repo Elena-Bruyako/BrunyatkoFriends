@@ -1,6 +1,7 @@
 package com.bruyako.entity;
 
 import com.bruyako.converters.MyLocalDateTimeToTimestampConverter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -33,6 +34,9 @@ public class Post implements Serializable {
     @JoinColumn(name = "Contact_id")
     private Contact postOfContact;
 
+    @OneToOne(mappedBy="post")
+    @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
+    private LikePost likePost;
 
     public Long getId() {
         return id;
@@ -72,6 +76,14 @@ public class Post implements Serializable {
 
     public void setPostOfContact(Contact postOfContact) {
         this.postOfContact = postOfContact;
+    }
+
+    public LikePost getLikePost() {
+        return likePost;
+    }
+
+    public void setLikePost(LikePost likePost) {
+        this.likePost = likePost;
     }
 
     @Override

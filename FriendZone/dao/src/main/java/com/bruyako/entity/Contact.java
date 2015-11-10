@@ -1,6 +1,7 @@
 package com.bruyako.entity;
 
 import com.bruyako.converters.MyLocalDateConverter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +22,12 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long contactId;
 
+    @Column(name = "Login", nullable = false)
+    private String login;
+
+    @Column(name = "Password", nullable = false)
+    private String password;
+
     @Column(name = "First_Name", nullable = false)
     private String firstName;
 
@@ -31,8 +38,16 @@ public class Contact implements Serializable {
     @Convert(converter = MyLocalDateConverter.class)
     private LocalDate birthDate;
 
-    @Column(name = "Photo")
-    private String photo;
+    @OneToMany(mappedBy = "photoForContact")
+    private Set<Photo> allPhotos;
+
+    @OneToOne(mappedBy="contact")
+    @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private LikePhoto likePhoto;
+
+    @OneToOne(mappedBy="contact")
+    @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private LikePost likePost;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "Contact_Hobby", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Hobby_id"))
@@ -61,6 +76,22 @@ public class Contact implements Serializable {
         this.contactId = contactId;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -83,6 +114,30 @@ public class Contact implements Serializable {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Set<Photo> getAllPhotos() {
+        return allPhotos;
+    }
+
+    public void setAllPhotos(Set<Photo> allPhotos) {
+        this.allPhotos = allPhotos;
+    }
+
+    public LikePhoto getLikePhoto() {
+        return likePhoto;
+    }
+
+    public void setLikePhoto(LikePhoto likePhoto) {
+        this.likePhoto = likePhoto;
+    }
+
+    public LikePost getLikePost() {
+        return likePost;
+    }
+
+    public void setLikePost(LikePost likePost) {
+        this.likePost = likePost;
     }
 
     public Set<Hobby> getHobbies() {
@@ -125,13 +180,6 @@ public class Contact implements Serializable {
         this.friends = friends;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -150,6 +198,8 @@ public class Contact implements Serializable {
     public String toString() {
         return "Contact{" +
                 "contactId=" + contactId +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDate=" + birthDate +

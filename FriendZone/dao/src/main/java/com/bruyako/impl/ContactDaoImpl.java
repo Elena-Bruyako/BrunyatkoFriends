@@ -76,6 +76,22 @@ public class ContactDaoImpl implements ContactDao {
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
+    @Override
+    public void deleteHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto) {
+
+
+    }
+
+    @Override
+    public void deletePlaceToContact(ContactDto contactDto, PlaceDto placeDto) {
+
+    }
+
+    @Override
+    public void deletePostToContact(ContactDto contactDto, PostDto postDto) {
+
+    }
+
     @Transactional(readOnly = false)
     @Override
     public Long create(ContactDto contactDto) {
