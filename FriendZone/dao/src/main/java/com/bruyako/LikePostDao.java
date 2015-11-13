@@ -8,7 +8,9 @@ import com.bruyako.model.LikePostDto;
 public interface LikePostDao{
 
     void saveLikePost (LikePostDto likePostDto);
-    int getCountLike (Long likePostId);
+
+    int getCountLike (Long postId);
+
     boolean isLike (Long postId, Long contactId);
 
 }

@@ -40,7 +40,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Set<PostDto> getAllPostsForContact(ContactDto contactDto) {
-        return postDao.getAllPostsForContact(contactDto);
+    public Set<PostDto> getAllPostsForContact(Long contactId) {
+        return postDao.getAllPostsForContact(contactId);
     }
 }

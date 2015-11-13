@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public interface PhotoService {
 
-    Set<PhotoDto> getAllPhotosFotContact(ContactDto contactDto);
+    Set<PhotoDto> getAllPhotosFotContact(Long contactId);
 
     void savePhoto (PhotoDto photoDto);
 

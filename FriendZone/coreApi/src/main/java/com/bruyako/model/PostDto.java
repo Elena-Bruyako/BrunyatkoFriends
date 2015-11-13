@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class PostDto implements Serializable{
 
-    private Long id;
+    private long postId;
     private String title;
     private String content;
     private LocalDateTime date;
@@ -24,12 +24,12 @@ public class PostDto implements Serializable{
         this.content = content;
     }
 
-    public Long getId() {
-        return id;
+    public long getPostId() {
+        return postId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPostId(long postId) {
+        this.postId = postId;
     }
 
     public String getTitle() {
@@ -77,7 +77,7 @@ public class PostDto implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
        PostDto postDto = (PostDto) o;
-        return Objects.equals(id, postDto.id) &&
+        return Objects.equals(postId, postDto.postId) &&
                 Objects.equals(title, postDto.title) &&
                 Objects.equals(content, postDto.content) &&
                 Objects.equals(date, postDto.date);
@@ -86,13 +86,13 @@ public class PostDto implements Serializable{
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, content, date);
+        return Objects.hash(postId, title, content, date);
     }
 
     @Override
     public String toString() {
         return "Post{" +
-                "id=" + id +
+                "postId=" + postId +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", date=" + date +

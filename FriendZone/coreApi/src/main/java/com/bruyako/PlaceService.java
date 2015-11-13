@@ -14,5 +14,5 @@ public interface PlaceService {
 
     void setPlaceToContact(ContactDto contactDto, PlaceDto placeDto);
 
-    Set<PlaceDto> getAllPlaceForContact(ContactDto contactDto);
+    Set<PlaceDto> getAllPlaceForContact(Long contactId);
 }

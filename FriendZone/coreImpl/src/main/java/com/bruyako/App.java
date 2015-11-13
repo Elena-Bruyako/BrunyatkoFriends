@@ -12,6 +12,9 @@ public class App {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
+        PhotoDao photo = context.getBean(PhotoDao.class);
+        System.out.println(photo.getAllPhotosFotContact(1L));
+
         context.close();
 
 

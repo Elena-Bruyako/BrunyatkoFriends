@@ -10,6 +10,6 @@ import java.util.Set;
  */
 public interface PostDao extends AbstractDao<PostDto, Long> {
 
-    Set<PostDto> getAllPostsForContact(ContactDto contactDto);
+    Set<PostDto> getAllPostsForContact(Long contactId);
 
 }

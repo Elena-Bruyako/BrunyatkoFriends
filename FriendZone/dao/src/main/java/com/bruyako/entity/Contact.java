@@ -1,7 +1,6 @@
 package com.bruyako.entity;
 
 import com.bruyako.converters.MyLocalDateConverter;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -40,14 +39,6 @@ public class Contact implements Serializable {
 
     @OneToMany(mappedBy = "photoForContact")
     private Set<Photo> allPhotos;
-
-    @OneToOne(mappedBy="contact")
-    @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private LikePhoto likePhoto;
-
-    @OneToOne(mappedBy="contact")
-    @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private LikePost likePost;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "Contact_Hobby", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Hobby_id"))
@@ -122,22 +113,6 @@ public class Contact implements Serializable {
 
     public void setAllPhotos(Set<Photo> allPhotos) {
         this.allPhotos = allPhotos;
-    }
-
-    public LikePhoto getLikePhoto() {
-        return likePhoto;
-    }
-
-    public void setLikePhoto(LikePhoto likePhoto) {
-        this.likePhoto = likePhoto;
-    }
-
-    public LikePost getLikePost() {
-        return likePost;
-    }
-
-    public void setLikePost(LikePost likePost) {
-        this.likePost = likePost;
     }
 
     public Set<Hobby> getHobbies() {

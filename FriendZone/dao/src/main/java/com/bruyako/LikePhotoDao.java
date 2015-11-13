@@ -8,7 +8,9 @@ import com.bruyako.model.LikePhotoDto;
 public interface LikePhotoDao{
 
     void saveLikePhoto (LikePhotoDto likePhotoDto);
-    int getCountLike (Long likePhotoId);
+
+    int getCountLike (Long photoId);
+
     boolean isLike (Long photoId, Long contactId);
 
 }

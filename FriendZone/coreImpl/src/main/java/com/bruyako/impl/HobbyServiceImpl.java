@@ -39,8 +39,8 @@ public class HobbyServiceImpl implements HobbyService {
     }
 
     @Override
-    public Set<HobbyDto> getAllHobbyForContact(ContactDto contactDto) {
+    public Set<HobbyDto> getAllHobbyForContact(Long contactId) {
 
-        return hobbyDao.getAllHobbyForContact(contactDto);
+        return hobbyDao.getAllHobbyForContact(contactId);
     }
 }

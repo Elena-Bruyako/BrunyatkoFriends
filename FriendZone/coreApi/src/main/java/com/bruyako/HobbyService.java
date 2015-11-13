@@ -14,5 +14,5 @@ public interface HobbyService {
 
     void setHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto);
 
-    Set<HobbyDto> getAllHobbyForContact(ContactDto contactDto);
+    Set<HobbyDto> getAllHobbyForContact(Long contactId);
 }

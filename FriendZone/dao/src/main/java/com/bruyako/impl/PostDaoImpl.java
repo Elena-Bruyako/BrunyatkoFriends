@@ -1,17 +1,16 @@
 package com.bruyako.impl;
 
 import com.bruyako.PostDao;
+import com.bruyako.converters.EntityDtoConverter;
 import com.bruyako.entity.Post;
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PostDto;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-
-import static com.bruyako.converters.EntityDtoConverter.convert;
 
 /**
  * Created by brunyatko on 21.09.15.
@@ -24,38 +23,45 @@ public class PostDaoImpl implements PostDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public Set<PostDto> getAllPostsForContact(ContactDto contactDto) {
+    public Set<PostDto> getAllPostsForContact(Long contactId) {
 
+        List<Post> posts = sessionFactory.getCurrentSession().createSQLQuery("select p.title, p.content from Post p join Contact c on p.contact_id = c.contact_id " +
+                " where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Post.class)).setParameter("contactId", contactId).list();
+        Set<PostDto> result = new HashSet<>(posts.size());
 
-        return null;
+        for (Post post : posts) {
+
+            result.add(EntityDtoConverter.convert(post));
+        }
+        return result;
     }
 
     @Transactional(readOnly = false)
     @Override
     public Long create(PostDto postDto) {
 
-        Post post = convert(postDto);
+        Post post = EntityDtoConverter.convert(postDto);
         sessionFactory.getCurrentSession().save(post);
-        return post.getId();
+        return post.getPostId();
     }
 
     @Transactional(readOnly = false)
     @Override
     public void delete(PostDto postDto) {
 
-        Post post = convert(postDto);
+        Post post = EntityDtoConverter.convert(postDto);
         sessionFactory.getCurrentSession().delete(post);
     }
 
 
     @Override
-    public PostDto getById(Long id) {
+    public PostDto getById(Long postId) {
 
-        List<Post> posts = sessionFactory.getCurrentSession().createQuery("select p from Post p where p.id = :id").setParameter("id", id).list();
+        List<Post> posts = sessionFactory.getCurrentSession().createQuery("select p from Post p where p.id = :id").setParameter("id", postId).list();
         if (posts.isEmpty()) {
             return null;
         } else {
-            return convert(posts.get(0));
+            return EntityDtoConverter.convert(posts.get(0));
         }
     }
 }

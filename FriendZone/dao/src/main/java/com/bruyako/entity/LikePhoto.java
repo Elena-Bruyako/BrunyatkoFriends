@@ -14,52 +14,29 @@ public class LikePhoto implements Serializable {
     @Id
     @Column(name = "LikePhoto_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long likePhotoId;
-
-    @Column(name = "Contact_id")
-    private Long contactId;
+    private long likePhotoId;
 
     @Column(name = "Photo_id")
-    private Long photoId;
+    private long photoId;
 
     @OneToOne
-    @JoinColumn(name = "Contact_id", insertable = false, updatable = false)
-    private Contact contact;
-
-    @OneToOne
-    @JoinColumn(name = "Photo_id",  insertable = false, updatable = false)
+    @JoinColumn(name = "Photo_id", insertable = false, updatable = false)
     private Photo photo;
 
-    public Long getLikePhotoId() {
+    public long getLikePhotoId() {
         return likePhotoId;
     }
 
-    public void setLikePhotoId(Long likePhotoId) {
+    public void setLikePhotoId(long likePhotoId) {
         this.likePhotoId = likePhotoId;
     }
 
-    public Long getContactId() {
-        return contactId;
-    }
-
-    public void setContactId(Long contactId) {
-        this.contactId = contactId;
-    }
-
-    public Long getPhotoId() {
+    public long getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(Long photoId) {
+    public void setPhotoId(long photoId) {
         this.photoId = photoId;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
     public Photo getPhoto() {
@@ -87,8 +64,8 @@ public class LikePhoto implements Serializable {
     public String toString() {
         return "LikePhoto{" +
                 "likePhotoId=" + likePhotoId +
-                ", contactId=" + contactId +
                 ", photoId=" + photoId +
+                ", photo=" + photo +
                 '}';
     }
 }

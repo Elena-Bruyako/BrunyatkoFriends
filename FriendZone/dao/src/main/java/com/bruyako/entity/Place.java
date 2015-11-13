@@ -2,9 +2,7 @@ package com.bruyako.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by brunyatko on 02.11.15.
@@ -16,7 +14,7 @@ public class Place implements Serializable {
     @Id
     @Column(name = "Place_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long placeId;
 
     @Column(name = "Title", nullable = false)
     private String title;
@@ -30,15 +28,12 @@ public class Place implements Serializable {
     @Column(name = "Description", nullable = false)
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "places")
-    private Set<Contact> placesOfContact;
-
-    public Long getId() {
-        return id;
+    public long getPlaceId() {
+        return placeId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPlaceId(long placeId) {
+        this.placeId = placeId;
     }
 
     public String getTitle() {
@@ -73,31 +68,23 @@ public class Place implements Serializable {
         this.description = description;
     }
 
-    public Set<Contact> getPlacesOfContact() {
-        return placesOfContact;
-    }
-
-    public void setPlacesOfContact(Set<Contact> placesOfContact) {
-        this.placesOfContact = placesOfContact;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Place place = (Place) o;
-        return Objects.equals(id, place.id);
+        return Objects.equals(placeId, place.placeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(placeId);
     }
 
     @Override
     public String toString() {
         return "Place{" +
-                "id=" + id +
+                "placeId=" + placeId +
                 ", title='" + title + '\'' +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +

@@ -1,6 +1,5 @@
 package com.bruyako;
 
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PlaceDto;
 
 import java.util.Set;
@@ -10,6 +9,6 @@ import java.util.Set;
  */
 public interface PlaceDao extends AbstractDao<PlaceDto, Long> {
 
-    Set<PlaceDto> getAllPlaceForContact(ContactDto contactDto);
+    Set<PlaceDto> getAllPlaceForContact(Long contactId);
 }
 

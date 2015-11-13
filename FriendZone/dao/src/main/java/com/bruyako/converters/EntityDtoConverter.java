@@ -50,9 +50,10 @@ public class EntityDtoConverter {
         }
 
         Hobby hobby = new Hobby();
-        hobby.setId(hobbyDto.getId());
+        hobby.setHobbyId(hobbyDto.getHobbyId());
         hobby.setTitle(hobbyDto.getTitle());
         hobby.setDescription(hobbyDto.getDescription());
+
         return hobby;
     }
 
@@ -63,9 +64,10 @@ public class EntityDtoConverter {
         }
 
         HobbyDto hobbyDto = new HobbyDto();
-        hobbyDto.setId(hobby.getId());
+        hobbyDto.setHobbyId(hobby.getHobbyId());
         hobbyDto.setTitle(hobby.getTitle());
         hobbyDto.setDescription(hobby.getDescription());
+
         return hobbyDto;
     }
 
@@ -77,7 +79,6 @@ public class EntityDtoConverter {
 
         LikePhotoDto likePhotoDto = new LikePhotoDto();
         likePhotoDto.setLikePhotoId(likePhoto.getLikePhotoId());
-        likePhotoDto.setContactId(likePhoto.getContactId());
         likePhotoDto.setPhotoId(likePhoto.getPhotoId());
 
         return likePhotoDto;
@@ -91,7 +92,6 @@ public class EntityDtoConverter {
 
         LikePhoto likePhoto = new LikePhoto();
         likePhoto.setLikePhotoId(likePhotoDto.getLikePhotoId());
-        likePhoto.setContactId(likePhotoDto.getContactId());
         likePhoto.setPhotoId(likePhotoDto.getPhotoId());
 
         return likePhoto;
@@ -105,7 +105,6 @@ public class EntityDtoConverter {
 
         LikePostDto likePostDto = new LikePostDto();
         likePostDto.setLikePostId(likePost.getLikePostId());
-        likePostDto.setContactId(likePost.getContactId());
         likePostDto.setPostId(likePost.getPostId());
 
         return likePostDto;
@@ -119,7 +118,6 @@ public class EntityDtoConverter {
 
         LikePost likePost = new LikePost();
         likePost.setLikePostId(likePostDto.getLikePostId());
-        likePost.setContactId(likePostDto.getContactId());
         likePost.setPostId(likePostDto.getPostId());
 
         return likePost;
@@ -132,7 +130,7 @@ public class EntityDtoConverter {
         }
 
         Message message = new Message();
-        message.setId(messageDto.getId());
+        message.setMessageId(messageDto.getMessageId());
         message.setDate(messageDto.getDate());
         message.setContactFromId(messageDto.getContactFromId());
         message.setContactToId(messageDto.getContactToId());
@@ -148,7 +146,7 @@ public class EntityDtoConverter {
         }
 
         MessageDto messageDto = new MessageDto();
-        messageDto.setId(message.getId());
+        messageDto.setMessageId(message.getMessageId());
         messageDto.setDate(message.getDate());
         messageDto.setContactFromId(message.getContactFromId());
         messageDto.setContactToId(message.getContactToId());
@@ -190,7 +188,7 @@ public class EntityDtoConverter {
         }
 
         Place place = new Place();
-        place.setId(placeDto.getId());
+        place.setPlaceId(placeDto.getPlaceId());
         place.setTitle(placeDto.getTitle());
         place.setLongitude(placeDto.getLongitude());
         place.setLatitude(placeDto.getLatitude());
@@ -206,7 +204,7 @@ public class EntityDtoConverter {
         }
 
         PlaceDto placeDto = new PlaceDto();
-        placeDto.setId(place.getId());
+        placeDto.setPlaceId(place.getPlaceId());
         placeDto.setTitle(place.getTitle());
         placeDto.setLongitude(place.getLongitude());
         placeDto.setLatitude(place.getLatitude());
@@ -222,7 +220,7 @@ public class EntityDtoConverter {
         }
 
         Post post = new Post();
-        post.setId(postDto.getId());
+        post.setPostId(postDto.getPostId());
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
         post.setDate(postDto.getDate());
@@ -238,7 +236,7 @@ public class EntityDtoConverter {
         }
 
         PostDto postDto = new PostDto();
-        postDto.setId(post.getId());
+        postDto.setPostId(post.getPostId());
         postDto.setTitle(post.getTitle());
         postDto.setContent(post.getContent());
         postDto.setDate(post.getDate());
@@ -246,4 +244,5 @@ public class EntityDtoConverter {
 
         return postDto;
     }
+
 }

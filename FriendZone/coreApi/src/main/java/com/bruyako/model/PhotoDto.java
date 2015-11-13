@@ -8,27 +8,21 @@ import java.util.Arrays;
  */
 public class PhotoDto implements Serializable {
 
-    private Long photoId;
-    private Long contactId;
+    private long photoId;
     private String name;
     private byte[] img;
     private ContactDto photoForContact;
     private LikePhotoDto likePhoto;
 
-    public Long getPhotoId() {
+    public PhotoDto() {
+    }
+
+    public long getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(Long photoId) {
+    public void setPhotoId(long photoId) {
         this.photoId = photoId;
-    }
-
-    public Long getContactId() {
-        return contactId;
-    }
-
-    public void setContactId(Long contactId) {
-        this.contactId = contactId;
     }
 
     public String getName() {
@@ -65,9 +59,8 @@ public class PhotoDto implements Serializable {
 
     @Override
     public String toString() {
-        return "Photo{" +
+        return "PhotoDto{" +
                 "photoId=" + photoId +
-                ", contactId=" + contactId +
                 ", name='" + name + '\'' +
                 ", img=" + Arrays.toString(img) +
                 '}';

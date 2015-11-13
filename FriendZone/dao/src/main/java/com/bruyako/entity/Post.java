@@ -18,7 +18,7 @@ public class Post implements Serializable {
     @Id
     @Column(name = "Post_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long postId;
 
     @Column(name = "Title", nullable = false)
     private String title;
@@ -38,12 +38,12 @@ public class Post implements Serializable {
     @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
     private LikePost likePost;
 
-    public Long getId() {
-        return id;
+    public long getPostId() {
+        return postId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPostId(long postId) {
+        this.postId = postId;
     }
 
     public String getTitle() {
@@ -91,18 +91,18 @@ public class Post implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return Objects.equals(id, post.id);
+        return Objects.equals(postId, post.postId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(postId);
     }
 
     @Override
     public String toString() {
         return "Post{" +
-                "id=" + id +
+                "postId=" + postId +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", date=" + date +

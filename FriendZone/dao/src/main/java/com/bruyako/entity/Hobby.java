@@ -3,7 +3,6 @@ package com.bruyako.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by brunyatko on 02.11.15.
@@ -15,7 +14,7 @@ public class Hobby implements Serializable {
     @Id
     @Column(name = "Hobby_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long hobbyId;
 
     @Column(name = "Title", nullable = false)
     private String title;
@@ -23,16 +22,12 @@ public class Hobby implements Serializable {
     @Column(name = "Description", nullable = false)
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "hobbies")
-    private Set<Contact> hobbiesOfContact;
-
-
-    public Long getId() {
-        return id;
+    public long getHobbyId() {
+        return hobbyId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setHobbyId(long hobbyId) {
+        this.hobbyId = hobbyId;
     }
 
     public String getTitle() {
@@ -51,31 +46,23 @@ public class Hobby implements Serializable {
         this.description = description;
     }
 
-    public Set<Contact> getHobbiesOfContact() {
-        return hobbiesOfContact;
-    }
-
-    public void setHobbiesOfContact(Set<Contact> hobbiesOfContact) {
-        this.hobbiesOfContact = hobbiesOfContact;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hobby hobby = (Hobby) o;
-        return Objects.equals(id, hobby.id);
+        return Objects.equals(hobbyId, hobby.hobbyId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(hobbyId);
     }
 
     @Override
     public String toString() {
         return "Hobby{" +
-                "id=" + id +
+                "hobbyId=" + hobbyId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 '}';

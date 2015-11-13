@@ -18,8 +18,6 @@ public class ContactDto implements Serializable{
     private String lastName;
     private LocalDate birthDate;
     private Set<PostDto> allPhotos;
-    private LikePhotoDto likePhoto;
-    private LikePostDto likePost;
     private Set<HobbyDto> hobbies;
     private Set<PlaceDto> places;
     private Set<PostDto> posts;
@@ -91,22 +89,6 @@ public class ContactDto implements Serializable{
 
     public void setAllPhotos(Set<PostDto> allPhotos) {
         this.allPhotos = allPhotos;
-    }
-
-    public LikePhotoDto getLikePhoto() {
-        return likePhoto;
-    }
-
-    public void setLikePhoto(LikePhotoDto likePhoto) {
-        this.likePhoto = likePhoto;
-    }
-
-    public LikePostDto getLikePost() {
-        return likePost;
-    }
-
-    public void setLikePost(LikePostDto likePost) {
-        this.likePost = likePost;
     }
 
     public Set<HobbyDto> getHobbies() {

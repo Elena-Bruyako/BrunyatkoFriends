@@ -14,5 +14,5 @@ public interface PostService {
 
     void setPostToContact(ContactDto contactDto, PostDto postDto);
 
-    Set<PostDto> getAllPostsForContact(ContactDto contactDto);
+    Set<PostDto> getAllPostsForContact(Long contactId);
 }

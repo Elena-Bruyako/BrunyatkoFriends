@@ -8,51 +8,32 @@ import java.util.Objects;
  */
 public class LikePhotoDto implements Serializable {
 
-    private Long likePhotoId;
-    private Long contactId;
-    private Long photoId;
-    private ContactDto contactDto;
+    private long likePhotoId;
+    private long photoId;
     private PhotoDto photoDto;
 
     public LikePhotoDto() {
     }
 
-    public LikePhotoDto(Long photoId, Long likePhotoId, Long contactId) {
+    public LikePhotoDto(Long photoId, Long likePhotoId) {
         this.photoId = photoId;
         this.likePhotoId = likePhotoId;
-        this.contactId = contactId;
     }
 
-    public Long getLikePhotoId() {
+    public long getLikePhotoId() {
         return likePhotoId;
     }
 
-    public void setLikePhotoId(Long likePhotoId) {
+    public void setLikePhotoId(long likePhotoId) {
         this.likePhotoId = likePhotoId;
     }
 
-    public Long getContactId() {
-        return contactId;
-    }
-
-    public void setContactId(Long contactId) {
-        this.contactId = contactId;
-    }
-
-    public Long getPhotoId() {
+    public long getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(Long photoId) {
+    public void setPhotoId(long photoId) {
         this.photoId = photoId;
-    }
-
-    public ContactDto getContactDto() {
-        return contactDto;
-    }
-
-    public void setContactDto(ContactDto contactDto) {
-        this.contactDto = contactDto;
     }
 
     public PhotoDto getPhotoDto() {
@@ -71,7 +52,6 @@ public class LikePhotoDto implements Serializable {
         LikePhotoDto likePhotoDto = (LikePhotoDto) o;
 
         return Objects.equals(likePhotoId, likePhotoDto.likePhotoId) &&
-                Objects.equals(contactId, likePhotoDto.contactId) &&
                 Objects.equals(photoId, likePhotoDto.photoId);
 
     }
@@ -85,8 +65,8 @@ public class LikePhotoDto implements Serializable {
     public String toString() {
         return "LikePhotoDto{" +
                 "likePhotoId=" + likePhotoId +
-                ", contactId=" + contactId +
                 ", photoId=" + photoId +
+                ", photoDto=" + photoDto +
                 '}';
     }
 }

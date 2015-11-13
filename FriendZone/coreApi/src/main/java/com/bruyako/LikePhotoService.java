@@ -10,7 +10,7 @@ public interface LikePhotoService {
 
     void saveLikePhoto(LikePhotoDto likePhotoDto);
 
-    int getCountLikePhoto(Long likePhotoId);
+    int getCountLikePhoto(Long photoId);
 
     boolean isLikePhoto(Long id, Long contactId);
 }

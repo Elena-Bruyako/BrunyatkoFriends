@@ -16,15 +16,8 @@ public class LikePost implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long likePostId;
 
-    @Column(name = "Contact_id")
-    private Long contactId;
-
     @Column(name = "Post_id")
     private Long postId;
-
-    @OneToOne
-    @JoinColumn(name = "Contact_id", insertable = false, updatable = false)
-    private Contact contact;
 
     @OneToOne
     @JoinColumn(name = "Post_id",  insertable = false, updatable = false)
@@ -38,28 +31,12 @@ public class LikePost implements Serializable {
         this.likePostId = likePostId;
     }
 
-    public Long getContactId() {
-        return contactId;
-    }
-
-    public void setContactId(Long contactId) {
-        this.contactId = contactId;
-    }
-
     public Long getPostId() {
         return postId;
     }
 
     public void setPostId(Long postId) {
         this.postId = postId;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
     public Post getPost() {
@@ -87,8 +64,8 @@ public class LikePost implements Serializable {
     public String toString() {
         return "LikePost{" +
                 "likePostId=" + likePostId +
-                ", contactId=" + contactId +
                 ", postId=" + postId +
+                ", post=" + post +
                 '}';
     }
 }

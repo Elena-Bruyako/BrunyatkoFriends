@@ -5,7 +5,6 @@ import com.bruyako.converters.MyLocalDateTimeToTimestampConverter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -18,30 +17,27 @@ public class Message implements Serializable {
     @Id
     @Column(name = "Message_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long messageId;
 
     @Column(name = "Message_Time")
     @Convert(converter = MyLocalDateTimeToTimestampConverter.class)
     private LocalDateTime date;
 
     @Column(name = "Contact_From_id")
-    private Long contactFromId;
+    private long contactFromId;
 
     @Column(name = "Contact_To_id")
-    private Long contactToId;
+    private long contactToId;
 
     @Column(name = "Content")
     private String content;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "conversation")
-    private List<Contact> conversation;
-
-    public Long getId() {
-        return id;
+    public long getMessageId() {
+        return messageId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMessageId(long messageId) {
+        this.messageId = messageId;
     }
 
     public LocalDateTime getDate() {
@@ -52,19 +48,19 @@ public class Message implements Serializable {
         this.date = date;
     }
 
-    public Long getContactFromId() {
+    public long getContactFromId() {
         return contactFromId;
     }
 
-    public void setContactFromId(Long contactFromId) {
+    public void setContactFromId(long contactFromId) {
         this.contactFromId = contactFromId;
     }
 
-    public Long getContactToId() {
+    public long getContactToId() {
         return contactToId;
     }
 
-    public void setContactToId(Long contactToId) {
+    public void setContactToId(long contactToId) {
         this.contactToId = contactToId;
     }
 
@@ -76,31 +72,23 @@ public class Message implements Serializable {
         this.content = content;
     }
 
-    public List<Contact> getConversation() {
-        return conversation;
-    }
-
-    public void setConversation(List<Contact> conversation) {
-        this.conversation = conversation;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Message message = (Message) o;
-        return Objects.equals(id, message.id);
+        return Objects.equals(messageId, message.messageId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(messageId);
     }
 
     @Override
     public String toString() {
         return "Message{" +
-                "id=" + id +
+                "messageId=" + messageId +
                 ", date=" + date +
                 ", contactFromId=" + contactFromId +
                 ", contactToId=" + contactToId +

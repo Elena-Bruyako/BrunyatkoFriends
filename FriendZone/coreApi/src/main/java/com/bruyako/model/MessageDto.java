@@ -2,8 +2,6 @@ package com.bruyako.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -11,29 +9,28 @@ import java.util.Objects;
  */
 public class MessageDto implements Serializable {
 
-    private Long id;
+    private long messageId;
     private LocalDateTime date;
-    private Long contactFromId;
-    private Long contactToId;
+    private long contactFromId;
+    private long contactToId;
     private String content;
-    private List<ContactDto> conversation;
 
     public MessageDto() {
     }
 
-    public MessageDto(LocalDateTime date, Long contactFromId, Long contactToId, String content) {
+    public MessageDto(LocalDateTime date, long contactFromId, long contactToId, String content) {
         this.date = date;
         this.contactFromId = contactFromId;
         this.contactToId = contactToId;
         this.content = content;
     }
 
-    public Long getId() {
-        return id;
+    public long getMessageId() {
+        return messageId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMessageId(long messageId) {
+        this.messageId = messageId;
     }
 
     public LocalDateTime getDate() {
@@ -44,19 +41,19 @@ public class MessageDto implements Serializable {
         this.date = date;
     }
 
-    public Long getContactFromId() {
+    public long getContactFromId() {
         return contactFromId;
     }
 
-    public void setContactFromId(Long contactFromId) {
+    public void setContactFromId(long contactFromId) {
         this.contactFromId = contactFromId;
     }
 
-    public Long getContactToId() {
+    public long getContactToId() {
         return contactToId;
     }
 
-    public void setContactToId(Long contactToId) {
+    public void setContactToId(long contactToId) {
         this.contactToId = contactToId;
     }
 
@@ -68,20 +65,12 @@ public class MessageDto implements Serializable {
         this.content = content;
     }
 
-    public List<ContactDto> getConversation() {
-        return conversation;
-    }
-
-    public void setConversation(List<ContactDto> conversation) {
-        this.conversation = conversation;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
        MessageDto messageDto = (MessageDto) o;
-        return Objects.equals(id, messageDto.id) &&
+        return Objects.equals(messageId, messageDto.messageId) &&
                 Objects.equals(date, messageDto.date) &&
                 Objects.equals(contactFromId, messageDto.contactFromId) &&
                 Objects.equals(contactToId, messageDto.contactToId) &&
@@ -92,13 +81,13 @@ public class MessageDto implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, date, contactFromId, contactToId, content);
+        return Objects.hash(messageId, date, contactFromId, contactToId, content);
     }
 
     @Override
     public String toString() {
         return "Message{" +
-                "id=" + id +
+                "messageId=" + messageId +
                 ", date=" + date +
                 ", contactFromId=" + contactFromId +
                 ", contactToId=" + contactToId +

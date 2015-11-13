@@ -21,8 +21,8 @@ public class PhotoServiceImpl implements PhotoService {
     private PhotoDao photoDao;
 
     @Override
-    public Set<PhotoDto> getAllPhotosFotContact(ContactDto contactDto) {
-        return photoDao.getAllPhotosFotContact(contactDto);
+    public Set<PhotoDto> getAllPhotosFotContact(Long contactId) {
+        return photoDao.getAllPhotosFotContact(contactId);
     }
 
     @Override

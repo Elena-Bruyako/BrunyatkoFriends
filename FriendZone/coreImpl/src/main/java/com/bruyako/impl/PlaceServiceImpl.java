@@ -40,7 +40,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public Set<PlaceDto> getAllPlaceForContact(ContactDto contactDto) {
-        return placeDao.getAllPlaceForContact(contactDto);
+    public Set<PlaceDto> getAllPlaceForContact(Long contactId) {
+        return placeDao.getAllPlaceForContact(contactId);
     }
 }

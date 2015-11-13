@@ -23,8 +23,8 @@ public class LikePostServiceImpl implements LikePostService {
     }
 
     @Override
-    public int getCountLikePost(Long likePostId) {
-        return likePostDao.getCountLike(likePostId);
+    public int getCountLikePost(Long postId) {
+        return likePostDao.getCountLike(postId);
     }
 
     @Override

@@ -10,10 +10,9 @@ import java.util.Set;
  */
 public class HobbyDto implements Serializable {
 
-    private Long id;
+    private long hobbyId;
     private String title;
     private String description;
-    private Set<ContactDto> hobbiesOfContact;
 
     public HobbyDto() {
     }
@@ -23,12 +22,12 @@ public class HobbyDto implements Serializable {
         this.description = description;
     }
 
-    public Long getId() {
-        return id;
+    public long getHobbyId() {
+        return hobbyId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setHobbyId(long hobbyId) {
+        this.hobbyId = hobbyId;
     }
 
     public String getTitle() {
@@ -47,20 +46,12 @@ public class HobbyDto implements Serializable {
         this.description = description;
     }
 
-    public Set<ContactDto> getHobbiesOfContact() {
-        return hobbiesOfContact;
-    }
-
-    public void setHobbiesOfContact(Set<ContactDto> hobbiesOfContact) {
-        this.hobbiesOfContact = hobbiesOfContact;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HobbyDto hobbyDto = (HobbyDto) o;
-        return Objects.equals(id, hobbyDto.id) &&
+        return Objects.equals(hobbyId, hobbyDto.hobbyId) &&
                 Objects.equals(title, hobbyDto.title) &&
                 Objects.equals(description, hobbyDto.description);
     }
@@ -68,13 +59,13 @@ public class HobbyDto implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, description);
+        return Objects.hash(hobbyId, title, description);
     }
 
     @Override
     public String toString() {
         return "Hobby{" +
-                "id=" + id +
+                "hobbyId=" + hobbyId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 '}';

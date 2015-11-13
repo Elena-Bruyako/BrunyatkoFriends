@@ -1,10 +1,8 @@
 package com.bruyako.impl;
 
 import com.bruyako.LikePhotoDao;
-import com.bruyako.LikePostDao;
 import com.bruyako.LikePhotoService;
 import com.bruyako.model.LikePhotoDto;
-import com.bruyako.model.LikePostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +23,8 @@ public class LikePhotoServiceImpl implements LikePhotoService {
     }
 
     @Override
-    public int getCountLikePhoto(Long likePhotoId) {
-        return likePhotoDao.getCountLike(likePhotoId);
+    public int getCountLikePhoto(Long photoId) {
+        return likePhotoDao.getCountLike(photoId);
     }
 
     @Override

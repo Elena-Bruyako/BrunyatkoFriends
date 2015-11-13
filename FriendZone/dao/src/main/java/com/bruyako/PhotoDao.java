@@ -1,6 +1,5 @@
 package com.bruyako;
 
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PhotoDto;
 
 import java.util.Set;
@@ -10,9 +9,9 @@ import java.util.Set;
  */
 public interface PhotoDao{
 
-    Set<PhotoDto> getAllPhotosFotContact(ContactDto contactDto);
+    Set<PhotoDto> getAllPhotosFotContact(Long contactId);
 
-    void save(PhotoDto photoDto);
+    Long save(PhotoDto photoDto);
 
     void delete(PhotoDto photoDto);
 }

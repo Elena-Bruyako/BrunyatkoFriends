@@ -17,7 +17,7 @@ public class Photo implements Serializable {
     @Id
     @Column(name = "Photo_Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long photoId;
+    private long photoId;
 
     @Column(name = "Name", nullable = false)
     private String name;
