@@ -4,7 +4,6 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -18,9 +17,6 @@ public class Photo implements Serializable {
     @Column(name = "Photo_Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long photoId;
-
-    @Column(name = "Name", nullable = false)
-    private String name;
 
     @Column(name = "Img", nullable = false)
     private byte[] img;
@@ -39,14 +35,6 @@ public class Photo implements Serializable {
 
     public void setPhotoId(Long photoId) {
         this.photoId = photoId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public byte[] getImg() {
@@ -90,8 +78,6 @@ public class Photo implements Serializable {
     public String toString() {
         return "Photo{" +
                 "photoId=" + photoId +
-                ", name='" + name + '\'' +
-                ", img=" + Arrays.toString(img) +
                 '}';
     }
 }

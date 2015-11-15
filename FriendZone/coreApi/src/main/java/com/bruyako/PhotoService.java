@@ -12,7 +12,7 @@ public interface PhotoService {
 
     Set<PhotoDto> getAllPhotosFotContact(Long contactId);
 
-    void savePhoto (PhotoDto photoDto);
+    Long savePhoto (PhotoDto photoDto);
 
     void deletePhoto (PhotoDto photoDto);
 }

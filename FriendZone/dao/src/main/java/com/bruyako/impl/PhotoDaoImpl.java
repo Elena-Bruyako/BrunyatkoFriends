@@ -29,7 +29,7 @@ public class PhotoDaoImpl implements PhotoDao {
     @Override
     public Set<PhotoDto> getAllPhotosFotContact(Long contactId) {
 
-        List<Photo> photos = sessionFactory.getCurrentSession().createSQLQuery("select p.Img, p.Name from Photo p join Contact c " +
+        List<Photo> photos = sessionFactory.getCurrentSession().createSQLQuery("select p.Img from Photo p join Contact c " +
                 "on p.Contact_id = c.Contact_id where c.Contact_id = :id").setResultTransformer(Transformers.aliasToBean(Photo.class)).setParameter("id", contactId).list();
 
         Set<PhotoDto> result = new HashSet<>(photos.size());

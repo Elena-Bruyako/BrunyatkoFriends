@@ -162,7 +162,6 @@ public class EntityDtoConverter {
         }
         Photo photo = new Photo();
         photo.setPhotoId(photoDto.getPhotoId());
-        photo.setName(photoDto.getName());
         photo.setImg(photoDto.getImg());
 
         return photo;
@@ -175,7 +174,6 @@ public class EntityDtoConverter {
         }
         PhotoDto photoDto = new PhotoDto();
         photoDto.setPhotoId(photo.getPhotoId());
-        photoDto.setName(photo.getName());
         photoDto.setImg(photo.getImg());
 
         return photoDto;

@@ -1,7 +1,6 @@
 package com.bruyako.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * Created by brunyatko on 10.11.15.
@@ -9,7 +8,6 @@ import java.util.Arrays;
 public class PhotoDto implements Serializable {
 
     private long photoId;
-    private String name;
     private byte[] img;
     private ContactDto photoForContact;
     private LikePhotoDto likePhoto;
@@ -23,14 +21,6 @@ public class PhotoDto implements Serializable {
 
     public void setPhotoId(long photoId) {
         this.photoId = photoId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public byte[] getImg() {
@@ -61,8 +51,6 @@ public class PhotoDto implements Serializable {
     public String toString() {
         return "PhotoDto{" +
                 "photoId=" + photoId +
-                ", name='" + name + '\'' +
-                ", img=" + Arrays.toString(img) +
                 '}';
     }
 }

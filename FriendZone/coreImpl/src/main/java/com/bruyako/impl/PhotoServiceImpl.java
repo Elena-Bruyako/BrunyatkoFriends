@@ -26,8 +26,8 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public void savePhoto(PhotoDto photoDto) {
-        photoDao.save(photoDto);
+    public Long savePhoto(PhotoDto photoDto) {
+        return photoDao.save(photoDto);
     }
 
     @Override
