@@ -12,8 +12,6 @@ import java.util.Set;
 public class ContactDto implements Serializable{
 
     private long contactId;
-    private String login;
-    private String password;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
@@ -27,9 +25,7 @@ public class ContactDto implements Serializable{
     public ContactDto() {
     }
 
-    public ContactDto(String login, String password, String firstName, String lastName, LocalDate birthDate) {
-        this.login = login;
-        this.password = password;
+    public ContactDto(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -41,22 +37,6 @@ public class ContactDto implements Serializable{
 
     public void setContactId(long contactId) {
         this.contactId = contactId;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {
@@ -138,8 +118,6 @@ public class ContactDto implements Serializable{
         if (o == null || getClass() != o.getClass()) return false;
         ContactDto contactDto = (ContactDto) o;
         return Objects.equals(contactId, contactDto.contactId) &&
-                Objects.equals(login, contactDto.login) &&
-                Objects.equals(password, contactDto.password) &&
                 Objects.equals(firstName, contactDto.firstName) &&
                 Objects.equals(lastName, contactDto.lastName) &&
                 Objects.equals(birthDate, contactDto.birthDate);
@@ -147,15 +125,13 @@ public class ContactDto implements Serializable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(contactId,  login, password, firstName, lastName, birthDate);
+        return Objects.hash(contactId, firstName, lastName, birthDate);
     }
 
     @Override
     public String toString() {
         return "ContactDto{" +
                 "contactId=" + contactId +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDate=" + birthDate +

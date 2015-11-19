@@ -1,9 +1,7 @@
 package com.bruyako.impl;
 
-import com.bruyako.ContactDao;
-import com.bruyako.PlaceDao;
+import com.bruyako.PlaceDaoInterface;
 import com.bruyako.PlaceService;
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PlaceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,28 +17,26 @@ import java.util.Set;
 public class PlaceServiceImpl implements PlaceService {
 
     @Autowired
-    private ContactDao contactDao;
-
-    @Autowired
-    private PlaceDao placeDao;
+    private PlaceDaoInterface placeDao;
 
     @Override
-    public PlaceDto addPlace(String title, String description) {
+    public void addPlace(PlaceDto placeDto) {
 
-        PlaceDto place = new PlaceDto(title, description);
-        placeDao.create(place);
-
-        return place;
+        placeDao.add(placeDto);
     }
 
     @Override
-    public void setPlaceToContact(ContactDto contactDto, PlaceDto placeDto) {
-
-        contactDao.addPlaceToContact(contactDto, placeDto);
+    public void deletePlace(PlaceDto placeDto) {
+        placeDao.delete(placeDto);
     }
 
     @Override
     public Set<PlaceDto> getAllPlaceForContact(Long contactId) {
         return placeDao.getAllPlaceForContact(contactId);
+    }
+
+    @Override
+    public PlaceDto getById(Long placeId) {
+        return placeDao.getById(placeId);
     }
 }

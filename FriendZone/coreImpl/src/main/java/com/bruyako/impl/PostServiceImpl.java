@@ -1,9 +1,7 @@
 package com.bruyako.impl;
 
-import com.bruyako.ContactDao;
-import com.bruyako.PostDao;
+import com.bruyako.PostDaoInterface;
 import com.bruyako.PostService;
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,28 +17,30 @@ import java.util.Set;
 public class PostServiceImpl implements PostService {
 
     @Autowired
-    private ContactDao contactDao;
-
-    @Autowired
-    private PostDao postDao;
+    private PostDaoInterface postDao;
 
     @Override
-    public PostDto addPost(String title, String content) {
+    public void addPost(PostDto postDto) {
 
-        PostDto post = new PostDto(title, content);
-        postDao.create(post);
-
-        return post;
+        postDao.add(postDto);
     }
 
     @Override
-    public void setPostToContact(ContactDto contactDto, PostDto postDto) {
+    public void deletePost(PostDto postDto) {
 
-        contactDao.addPostToContact(contactDto, postDto);
+        postDao.delete(postDto);
     }
+
 
     @Override
     public Set<PostDto> getAllPostsForContact(Long contactId) {
+
         return postDao.getAllPostsForContact(contactId);
+    }
+
+    @Override
+    public PostDto getById(Long postId) {
+
+        return postDao.getById(postId);
     }
 }

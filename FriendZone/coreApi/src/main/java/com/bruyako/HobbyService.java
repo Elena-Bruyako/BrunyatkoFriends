@@ -10,9 +10,11 @@ import java.util.Set;
  */
 public interface HobbyService {
 
-    HobbyDto addHobby(String title, String description);
+    void addHobby(HobbyDto hobbyDto);
 
-    void setHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto);
+    void deleteHobby(HobbyDto hobbyDto);
 
     Set<HobbyDto> getAllHobbyForContact(Long contactId);
+
+    HobbyDto getById(Long hobbyId);
 }

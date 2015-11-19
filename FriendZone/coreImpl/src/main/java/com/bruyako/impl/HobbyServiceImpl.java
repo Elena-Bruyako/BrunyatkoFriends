@@ -1,9 +1,7 @@
 package com.bruyako.impl;
 
-import com.bruyako.ContactDao;
-import com.bruyako.HobbyDao;
+import com.bruyako.HobbyDaoInterface;
 import com.bruyako.HobbyService;
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.HobbyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,28 +17,27 @@ import java.util.Set;
 public class HobbyServiceImpl implements HobbyService {
 
     @Autowired
-    private ContactDao contactDao;
-
-    @Autowired
-    private HobbyDao hobbyDao;
+    private HobbyDaoInterface hobbyDao;
 
     @Override
-    public HobbyDto addHobby(String title, String description) {
+    public void addHobby(HobbyDto hobbyDto) {
 
-        HobbyDto hobbyDto = new HobbyDto(title, description);
-        hobbyDao.create(hobbyDto);
-        return hobbyDto;
+        hobbyDao.add(hobbyDto);
     }
 
     @Override
-    public void setHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto) {
-
-        contactDao.addHobbyToContact(contactDto, hobbyDto);
+    public void deleteHobby(HobbyDto hobbyDto) {
+        hobbyDao.delete(hobbyDto);
     }
 
     @Override
     public Set<HobbyDto> getAllHobbyForContact(Long contactId) {
 
         return hobbyDao.getAllHobbyForContact(contactId);
+    }
+
+    @Override
+    public HobbyDto getById(Long hobbyId) {
+        return hobbyDao.getById(hobbyId);
     }
 }

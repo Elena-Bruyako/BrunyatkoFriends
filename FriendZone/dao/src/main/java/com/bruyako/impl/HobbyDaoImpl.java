@@ -1,7 +1,7 @@
 package com.bruyako.impl;
 
-import com.bruyako.HobbyDao;
-import com.bruyako.entity.Hobby;
+import com.bruyako.HobbyDaoInterface;
+import com.bruyako.entity.HobbyDao;
 import com.bruyako.model.HobbyDto;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -18,7 +18,7 @@ import com.bruyako.converters.EntityDtoConverter;
  */
 @Transactional
 @Repository
-public class HobbyDaoImpl implements HobbyDao {
+public class HobbyDaoImpl implements HobbyDaoInterface {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -26,13 +26,13 @@ public class HobbyDaoImpl implements HobbyDao {
     @Override
     public Set<HobbyDto> getAllHobbyForContact(Long contactId) {
 
-         List<Hobby> hobbies = sessionFactory.getCurrentSession().createSQLQuery("select h.title, h.description from Hobby h join Contact_Hobby ch" +
+         List<HobbyDao> hobbies = sessionFactory.getCurrentSession().createSQLQuery("select h.title, h.description from Hobby h join Contact_Hobby ch" +
                 " on h.hobby_id = ch.hobby_id join Contact c on ch.contact_id = c.contact_id " +
-                "where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Hobby.class)).setParameter("contactId", contactId).list();
+                "where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(HobbyDao.class)).setParameter("contactId", contactId).list();
 
         Set<HobbyDto> result = new HashSet<>(hobbies.size());
 
-        for (Hobby hobby : hobbies) {
+        for (HobbyDao hobby : hobbies) {
 
             result.add(EntityDtoConverter.convert(hobby));
 
@@ -42,25 +42,24 @@ public class HobbyDaoImpl implements HobbyDao {
 
     @Transactional(readOnly = false)
     @Override
-    public Long create(HobbyDto hobbyDto) {
+    public void add(HobbyDto hobbyDto) {
 
-        Hobby hobby = EntityDtoConverter.convert(hobbyDto);
+        HobbyDao hobby = EntityDtoConverter.convert(hobbyDto);
         sessionFactory.getCurrentSession().save(hobby);
-        return hobby.getHobbyId();
     }
 
     @Transactional(readOnly = false)
     @Override
     public void delete(HobbyDto hobbyDto) {
 
-        Hobby hobby = EntityDtoConverter.convert(hobbyDto);
+        HobbyDao hobby = EntityDtoConverter.convert(hobbyDto);
         sessionFactory.getCurrentSession().delete(hobby);
     }
 
     @Override
     public HobbyDto getById(Long hobbyId) {
 
-        List<Hobby> hobbies = sessionFactory.getCurrentSession().createQuery("select h from Hobby h where h.id = :id").setParameter("id", hobbyId).list();
+        List<HobbyDao> hobbies = sessionFactory.getCurrentSession().createQuery("select h from Hobby h where h.id = :id").setParameter("id", hobbyId).list();
         if (hobbies.isEmpty()) {
             return null;
         } else {

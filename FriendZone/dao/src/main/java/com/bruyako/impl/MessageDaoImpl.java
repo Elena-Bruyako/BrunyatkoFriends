@@ -1,12 +1,10 @@
 package com.bruyako.impl;
 
-import org.hibernate.Query;
-import com.bruyako.MessageDao;
+import com.bruyako.MessageDaoInterface;
 import com.bruyako.converters.EntityDtoConverter;
-import com.bruyako.entity.Message;
+import com.bruyako.entity.MessageDao;
 import com.bruyako.model.MessageDto;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +16,7 @@ import java.util.*;
  */
 @Transactional
 @Repository
-public class MessageDaoImpl implements MessageDao {
+public class MessageDaoImpl implements MessageDaoInterface {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -26,14 +24,14 @@ public class MessageDaoImpl implements MessageDao {
     @Override
     public List<MessageDto> getConversation(Long contactFromId, Long contactToId) {
 
-        List<Message> messages = sessionFactory.getCurrentSession().createSQLQuery("select * from Message m where (m.Contact_From_id = :contactFromId and " +
+        List<MessageDao> messages = sessionFactory.getCurrentSession().createSQLQuery("select * from Message m where (m.Contact_From_id = :contactFromId and " +
                 "m.Contact_To_id = :contactToId) or (m.Contact_From_id = :contactToId and m.Contact_To_id = :contactFromId) " +
-                "order by Message_Time asc").addEntity(Message.class).setParameter("contactFromId", contactFromId).setParameter("contactToId", contactToId).list();
+                "order by Message_Time asc").addEntity(MessageDao.class).setParameter("contactFromId", contactFromId).setParameter("contactToId", contactToId).list();
 
 
         List<MessageDto> result = new ArrayList<>(messages.size());
 
-        for (Message message : messages) {
+        for (MessageDao message : messages) {
 
             result.add(EntityDtoConverter.convert(message));
         }
@@ -44,7 +42,7 @@ public class MessageDaoImpl implements MessageDao {
     @Override
     public void storeMessage(MessageDto messageDto) {
 
-        Message message = EntityDtoConverter.convert(messageDto);
+        MessageDao message = EntityDtoConverter.convert(messageDto);
 
         sessionFactory.getCurrentSession().saveOrUpdate(message);
     }

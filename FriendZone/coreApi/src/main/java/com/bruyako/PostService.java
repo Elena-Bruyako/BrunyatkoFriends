@@ -1,6 +1,5 @@
 package com.bruyako;
 
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PostDto;
 
 import java.util.Set;
@@ -10,9 +9,11 @@ import java.util.Set;
  */
 public interface PostService {
 
-    PostDto addPost(String title, String content);
+    void addPost(PostDto postDto);
 
-    void setPostToContact(ContactDto contactDto, PostDto postDto);
+    void deletePost(PostDto postDto);
 
     Set<PostDto> getAllPostsForContact(Long contactId);
+
+    PostDto getById(Long postId);
 }

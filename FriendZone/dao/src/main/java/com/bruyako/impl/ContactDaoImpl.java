@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.ContactDao;
+import com.bruyako.ContactDaoInterface;
 import com.bruyako.entity.*;
 import com.bruyako.model.*;
 import org.hibernate.SessionFactory;
@@ -18,7 +18,7 @@ import com.bruyako.converters.EntityDtoConverter;
  */
 @Transactional
 @Repository
-public class ContactDaoImpl implements ContactDao {
+public class ContactDaoImpl implements ContactDaoInterface {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -26,8 +26,8 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public void addFriendship(ContactDto contactDto, ContactDto secondContactDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Contact secondContact = EntityDtoConverter.convert(secondContactDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        ContactDao secondContact = EntityDtoConverter.convert(secondContactDto);
         contact.getFriends().add(secondContact);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
@@ -36,25 +36,38 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public void deleteFriendship(ContactDto contactDto, ContactDto secondContactDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Contact secondContact = EntityDtoConverter.convert(secondContactDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        ContactDao secondContact = EntityDtoConverter.convert(secondContactDto);
         contact.getFriends().remove(secondContact);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
+    @Transactional(readOnly = false)
     @Override
-    public void saveContact(ContactDto contactDto) {
+    public void addAlbumToContact(ContactDto contactDto, AlbumDto albumDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        sessionFactory.getCurrentSession().persist(contact);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        AlbumDao albumDao = EntityDtoConverter.convert(albumDto);
+        contact.getAlbums().add(albumDao);
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void deleteAlbumToContact(ContactDto contactDto, AlbumDto albumDto) {
+
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        AlbumDao albumDao = EntityDtoConverter.convert(albumDto);
+        contact.getAlbums().remove(albumDao);
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
     @Transactional(readOnly = false)
     @Override
     public void addHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Hobby hobby = EntityDtoConverter.convert(hobbyDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        HobbyDao hobby = EntityDtoConverter.convert(hobbyDto);
         contact.getHobbies().add(hobby);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
@@ -63,8 +76,8 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public void addPlaceToContact(ContactDto contactDto, PlaceDto placeDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Place place = EntityDtoConverter.convert(placeDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        PlaceDao place = EntityDtoConverter.convert(placeDto);
         contact.getPlaces().add(place);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
@@ -73,8 +86,8 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public void addPostToContact(ContactDto contactDto, PostDto postDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Post post = EntityDtoConverter.convert(postDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        PostDao post = EntityDtoConverter.convert(postDto);
         contact.getPosts().add(post);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
@@ -83,20 +96,39 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public void deleteHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Hobby hobby = EntityDtoConverter.convert(hobbyDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        HobbyDao hobby = EntityDtoConverter.convert(hobbyDto);
         contact.getHobbies().remove(hobby);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
-
     }
 
     @Transactional(readOnly = false)
     @Override
     public void deletePlaceToContact(ContactDto contactDto, PlaceDto placeDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Place place = EntityDtoConverter.convert(placeDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        PlaceDao place = EntityDtoConverter.convert(placeDto);
         contact.getPlaces().remove(place);
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void addPhotoToContact(ContactDto contactDto, PhotoDto photoDto) {
+
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        PhotoDao photoDao = EntityDtoConverter.convert(photoDto);
+        contact.getAllPhotos().add(photoDao);
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void deletePhotoToContact(ContactDto contactDto, PhotoDto photoDto) {
+
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        PhotoDao photoDao = EntityDtoConverter.convert(photoDto);
+        contact.getAllPhotos().remove(photoDao);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
@@ -104,35 +136,35 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public void deletePostToContact(ContactDto contactDto, PostDto postDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Post post = EntityDtoConverter.convert(postDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
+        PostDao post = EntityDtoConverter.convert(postDto);
         contact.getPosts().remove(post);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public Long create(ContactDto contactDto) {
+    public void add(ContactDto contactDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
         sessionFactory.getCurrentSession().save(contact);
-        return contact.getContactId();
     }
 
     @Transactional(readOnly = false)
     @Override
     public void delete(ContactDto contactDto) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
+        ContactDao contact = EntityDtoConverter.convert(contactDto);
         sessionFactory.getCurrentSession().delete(contact);
     }
+
 
     @Override
     public List<ContactDto> getAllContacts() {
 
-        List<Contact> contacts = sessionFactory.getCurrentSession().createQuery("from Contact").list();
+        List<ContactDao> contacts = sessionFactory.getCurrentSession().createSQLQuery("from Contact").list();
         List<ContactDto> result = new ArrayList<ContactDto>(contacts.size());
-        for (Contact contact : contacts) {
+        for (ContactDao contact : contacts) {
             result.add(EntityDtoConverter.convert(contact));
         }
         return result;
@@ -141,7 +173,7 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public ContactDto getById(Long id) {
 
-        List<Contact> contacts = sessionFactory.getCurrentSession().createQuery("select c from Contact c where c.id = :id").setParameter("id", id).list();
+        List<ContactDao> contacts = sessionFactory.getCurrentSession().createSQLQuery("select c from Contact c where c.id = :id").setParameter("id", id).list();
         if (contacts.isEmpty()) {
             return null;
         } else {

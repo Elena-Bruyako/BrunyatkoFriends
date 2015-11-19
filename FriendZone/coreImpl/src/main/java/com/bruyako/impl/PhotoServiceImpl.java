@@ -1,8 +1,7 @@
 package com.bruyako.impl;
 
-import com.bruyako.PhotoDao;
+import com.bruyako.PhotoDaoInterface;
 import com.bruyako.PhotoService;
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PhotoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,7 @@ import java.util.Set;
 public class PhotoServiceImpl implements PhotoService {
 
     @Autowired
-    private PhotoDao photoDao;
+    private PhotoDaoInterface photoDao;
 
     @Override
     public Set<PhotoDto> getAllPhotosFotContact(Long contactId) {
@@ -26,8 +25,13 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public Long savePhoto(PhotoDto photoDto) {
-        return photoDao.save(photoDto);
+    public PhotoDto getById(Long photoId) {
+        return photoDao.getById(photoId);
+    }
+
+    @Override
+    public void addPhoto(PhotoDto photoDto) {
+        photoDao.add(photoDto);
     }
 
     @Override

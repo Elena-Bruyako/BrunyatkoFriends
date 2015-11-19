@@ -1,6 +1,5 @@
 package com.bruyako;
 
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PhotoDto;
 
 import java.util.Set;
@@ -12,7 +11,9 @@ public interface PhotoService {
 
     Set<PhotoDto> getAllPhotosFotContact(Long contactId);
 
-    Long savePhoto (PhotoDto photoDto);
+    PhotoDto getById(Long photoId);
 
-    void deletePhoto (PhotoDto photoDto);
+    void addPhoto(PhotoDto photoDto);
+
+    void deletePhoto(PhotoDto photoDto);
 }

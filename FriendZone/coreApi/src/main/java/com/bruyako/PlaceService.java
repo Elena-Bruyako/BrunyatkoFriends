@@ -1,6 +1,5 @@
 package com.bruyako;
 
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.PlaceDto;
 
 import java.util.Set;
@@ -10,9 +9,11 @@ import java.util.Set;
  */
 public interface PlaceService {
 
-    PlaceDto addPlace(String title, String description);
+    void addPlace(PlaceDto placeDto);
 
-    void setPlaceToContact(ContactDto contactDto, PlaceDto placeDto);
+    void deletePlace(PlaceDto placeDto);
 
     Set<PlaceDto> getAllPlaceForContact(Long contactId);
+
+    PlaceDto getById(Long placeId);
 }

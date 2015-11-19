@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.LikePostDao;
+import com.bruyako.LikePostInterface;
 import com.bruyako.LikePostService;
 import com.bruyako.model.LikePostDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +15,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class LikePostServiceImpl implements LikePostService {
 
     @Autowired
-    private LikePostDao likePostDao;
+    private LikePostInterface likePostInterface;
 
     @Override
     public void saveLikePost(LikePostDto likePostDto) {
-        likePostDao.saveLikePost(likePostDto);
+        likePostInterface.saveLikePost(likePostDto);
     }
 
     @Override
     public int getCountLikePost(Long postId) {
-        return likePostDao.getCountLike(postId);
+        return likePostInterface.getCountLike(postId);
     }
 
     @Override
     public boolean isLikePost(Long id, Long contactId) {
-        return likePostDao.isLike(id, contactId);
+        return likePostInterface.isLike(id, contactId);
     }
 }

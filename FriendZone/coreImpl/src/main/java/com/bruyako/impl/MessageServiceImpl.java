@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.MessageDao;
+import com.bruyako.MessageDaoInterface;
 import com.bruyako.MessageService;
 import com.bruyako.model.ContactDto;
 import com.bruyako.model.MessageDto;
@@ -19,7 +19,7 @@ import java.util.List;
 public class MessageServiceImpl implements MessageService {
 
     @Autowired
-    private MessageDao messageDao;
+    private MessageDaoInterface messageDaoInterface;
 
     @Override
     public List<MessageDto> getConversation(ContactDto from, ContactDto to) {
@@ -27,13 +27,13 @@ public class MessageServiceImpl implements MessageService {
         long contactFromId = from.getContactId();
         long contactToId = to.getContactId();
 
-        return messageDao.getConversation(contactFromId, contactToId);
+        return messageDaoInterface.getConversation(contactFromId, contactToId);
     }
 
     @Override
     public void sendMessage(String content, Long from, Long to) {
 
         MessageDto message = new MessageDto(LocalDateTime.now(), from, to, content);
-        messageDao.storeMessage(message);
+        messageDaoInterface.storeMessage(message);
     }
 }
