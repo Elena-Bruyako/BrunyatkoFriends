@@ -57,7 +57,7 @@ public class PhotoDaoImpl implements PhotoDaoInterface {
     @Override
     public PhotoDto getById(Long photoId) {
 
-        List<PhotoDao> photoList = sessionFactory.getCurrentSession().createSQLQuery("select p from Photo p where p.id = :id").setParameter("id", photoId).list();
+        List<PhotoDao> photoList = sessionFactory.getCurrentSession().createQuery("select p from Photo p where p.id = :id").setParameter("id", photoId).list();
         if (photoList.isEmpty()) {
             return null;
         } else {

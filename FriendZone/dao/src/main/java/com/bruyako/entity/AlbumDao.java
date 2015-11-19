@@ -17,9 +17,6 @@ public class AlbumDao implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long albumId;
 
-    @Column(name = "Contact_id", nullable = false)
-    private long contactId;
-
     @Column(name = "Name")
     private String name;
 
@@ -36,14 +33,6 @@ public class AlbumDao implements Serializable{
 
     public void setAlbumId(long albumId) {
         this.albumId = albumId;
-    }
-
-    public long getContactId() {
-        return contactId;
-    }
-
-    public void setContactId(long contactId) {
-        this.contactId = contactId;
     }
 
     public String getName() {
@@ -87,7 +76,6 @@ public class AlbumDao implements Serializable{
     public String toString() {
         return "AlbumDao{" +
                 "albumId=" + albumId +
-                ", contactId=" + contactId +
                 ", name='" + name + '\'' +
                 '}';
     }

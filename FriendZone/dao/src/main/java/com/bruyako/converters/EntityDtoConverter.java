@@ -19,7 +19,6 @@ public class EntityDtoConverter {
 
         AlbumDao albumDao = new AlbumDao();
         albumDao.setAlbumId(albumDto.getAlbumId());
-        albumDao.setContactId(albumDto.getContactId());
         albumDao.setName(albumDto.getName());
 
         return albumDao;
@@ -33,7 +32,6 @@ public class EntityDtoConverter {
 
         AlbumDto albumDto = new AlbumDto();
         albumDto.setAlbumId(albumDao.getAlbumId());
-        albumDto.setContactId(albumDao.getContactId());
         albumDto.setName(albumDao.getName());
 
         return albumDto;

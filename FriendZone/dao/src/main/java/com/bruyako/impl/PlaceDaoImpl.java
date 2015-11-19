@@ -60,7 +60,7 @@ public class PlaceDaoImpl implements PlaceDaoInterface {
     @Override
     public PlaceDto getById(Long placeId) {
 
-        List<PlaceDao> places = sessionFactory.getCurrentSession().createSQLQuery("select p from Place p where p.id = :id").setParameter("id", placeId).list();
+        List<PlaceDao> places = sessionFactory.getCurrentSession().createQuery("select p from Place p where p.id = :id").setParameter("id", placeId).list();
         if (places.isEmpty()) {
             return null;
         } else {

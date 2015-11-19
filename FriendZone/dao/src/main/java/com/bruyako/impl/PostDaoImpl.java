@@ -56,7 +56,7 @@ public class PostDaoImpl implements PostDaoInterface {
     @Override
     public PostDto getById(Long postId) {
 
-        List<PostDao> posts = sessionFactory.getCurrentSession().createSQLQuery("select p from Post p where p.id = :id").setParameter("id", postId).list();
+        List<PostDao> posts = sessionFactory.getCurrentSession().createQuery("select p from Post p where p.id = :id").setParameter("id", postId).list();
         if (posts.isEmpty()) {
             return null;
         } else {
