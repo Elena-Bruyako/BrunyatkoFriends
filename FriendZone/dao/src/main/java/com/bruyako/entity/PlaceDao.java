@@ -28,6 +28,9 @@ public class PlaceDao implements Serializable {
     @Column(name = "Description", nullable = false)
     private String description;
 
+    public PlaceDao() {
+    }
+
     public long getPlaceId() {
         return placeId;
     }

@@ -1,26 +1,15 @@
 package com.bruyako.model;
 
-import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by brunyatko on 07.09.15.
  */
-public class HobbyDto implements Serializable {
+public class HobbyDto {
 
     private long hobbyId;
     private String title;
     private String description;
-
-    public HobbyDto() {
-    }
-
-    public HobbyDto(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
 
     public long getHobbyId() {
         return hobbyId;

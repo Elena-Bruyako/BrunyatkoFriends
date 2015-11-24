@@ -62,6 +62,9 @@ public class ContactDao implements Serializable {
     @JoinTable(name = "Contact_Friendship", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Friend_id"))
     private Set<ContactDao> friends;
 
+    public ContactDao() {
+    }
+
     public long getContactId() {
         return contactId;
     }

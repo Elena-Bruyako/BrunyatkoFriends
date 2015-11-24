@@ -33,6 +33,9 @@ public class PhotoDao implements Serializable {
     @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
     private LikePhotoDao likePhoto;
 
+    public PhotoDao() {
+    }
+
     public Long getPhotoId() {
         return photoId;
     }

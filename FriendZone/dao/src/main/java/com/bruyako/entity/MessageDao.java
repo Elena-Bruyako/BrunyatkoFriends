@@ -32,6 +32,9 @@ public class MessageDao implements Serializable {
     @Column(name = "Content")
     private String content;
 
+    public MessageDao() {
+    }
+
     public long getMessageId() {
         return messageId;
     }

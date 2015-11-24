@@ -38,6 +38,9 @@ public class PostDao implements Serializable {
     @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
     private LikePostDao likePost;
 
+    public PostDao() {
+    }
+
     public long getPostId() {
         return postId;
     }

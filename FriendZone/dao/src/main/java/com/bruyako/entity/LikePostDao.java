@@ -23,6 +23,9 @@ public class LikePostDao implements Serializable {
     @JoinColumn(name = "Post_id",  insertable = false, updatable = false)
     private PostDao post;
 
+    public LikePostDao() {
+    }
+
     public Long getLikePostId() {
         return likePostId;
     }

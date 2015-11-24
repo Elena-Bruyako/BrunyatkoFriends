@@ -1,19 +1,14 @@
 package com.bruyako.model;
 
-import java.io.Serializable;
-
 /**
  * Created by brunyatko on 10.11.15.
  */
-public class PhotoDto implements Serializable {
+public class PhotoDto {
 
     private long photoId;
     private byte[] img;
     private ContactDto photoForContact;
     private LikePhotoDto likePhoto;
-
-    public PhotoDto() {
-    }
 
     public long getPhotoId() {
         return photoId;

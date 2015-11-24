@@ -1,6 +1,7 @@
 package com.bruyako.model;
 
-import java.io.Serializable;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -9,7 +10,7 @@ import java.util.Set;
 /**
  * Created by brunyatko on 07.09.15.
  */
-public class ContactDto implements Serializable{
+public class ContactDto{
 
     private long contactId;
     private String firstName;
@@ -21,15 +22,6 @@ public class ContactDto implements Serializable{
     private Set<PostDto> posts;
     private List<MessageDto> conversation;
     private Set<ContactDto> friends;
-
-    public ContactDto() {
-    }
-
-    public ContactDto(String firstName, String lastName, LocalDate birthDate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-    }
 
     public long getContactId() {
         return contactId;

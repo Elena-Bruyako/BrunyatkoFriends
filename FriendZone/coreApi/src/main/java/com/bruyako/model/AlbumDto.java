@@ -1,11 +1,9 @@
 package com.bruyako.model;
 
-import java.io.Serializable;
-
 /**
  * Created by brunyatko on 19.11.15.
  */
-public class AlbumDto implements Serializable {
+public class AlbumDto{
 
     private long albumId;
     private long contactId;

@@ -22,6 +22,9 @@ public class HobbyDao implements Serializable {
     @Column(name = "Description", nullable = false)
     private String description;
 
+    public HobbyDao() {
+    }
+
     public long getHobbyId() {
         return hobbyId;
     }

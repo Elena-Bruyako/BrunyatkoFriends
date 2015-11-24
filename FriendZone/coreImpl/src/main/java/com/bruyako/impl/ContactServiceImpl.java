@@ -2,6 +2,7 @@ package com.bruyako.impl;
 
 import com.bruyako.ContactDaoInterface;
 import com.bruyako.ContactService;
+import com.bruyako.entity.ContactDao;
 import com.bruyako.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

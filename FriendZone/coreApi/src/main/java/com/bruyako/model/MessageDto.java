@@ -1,29 +1,18 @@
 package com.bruyako.model;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
  * Created by brunyatko on 07.09.15.
  */
-public class MessageDto implements Serializable {
+public class MessageDto {
 
     private long messageId;
     private LocalDateTime date;
     private long contactFromId;
     private long contactToId;
     private String content;
-
-    public MessageDto() {
-    }
-
-    public MessageDto(LocalDateTime date, long contactFromId, long contactToId, String content) {
-        this.date = date;
-        this.contactFromId = contactFromId;
-        this.contactToId = contactToId;
-        this.content = content;
-    }
 
     public long getMessageId() {
         return messageId;

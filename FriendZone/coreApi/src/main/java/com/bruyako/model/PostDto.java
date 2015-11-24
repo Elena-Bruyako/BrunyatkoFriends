@@ -1,13 +1,12 @@
 package com.bruyako.model;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
  * Created by brunyatko on 07.09.15.
  */
-public class PostDto implements Serializable{
+public class PostDto {
 
     private long postId;
     private String title;
@@ -15,14 +14,6 @@ public class PostDto implements Serializable{
     private LocalDateTime date;
     private ContactDto postOfContact;
     private LikePostDto likePostDto;
-
-    public PostDto() {
-    }
-
-    public PostDto(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 
     public long getPostId() {
         return postId;

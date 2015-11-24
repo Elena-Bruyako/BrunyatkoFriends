@@ -27,6 +27,9 @@ public class AlbumDao implements Serializable{
     @OneToMany(mappedBy = "albumOfContact")
     private Set<PhotoDao> photo;
 
+    public AlbumDao() {
+    }
+
     public long getAlbumId() {
         return albumId;
     }

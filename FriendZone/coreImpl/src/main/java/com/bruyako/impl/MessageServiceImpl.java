@@ -33,7 +33,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public void sendMessage(String content, Long from, Long to) {
 
-        MessageDto message = new MessageDto(LocalDateTime.now(), from, to, content);
+        MessageDto message = new MessageDto();
         messageDaoInterface.storeMessage(message);
     }
 }

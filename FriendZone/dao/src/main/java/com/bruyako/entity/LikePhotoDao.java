@@ -23,6 +23,9 @@ public class LikePhotoDao implements Serializable {
     @JoinColumn(name = "Photo_id", insertable = false, updatable = false)
     private PhotoDao photo;
 
+    public LikePhotoDao() {
+    }
+
     public long getLikePhotoId() {
         return likePhotoId;
     }

@@ -1,26 +1,17 @@
 package com.bruyako.model;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by brunyatko on 07.09.15.
  */
-public class PlaceDto implements Serializable{
+public class PlaceDto {
 
     private long placeId;
     private String title;
     private double longitude;
     private double latitude;
     private String description;
-
-    public PlaceDto() {
-    }
-
-    public PlaceDto(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
 
     public long getPlaceId() {
         return placeId;
