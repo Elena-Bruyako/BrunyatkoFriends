@@ -13,6 +13,9 @@ public class App {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 
+        ContactService contactService = context.getBean(ContactService.class);
+        System.out.println(contactService.getAllContacts());
+
         context.close();
     }
 }

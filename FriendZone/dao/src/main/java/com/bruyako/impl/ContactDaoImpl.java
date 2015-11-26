@@ -4,7 +4,6 @@ import com.bruyako.ContactDaoInterface;
 import com.bruyako.entity.*;
 import com.bruyako.model.*;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -163,8 +162,10 @@ public class ContactDaoImpl implements ContactDaoInterface {
     @Override
     public List<ContactDto> getAllContacts() {
 
-        List<ContactDao> contacts = sessionFactory.getCurrentSession().createSQLQuery("select * from Contact").addEntity(ContactDao.class).list();
+        List<ContactDao> contacts = sessionFactory.getCurrentSession().createSQLQuery("select * from Contact c").addEntity(ContactDao.class).list();
+
         List<ContactDto> result = new ArrayList<ContactDto>(contacts.size());
+
         for (ContactDao contact : contacts) {
             result.add(EntityDtoConverter.convert(contact));
         }
