@@ -31,13 +31,49 @@
                 <label for="lastName">Last Name:</label>
                 <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name">
             </div>
-            <button type="submit" class="btn btn-primary" id="addNewContact">Add new Contact</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#requestModal">
+                Add new Contact
+            </button>
         </form>
-        <%--<form class="form-inline">--%>
-            <%--<input type="text" class="form-control" size="50" placeholder="Contact Name" required>--%>
-            <%--<button type="button" class="btn btn-primary">Add new Contact</button>--%>
-        <%--</form>--%>
     </div>
+
+    <div class="modal fade" id="requestModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Please, fill all fields</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName"
+                                   placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName"
+                                   placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="birthDate">Birth Date</label>
+                            <input type="text" class="form-control" id="birthDate"
+                                   placeholder="Birth Date">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="refill-bar">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-lg-offset-3 col-lg-6">
             <ul class="nav nav-tabs">
