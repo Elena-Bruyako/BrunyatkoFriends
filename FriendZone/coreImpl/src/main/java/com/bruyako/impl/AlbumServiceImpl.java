@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.AlbumDaoInterface;
+import com.bruyako.AlbumDao;
 import com.bruyako.AlbumService;
 import com.bruyako.model.AlbumDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class AlbumServiceImpl implements AlbumService {
 
     @Autowired
-    private AlbumDaoInterface albumDao;
+    private AlbumDao albumDao;
 
     @Override
     public Set<AlbumDto> getAllAlbumForContact(Long contactId) {

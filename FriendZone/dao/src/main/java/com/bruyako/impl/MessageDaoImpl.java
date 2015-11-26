@@ -1,8 +1,8 @@
 package com.bruyako.impl;
 
-import com.bruyako.MessageDaoInterface;
+import com.bruyako.MessageDao;
 import com.bruyako.converters.EntityDtoConverter;
-import com.bruyako.entity.MessageDao;
+import com.bruyako.entity.Message;
 import com.bruyako.model.MessageDto;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.*;
  */
 @Transactional
 @Repository
-public class MessageDaoImpl implements MessageDaoInterface {
+public class MessageDaoImpl implements MessageDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -24,14 +24,14 @@ public class MessageDaoImpl implements MessageDaoInterface {
     @Override
     public List<MessageDto> getConversation(Long contactFromId, Long contactToId) {
 
-        List<MessageDao> messages = sessionFactory.getCurrentSession().createSQLQuery("select * from Message m where (m.Contact_From_id = :contactFromId and " +
+        List<Message> messages = sessionFactory.getCurrentSession().createSQLQuery("select * from Message m where (m.Contact_From_id = :contactFromId and " +
                 "m.Contact_To_id = :contactToId) or (m.Contact_From_id = :contactToId and m.Contact_To_id = :contactFromId) " +
-                "order by Message_Time asc").addEntity(MessageDao.class).setParameter("contactFromId", contactFromId).setParameter("contactToId", contactToId).list();
+                "order by Message_Time asc").addEntity(Message.class).setParameter("contactFromId", contactFromId).setParameter("contactToId", contactToId).list();
 
 
         List<MessageDto> result = new ArrayList<>(messages.size());
 
-        for (MessageDao message : messages) {
+        for (Message message : messages) {
 
             result.add(EntityDtoConverter.convert(message));
         }
@@ -42,7 +42,7 @@ public class MessageDaoImpl implements MessageDaoInterface {
     @Override
     public void storeMessage(MessageDto messageDto) {
 
-        MessageDao message = EntityDtoConverter.convert(messageDto);
+        Message message = EntityDtoConverter.convert(messageDto);
 
         sessionFactory.getCurrentSession().saveOrUpdate(message);
     }

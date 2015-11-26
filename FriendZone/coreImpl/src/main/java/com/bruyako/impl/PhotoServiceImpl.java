@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.PhotoDaoInterface;
+import com.bruyako.PhotoDao;
 import com.bruyako.PhotoService;
 import com.bruyako.model.PhotoDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class PhotoServiceImpl implements PhotoService {
 
     @Autowired
-    private PhotoDaoInterface photoDao;
+    private PhotoDao photoDao;
 
     @Override
     public Set<PhotoDto> getAllPhotosFotContact(Long contactId) {

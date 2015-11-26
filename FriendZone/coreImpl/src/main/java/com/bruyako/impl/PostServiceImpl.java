@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.PostDaoInterface;
+import com.bruyako.PostDao;
 import com.bruyako.PostService;
 import com.bruyako.model.PostDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class PostServiceImpl implements PostService {
 
     @Autowired
-    private PostDaoInterface postDao;
+    private PostDao postDao;
 
     @Override
     public void addPost(PostDto postDto) {

@@ -1,8 +1,8 @@
 package com.bruyako.impl;
 
-import com.bruyako.PostDaoInterface;
+import com.bruyako.PostDao;
 import com.bruyako.converters.EntityDtoConverter;
-import com.bruyako.entity.PostDao;
+import com.bruyako.entity.Post;
 import com.bruyako.model.PostDto;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -17,7 +17,7 @@ import java.util.*;
  */
 @Transactional
 @Repository
-public class PostDaoImpl implements PostDaoInterface {
+public class PostDaoImpl implements PostDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -25,11 +25,11 @@ public class PostDaoImpl implements PostDaoInterface {
     @Override
     public Set<PostDto> getAllPostsForContact(Long contactId) {
 
-        List<PostDao> posts = sessionFactory.getCurrentSession().createSQLQuery("select p.title, p.content from Post p join Contact c on p.contact_id = c.contact_id " +
-                " where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(PostDao.class)).setParameter("contactId", contactId).list();
+        List<Post> posts = sessionFactory.getCurrentSession().createSQLQuery("select p.title, p.content from Post p join Contact c on p.contact_id = c.contact_id " +
+                " where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Post.class)).setParameter("contactId", contactId).list();
         Set<PostDto> result = new HashSet<>(posts.size());
 
-        for (PostDao post : posts) {
+        for (Post post : posts) {
 
             result.add(EntityDtoConverter.convert(post));
         }
@@ -40,7 +40,7 @@ public class PostDaoImpl implements PostDaoInterface {
     @Override
     public void add(PostDto postDto) {
 
-        PostDao post = EntityDtoConverter.convert(postDto);
+        Post post = EntityDtoConverter.convert(postDto);
         sessionFactory.getCurrentSession().save(post);
     }
 
@@ -48,7 +48,7 @@ public class PostDaoImpl implements PostDaoInterface {
     @Override
     public void delete(PostDto postDto) {
 
-        PostDao post = EntityDtoConverter.convert(postDto);
+        Post post = EntityDtoConverter.convert(postDto);
         sessionFactory.getCurrentSession().delete(post);
     }
 
@@ -56,7 +56,7 @@ public class PostDaoImpl implements PostDaoInterface {
     @Override
     public PostDto getById(Long postId) {
 
-        List<PostDao> posts = sessionFactory.getCurrentSession().createQuery("select p from Post p where p.id = :id").setParameter("id", postId).list();
+        List<Post> posts = sessionFactory.getCurrentSession().createQuery("select p from Post p where p.id = :id").setParameter("id", postId).list();
         if (posts.isEmpty()) {
             return null;
         } else {

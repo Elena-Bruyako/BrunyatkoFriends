@@ -11,38 +11,38 @@ public class EntityDtoConverter {
     private EntityDtoConverter() {
     }
 
-    public static AlbumDao convert(AlbumDto albumDto) {
+    public static Album convert(AlbumDto albumDto) {
 
         if (albumDto == null) {
             return null;
         }
 
-        AlbumDao albumDao = new AlbumDao();
-        albumDao.setAlbumId(albumDto.getAlbumId());
-        albumDao.setName(albumDto.getName());
+        Album album = new Album();
+        album.setAlbumId(albumDto.getAlbumId());
+        album.setName(albumDto.getName());
 
-        return albumDao;
+        return album;
     }
 
-    public static AlbumDto convert(AlbumDao albumDao) {
+    public static AlbumDto convert(Album album) {
 
-        if (albumDao == null) {
+        if (album == null) {
             return null;
         }
 
         AlbumDto albumDto = new AlbumDto();
-        albumDto.setAlbumId(albumDao.getAlbumId());
-        albumDto.setName(albumDao.getName());
+        albumDto.setAlbumId(album.getAlbumId());
+        albumDto.setName(album.getName());
 
         return albumDto;
     }
 
-    public static ContactDao convert(ContactDto contactDto) {
+    public static Contact convert(ContactDto contactDto) {
 
         if (contactDto == null) {
             return null;
         }
-        ContactDao contact = new ContactDao();
+        Contact contact = new Contact();
         contact.setContactId(contactDto.getContactId());
         contact.setFirstName(contactDto.getFirstName());
         contact.setLastName(contactDto.getLastName());
@@ -51,7 +51,7 @@ public class EntityDtoConverter {
         return contact;
     }
 
-    public static ContactDto convert(ContactDao contact) {
+    public static ContactDto convert(Contact contact) {
 
         if (contact == null) {
             return null;
@@ -65,13 +65,13 @@ public class EntityDtoConverter {
         return contactDto;
     }
 
-    public static HobbyDao convert(HobbyDto hobbyDto) {
+    public static Hobby convert(HobbyDto hobbyDto) {
 
         if (hobbyDto == null) {
             return null;
         }
 
-        HobbyDao hobby = new HobbyDao();
+        Hobby hobby = new Hobby();
         hobby.setHobbyId(hobbyDto.getHobbyId());
         hobby.setTitle(hobbyDto.getTitle());
         hobby.setDescription(hobbyDto.getDescription());
@@ -79,7 +79,7 @@ public class EntityDtoConverter {
         return hobby;
     }
 
-    public static HobbyDto convert(HobbyDao hobby) {
+    public static HobbyDto convert(Hobby hobby) {
 
         if (hobby == null) {
             return null;
@@ -93,7 +93,7 @@ public class EntityDtoConverter {
         return hobbyDto;
     }
 
-    public static LikePhotoDto convert(LikePhotoDao likePhoto) {
+    public static LikePhotoDto convert(LikePhoto likePhoto) {
 
         if (likePhoto == null){
             return null;
@@ -106,20 +106,20 @@ public class EntityDtoConverter {
         return likePhotoDto;
     }
 
-    public static LikePhotoDao convert(LikePhotoDto likePhotoDto) {
+    public static LikePhoto convert(LikePhotoDto likePhotoDto) {
 
         if (likePhotoDto == null){
             return null;
         }
 
-        LikePhotoDao likePhoto = new LikePhotoDao();
+        LikePhoto likePhoto = new LikePhoto();
         likePhoto.setLikePhotoId(likePhotoDto.getLikePhotoId());
         likePhoto.setPhotoId(likePhotoDto.getPhotoId());
 
         return likePhoto;
     }
 
-    public static LikePostDto convert(LikePostDao likePost) {
+    public static LikePostDto convert(LikePost likePost) {
 
         if (likePost == null){
             return null;
@@ -132,26 +132,26 @@ public class EntityDtoConverter {
         return likePostDto;
     }
 
-    public static LikePostDao convert(LikePostDto likePostDto) {
+    public static LikePost convert(LikePostDto likePostDto) {
 
         if (likePostDto == null){
             return null;
         }
 
-        LikePostDao likePost = new LikePostDao();
+        LikePost likePost = new LikePost();
         likePost.setLikePostId(likePostDto.getLikePostId());
         likePost.setPostId(likePostDto.getPostId());
 
         return likePost;
     }
 
-    public static MessageDao convert(MessageDto messageDto){
+    public static Message convert(MessageDto messageDto){
 
         if (messageDto == null) {
             return null;
         }
 
-        MessageDao message = new MessageDao();
+        Message message = new Message();
         message.setMessageId(messageDto.getMessageId());
         message.setDate(messageDto.getDate());
         message.setContactFromId(messageDto.getContactFromId());
@@ -161,7 +161,7 @@ public class EntityDtoConverter {
         return message;
     }
 
-    public static MessageDto convert(MessageDao message){
+    public static MessageDto convert(Message message){
 
         if (message == null) {
             return null;
@@ -177,19 +177,19 @@ public class EntityDtoConverter {
         return messageDto;
     }
 
-    public static PhotoDao convert(PhotoDto photoDto) {
+    public static Photo convert(PhotoDto photoDto) {
 
         if (photoDto == null) {
             return null;
         }
-        PhotoDao photo = new PhotoDao();
+        Photo photo = new Photo();
         photo.setPhotoId(photoDto.getPhotoId());
         photo.setImg(photoDto.getImg());
 
         return photo;
     }
 
-    public static PhotoDto convert(PhotoDao photo) {
+    public static PhotoDto convert(Photo photo) {
 
         if (photo == null) {
             return null;
@@ -201,13 +201,13 @@ public class EntityDtoConverter {
         return photoDto;
     }
 
-    public static PlaceDao convert(PlaceDto placeDto) {
+    public static Place convert(PlaceDto placeDto) {
 
         if (placeDto == null) {
             return null;
         }
 
-        PlaceDao place = new PlaceDao();
+        Place place = new Place();
         place.setPlaceId(placeDto.getPlaceId());
         place.setTitle(placeDto.getTitle());
         place.setLongitude(placeDto.getLongitude());
@@ -217,7 +217,7 @@ public class EntityDtoConverter {
         return place;
     }
 
-    public static PlaceDto convert(PlaceDao place) {
+    public static PlaceDto convert(Place place) {
 
         if (place == null) {
             return null;
@@ -233,13 +233,13 @@ public class EntityDtoConverter {
         return placeDto;
     }
 
-    public static PostDao convert(PostDto postDto) {
+    public static Post convert(PostDto postDto) {
 
         if (postDto == null) {
             return  null;
         }
 
-        PostDao post = new PostDao();
+        Post post = new Post();
         post.setPostId(postDto.getPostId());
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
@@ -249,7 +249,7 @@ public class EntityDtoConverter {
         return post;
     }
 
-    public static PostDto convert(PostDao post) {
+    public static PostDto convert(Post post) {
 
         if (post == null) {
             return  null;

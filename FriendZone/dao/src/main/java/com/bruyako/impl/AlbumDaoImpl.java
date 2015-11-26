@@ -1,11 +1,9 @@
 package com.bruyako.impl;
 
-import com.bruyako.AlbumDaoInterface;
+import com.bruyako.AlbumDao;
 import com.bruyako.converters.EntityDtoConverter;
-import com.bruyako.entity.AlbumDao;
-import com.bruyako.entity.PhotoDao;
+import com.bruyako.entity.Album;
 import com.bruyako.model.AlbumDto;
-import com.bruyako.model.PhotoDto;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,7 @@ import java.util.Set;
  */
 @Transactional
 @Repository
-public class AlbumDaoImpl implements AlbumDaoInterface {
+public class AlbumDaoImpl implements AlbumDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -30,12 +28,12 @@ public class AlbumDaoImpl implements AlbumDaoInterface {
     @Override
     public Set<AlbumDto> getAllAlbumForContact(Long contactId) {
 
-        List<AlbumDao> albums = sessionFactory.getCurrentSession().createSQLQuery("select a.name from Album a join Contact c on a.contact_id = c.contact_id " +
-                " where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(AlbumDao.class)).setParameter("contactId", contactId).list();
+        List<Album> albums = sessionFactory.getCurrentSession().createSQLQuery("select a.name from Album a join Contact c on a.contact_id = c.contact_id " +
+                " where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Album.class)).setParameter("contactId", contactId).list();
 
         Set<AlbumDto> result = new HashSet<>(albums.size());
 
-        for (AlbumDao album : albums) {
+        for (Album album : albums) {
 
             result.add(EntityDtoConverter.convert(album));
         }
@@ -46,21 +44,21 @@ public class AlbumDaoImpl implements AlbumDaoInterface {
     @Override
     public void add(AlbumDto albumDto) {
 
-        AlbumDao albumDao = EntityDtoConverter.convert(albumDto);
-        sessionFactory.getCurrentSession().save(albumDao);
+        Album album = EntityDtoConverter.convert(albumDto);
+        sessionFactory.getCurrentSession().save(album);
     }
 
     @Override
     public void delete(AlbumDto albumDto) {
 
-        AlbumDao albumDao = EntityDtoConverter.convert(albumDto);
-        sessionFactory.getCurrentSession().delete(albumDao);
+        Album album = EntityDtoConverter.convert(albumDto);
+        sessionFactory.getCurrentSession().delete(album);
     }
 
     @Override
     public AlbumDto getById(Long albumId) {
 
-        List<AlbumDao> albums = sessionFactory.getCurrentSession().createSQLQuery("select a from Album a where a.id = :id").setParameter("id", albumId).list();
+        List<Album> albums = sessionFactory.getCurrentSession().createSQLQuery("select a from Album a where a.id = :id").setParameter("id", albumId).list();
         if (albums.isEmpty()) {
             return null;
         } else {

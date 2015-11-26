@@ -1,8 +1,7 @@
 package com.bruyako.impl;
 
-import com.bruyako.LikePostInterface;
+import com.bruyako.LikePostDao;
 import com.bruyako.converters.EntityDtoConverter;
-import com.bruyako.entity.LikePostDao;
 import com.bruyako.model.LikePostDto;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import static com.bruyako.converters.EntityDtoConverter.convert;
  */
 @Transactional
 @Repository
-public class LikePostImpl implements LikePostInterface {
+public class LikePostImpl implements LikePostDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -27,18 +26,18 @@ public class LikePostImpl implements LikePostInterface {
     @Override
     public void saveLikePost(LikePostDto likePostDto) {
 
-        LikePostDao likePost = convert(likePostDto);
+        com.bruyako.entity.LikePost likePost = convert(likePostDto);
         sessionFactory.getCurrentSession().saveOrUpdate(likePost);
     }
 
     @Override
     public int getCountLike(Long postId) {
 
-        List<LikePostDao> likePostList = sessionFactory.getCurrentSession().createSQLQuery("select * from LikePost join Post on LikePost.Post_id = Post.Post_id " +
-                "where Post.Post_id = :id").addEntity(LikePostDao.class).setParameter("id", postId).list();
+        List<com.bruyako.entity.LikePost> likePostList = sessionFactory.getCurrentSession().createSQLQuery("select * from LikePost join Post on LikePost.Post_id = Post.Post_id " +
+                "where Post.Post_id = :id").addEntity(com.bruyako.entity.LikePost.class).setParameter("id", postId).list();
         List<LikePostDto> result = new ArrayList<>(likePostList.size());
 
-        for (LikePostDao likePost : likePostList){
+        for (com.bruyako.entity.LikePost likePost : likePostList){
             result.add(EntityDtoConverter.convert(likePost));
         }
 

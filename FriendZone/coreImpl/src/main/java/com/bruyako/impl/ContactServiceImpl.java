@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.ContactDaoInterface;
+import com.bruyako.ContactDao;
 import com.bruyako.ContactService;
 import com.bruyako.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.Set;
 public class ContactServiceImpl implements ContactService {
 
     @Autowired
-    private ContactDaoInterface contactDao;
+    private ContactDao contactDao;
 
     @Override
     public void addContact(ContactDto contactDto) {

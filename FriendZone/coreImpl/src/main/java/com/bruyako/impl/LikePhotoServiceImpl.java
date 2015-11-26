@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.LikePhotoInterface;
+import com.bruyako.LikePhotoDao;
 import com.bruyako.LikePhotoService;
 import com.bruyako.model.LikePhotoDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +15,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class LikePhotoServiceImpl implements LikePhotoService {
 
     @Autowired
-    private LikePhotoInterface likePhotoDao;
+    private LikePhotoDao likePhotoDaoDao;
 
     @Override
     public void saveLikePhoto(LikePhotoDto likePhotoDto) {
-        likePhotoDao.saveLikePhoto(likePhotoDto);
+        likePhotoDaoDao.saveLikePhoto(likePhotoDto);
     }
 
     @Override
     public int getCountLikePhoto(Long photoId) {
-        return likePhotoDao.getCountLike(photoId);
+        return likePhotoDaoDao.getCountLike(photoId);
     }
 
     @Override
     public boolean isLikePhoto(Long id, Long contactId) {
-        return likePhotoDao.isLike(id, contactId);
+        return likePhotoDaoDao.isLike(id, contactId);
     }
 }

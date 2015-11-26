@@ -1,8 +1,8 @@
 package com.bruyako.impl;
 
-import com.bruyako.PlaceDaoInterface;
+import com.bruyako.PlaceDao;
 import com.bruyako.converters.EntityDtoConverter;
-import com.bruyako.entity.PlaceDao;
+import com.bruyako.entity.Place;
 import com.bruyako.model.PlaceDto;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -18,7 +18,7 @@ import java.util.*;
  */
 @Transactional
 @Repository
-public class PlaceDaoImpl implements PlaceDaoInterface {
+public class PlaceDaoImpl implements PlaceDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -27,13 +27,13 @@ public class PlaceDaoImpl implements PlaceDaoInterface {
     public Set<PlaceDto> getAllPlaceForContact(Long contactId) {
 
 
-        List<PlaceDao> places = sessionFactory.getCurrentSession().createSQLQuery("select p.title, p.description from Place p join Contact_Place cp" +
+        List<Place> places = sessionFactory.getCurrentSession().createSQLQuery("select p.title, p.description from Place p join Contact_Place cp" +
                 " on p.place_id = cp.place_id join Contact c on cp.contact_id = c.contact_id " +
-                "where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(PlaceDao.class)).setParameter("contactId", contactId).list();
+                "where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Place.class)).setParameter("contactId", contactId).list();
 
         Set<PlaceDto> result = new HashSet<>(places.size());
 
-        for (PlaceDao place : places) {
+        for (Place place : places) {
 
             result.add(EntityDtoConverter.convert(place));
 
@@ -45,7 +45,7 @@ public class PlaceDaoImpl implements PlaceDaoInterface {
     @Override
     public void add(PlaceDto placeDto) {
 
-        PlaceDao place = EntityDtoConverter.convert(placeDto);
+        Place place = EntityDtoConverter.convert(placeDto);
         sessionFactory.getCurrentSession().save(place);
     }
 
@@ -53,14 +53,14 @@ public class PlaceDaoImpl implements PlaceDaoInterface {
     @Override
     public void delete(PlaceDto placeDto) {
 
-        PlaceDao place = EntityDtoConverter.convert(placeDto);
+        Place place = EntityDtoConverter.convert(placeDto);
         sessionFactory.getCurrentSession().delete(place);
     }
 
     @Override
     public PlaceDto getById(Long placeId) {
 
-        List<PlaceDao> places = sessionFactory.getCurrentSession().createQuery("select p from Place p where p.id = :id").setParameter("id", placeId).list();
+        List<Place> places = sessionFactory.getCurrentSession().createQuery("select p from Place p where p.id = :id").setParameter("id", placeId).list();
         if (places.isEmpty()) {
             return null;
         } else {

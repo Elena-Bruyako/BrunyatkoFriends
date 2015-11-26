@@ -1,8 +1,8 @@
 package com.bruyako.impl;
 
-import com.bruyako.PhotoDaoInterface;
+import com.bruyako.PhotoDao;
 import com.bruyako.converters.EntityDtoConverter;
-import com.bruyako.entity.PhotoDao;
+import com.bruyako.entity.Photo;
 import com.bruyako.model.PhotoDto;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -19,7 +19,7 @@ import java.util.Set;
  */
 @Transactional
 @Repository
-public class PhotoDaoImpl implements PhotoDaoInterface {
+public class PhotoDaoImpl implements PhotoDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -27,12 +27,12 @@ public class PhotoDaoImpl implements PhotoDaoInterface {
     @Override
     public Set<PhotoDto> getAllPhotosFotContact(Long contactId) {
 
-        List<PhotoDao> photos = sessionFactory.getCurrentSession().createSQLQuery("select p.Img from Photo p join Contact c " +
-                "on p.Contact_id = c.Contact_id where c.Contact_id = :id").setResultTransformer(Transformers.aliasToBean(PhotoDao.class)).setParameter("id", contactId).list();
+        List<Photo> photos = sessionFactory.getCurrentSession().createSQLQuery("select p.Img from Photo p join Contact c " +
+                "on p.Contact_id = c.Contact_id where c.Contact_id = :id").setResultTransformer(Transformers.aliasToBean(Photo.class)).setParameter("id", contactId).list();
 
         Set<PhotoDto> result = new HashSet<>(photos.size());
 
-        for (PhotoDao photo : photos) {
+        for (Photo photo : photos) {
 
             result.add(EntityDtoConverter.convert(photo));
         }
@@ -43,21 +43,21 @@ public class PhotoDaoImpl implements PhotoDaoInterface {
     @Transactional(readOnly = false)
     @Override
     public void add(PhotoDto photoDto) {
-        PhotoDao photo = EntityDtoConverter.convert(photoDto);
+        Photo photo = EntityDtoConverter.convert(photoDto);
         sessionFactory.getCurrentSession().save(photo);
     }
 
     @Override
     public void delete(PhotoDto photoDto) {
 
-        PhotoDao photo = EntityDtoConverter.convert(photoDto);
+        Photo photo = EntityDtoConverter.convert(photoDto);
         sessionFactory.getCurrentSession().delete(photo);
     }
 
     @Override
     public PhotoDto getById(Long photoId) {
 
-        List<PhotoDao> photoList = sessionFactory.getCurrentSession().createQuery("select p from Photo p where p.id = :id").setParameter("id", photoId).list();
+        List<Photo> photoList = sessionFactory.getCurrentSession().createQuery("select p from Photo p where p.id = :id").setParameter("id", photoId).list();
         if (photoList.isEmpty()) {
             return null;
         } else {

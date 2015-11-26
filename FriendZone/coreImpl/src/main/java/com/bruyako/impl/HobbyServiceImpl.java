@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.HobbyDaoInterface;
+import com.bruyako.HobbyDao;
 import com.bruyako.HobbyService;
 import com.bruyako.model.HobbyDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class HobbyServiceImpl implements HobbyService {
 
     @Autowired
-    private HobbyDaoInterface hobbyDao;
+    private HobbyDao hobbyDao;
 
     @Override
     public void addHobby(HobbyDto hobbyDto) {

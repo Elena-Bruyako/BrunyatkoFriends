@@ -39,9 +39,10 @@
         <%--</form>--%>
     </div>
     <div class="row">
-        <div class="col-lg-offset-3 col-lg-5">
+        <div class="col-lg-offset-3 col-lg-6">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#" id="contact-tab">Contact info</a></li>
+                <li role="presentation" class="active"><a href="#" id="allContact-tab">All Contacts</a></li>
+                <li role="presentation"><a href="#" id="contact-tab">Contact info</a></li>
                 <li role="presentation"><a href="#" id="friend-tab">Friends</a></li>
                 <li role="presentation"><a href="#" id="hobbies-tab">Hobbies</a></li>
                 <li role="presentation"><a href="#" id="message-tab">Message</a></li>
@@ -51,10 +52,32 @@
         </div>
     </div>
 
-    <div class="top-buffer tab-panel" id="contact-panel">
-        <ul class="list-group">
-            <li class="list-group-item">Country : ${allContacts}</li>
-            </ul>
+    <div class="top-buffer tab-panel" id="allContact-panel">
+        <div class="top-buffer tab-panel hidden" id="status-panel">
+            <div class="row top-buffer">
+                <div class="col-lg-offset-4 col-lg-4">
+                    <table class="table table-hover">
+                        <thread>
+                            <tr>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Birth date</th>
+                            </tr>
+                        </thread>
+                        <tbody>
+                        <c:forEach items="${allContacts}" var="contact">
+                        <tr>
+                            <td>${contact.firstName}</td>
+                            <td>${contact.lastName}</td>
+                            <td>${contact.birthDate}</td>
+                            <td><a href="look/${contact.contactId}">Look</a></td>
+                            <td><a href="delete/${contact.contactId}">Delete</a></td>
+                        </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

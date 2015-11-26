@@ -1,6 +1,6 @@
 package com.bruyako.impl;
 
-import com.bruyako.PlaceDaoInterface;
+import com.bruyako.PlaceDao;
 import com.bruyako.PlaceService;
 import com.bruyako.model.PlaceDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class PlaceServiceImpl implements PlaceService {
 
     @Autowired
-    private PlaceDaoInterface placeDao;
+    private PlaceDao placeDao;
 
     @Override
     public void addPlace(PlaceDto placeDto) {
