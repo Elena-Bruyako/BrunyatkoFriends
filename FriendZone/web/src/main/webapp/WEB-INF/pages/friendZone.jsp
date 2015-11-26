@@ -53,29 +53,27 @@
     </div>
 
     <div class="top-buffer tab-panel" id="allContact-panel">
-        <div class="top-buffer tab-panel hidden" id="status-panel">
-            <div class="row top-buffer">
-                <div class="col-lg-offset-4 col-lg-4">
-                    <table class="table table-hover">
-                        <thread>
-                            <tr>
-                                <th>First name</th>
-                                <th>Last name</th>
-                                <th>Birth date</th>
-                            </tr>
-                        </thread>
-                        <tbody>
-                        <c:forEach items="${allContacts}" var="contact">
+        <div class="row top-buffer">
+            <div class="col-lg-offset-4 col-lg-5">
+                <table class="table table-hover">
+                    <thread>
                         <tr>
-                            <td>${contact.firstName}</td>
-                            <td>${contact.lastName}</td>
-                            <td>${contact.birthDate}</td>
-                            <td><a href="look/${contact.contactId}">Look</a></td>
-                            <td><a href="delete/${contact.contactId}">Delete</a></td>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Birth date</th>
                         </tr>
-                        </c:forEach>
-                    </table>
-                </div>
+                    </thread>
+                    <tbody>
+                    <c:forEach items="${allContacts}" var="contact">
+                    <tr>
+                        <td>${contact.firstName}</td>
+                        <td>${contact.lastName}</td>
+                        <td>${contact.birthDate}</td>
+                        <td><a href="look/${contact.contactId}">Look</a></td>
+                        <td><a href="delete/${contact.contactId}">Delete</a></td>
+                    </tr>
+                    </c:forEach>
+                </table>
             </div>
         </div>
     </div>
