@@ -2,9 +2,8 @@ package com.bruyako.model;
 
 
 import java.time.LocalDate;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by brunyatko on 07.09.15.
@@ -14,13 +13,9 @@ public class ContactDto{
     private long contactId;
     private String firstName;
     private String lastName;
-    private LocalDate birthDate;
-    private Set<PostDto> allPhotos;
-    private Set<HobbyDto> hobbies;
-    private Set<PlaceDto> places;
-    private Set<PostDto> posts;
-    private List<MessageDto> conversation;
-    private Set<ContactDto> friends;
+    private String dateStr;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public long getContactId() {
         return contactId;
@@ -47,85 +42,42 @@ public class ContactDto{
     }
 
     public LocalDate getBirthDate() {
-        return birthDate;
+        return LocalDate.parse(dateStr, formatter);
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(LocalDate date) {
+        this.dateStr = formatter.format(date);
     }
 
-    public Set<PostDto> getAllPhotos() {
-        return allPhotos;
+    public String getDateStr() {
+        return dateStr;
     }
 
-    public void setAllPhotos(Set<PostDto> allPhotos) {
-        this.allPhotos = allPhotos;
+    public void setDateStr(String dateStr) {
+        this.dateStr = dateStr;
     }
-
-    public Set<HobbyDto> getHobbies() {
-        return hobbies;
-    }
-
-    public void setHobbies(Set<HobbyDto> hobbies) {
-        this.hobbies = hobbies;
-    }
-
-    public Set<PlaceDto> getPlaces() {
-        return places;
-    }
-
-    public void setPlaces(Set<PlaceDto> places) {
-        this.places = places;
-    }
-
-    public Set<PostDto> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Set<PostDto> posts) {
-        this.posts = posts;
-    }
-
-    public List<MessageDto> getConversation() {
-        return conversation;
-    }
-
-    public void setConversation(List<MessageDto> conversation) {
-        this.conversation = conversation;
-    }
-
-    public Set<ContactDto> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(Set<ContactDto> friends) {
-        this.friends = friends;
-    }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactDto contactDto = (ContactDto) o;
-        return Objects.equals(contactId, contactDto.contactId) &&
-                Objects.equals(firstName, contactDto.firstName) &&
+        return Objects.equals(firstName, contactDto.firstName) &&
                 Objects.equals(lastName, contactDto.lastName) &&
-                Objects.equals(birthDate, contactDto.birthDate);
+                Objects.equals(dateStr, contactDto.dateStr);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contactId, firstName, lastName, birthDate);
+        return Objects.hash(firstName, lastName, dateStr);
     }
 
     @Override
     public String toString() {
         return "ContactDto{" +
-                "contactId=" + contactId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
+                ", dateStr=" + dateStr +
                 '}';
     }
 }

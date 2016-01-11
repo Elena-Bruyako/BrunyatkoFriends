@@ -1,11 +1,12 @@
 package com.bruyako.impl;
 
 import com.bruyako.HobbyDao;
+import com.bruyako.entity.Contact;
 import com.bruyako.entity.Hobby;
 import com.bruyako.model.HobbyDto;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,9 +27,11 @@ public class HobbyDaoImpl implements HobbyDao {
     @Override
     public Set<HobbyDto> getAllHobbyForContact(Long contactId) {
 
-         List<Hobby> hobbies = sessionFactory.getCurrentSession().createSQLQuery("select h.title, h.description from Hobby h join Contact_Hobby ch" +
-                " on h.hobby_id = ch.hobby_id join Contact c on ch.contact_id = c.contact_id " +
-                "where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Hobby.class)).setParameter("contactId", contactId).list();
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Set<Hobby> hobbies = contact.getHobbies();
+//                 sessionFactory.getCurrentSession().createSQLQuery("select h.title, h.description from Hobby h join Contact_Hobby ch" +
+//                " on h.hobby_id = ch.hobby_id join Contact c on ch.contact_id = c.contact_id " +
+//                "where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Hobby.class)).setParameter("contactId", contactId).list();
 
         Set<HobbyDto> result = new HashSet<>(hobbies.size());
 
@@ -59,11 +62,7 @@ public class HobbyDaoImpl implements HobbyDao {
     @Override
     public HobbyDto getById(Long hobbyId) {
 
-        List<Hobby> hobbies = sessionFactory.getCurrentSession().createQuery("select h from Hobby h where h.id = :id").setParameter("id", hobbyId).list();
-        if (hobbies.isEmpty()) {
-            return null;
-        } else {
-            return EntityDtoConverter.convert(hobbies.get(0));
-        }
+        Hobby hobby = (Hobby) sessionFactory.getCurrentSession().get(Hobby.class, hobbyId);
+        return EntityDtoConverter.convert(hobby);
     }
 }

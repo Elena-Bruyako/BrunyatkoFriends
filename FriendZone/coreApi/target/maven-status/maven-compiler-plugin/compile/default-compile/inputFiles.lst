@@ -3,8 +3,8 @@
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/PostService.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/PlaceService.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/LikePostService.java
-/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/model/ContactDto.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/model/PlaceDto.java
+/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/model/ContactDto.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/model/LikePostDto.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/model/AlbumDto.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreApi/src/main/java/com/bruyako/model/MessageDto.java

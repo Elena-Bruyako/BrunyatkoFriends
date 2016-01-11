@@ -23,14 +23,6 @@
     <div class="page-header text-centred">
         <h1>Contact Service</h1>
         <form class="form-inline" role="form">
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Enter First Name">
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name">
-            </div>
             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#requestModal">
                 Add new Contact
             </button>
@@ -49,25 +41,25 @@
                 <div class="modal-body">
                     <div class="form">
                         <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName"
+                            <label for="newFirstName">First Name</label>
+                            <input type="text" class="form-control" id="newFirstName"
                                    placeholder="First Name">
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName"
+                            <label for="newLastName">Last Name</label>
+                            <input type="text" class="form-control" id="newLastName"
                                    placeholder="Last Name">
                         </div>
                         <div class="form-group">
-                            <label for="birthDate">Birth Date</label>
-                            <input type="text" class="form-control" id="birthDate"
+                            <label for="newBirthDate">Birth Date</label>
+                            <input type="text" class="form-control" id="newBirthDate"
                                    placeholder="Birth Date">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="refill-bar">Add</button>
+                    <button type="button" class="btn btn-primary" id="addNew">Add</button>
                 </div>
             </div>
         </div>

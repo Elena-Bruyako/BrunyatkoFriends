@@ -5,6 +5,6 @@ com/bruyako/impl/AlbumServiceImpl.class
 com/bruyako/impl/PhotoServiceImpl.class
 com/bruyako/impl/HobbyServiceImpl.class
 com/bruyako/App.class
-com/bruyako/impl/PlaceServiceImpl.class
 com/bruyako/impl/MessageServiceImpl.class
+com/bruyako/impl/PlaceServiceImpl.class
 com/bruyako/impl/PostServiceImpl.class

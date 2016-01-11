@@ -4,7 +4,6 @@ import com.bruyako.model.ContactDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -24,46 +23,28 @@ public class MainController {
         return "friendZone";
     }
 
-//    @ResponseBody
-//    @RequestMapping(value = { "/newContact" }, method = RequestMethod.POST)
-//    public String addContact(@RequestBody ContactDto contactDto, Model model) {
-//
-//        if (result.hasErrors()) {
-//            return "registrationPage";
-//        }
-//        contactService.addContact(contactDto);
-//
-//        model.addAttribute("Contact " + contactDto.getFirstName() + " " + contactDto.getLastName());
-//
-//        return "redirect:/allContacts";
-//    }
+    @ResponseBody
+    @RequestMapping(value = "/addNewContact", method = RequestMethod.POST)
+    public String addContact(@RequestBody ContactDto contact) {
 
-    @RequestMapping(value = { "/new" }, method = RequestMethod.POST)
-    public String addContact(@ModelAttribute("newContact") ContactDto contactDto, BindingResult result,
-                             Model model) {
+        contactService.addContact(contact);
 
-        contactService.addContact(contactDto);
-
-        model.addAttribute("success", "Contact " + contactDto.getFirstName()+" "+contactDto.getLastName()
-                + " registered successfully");
-        return "redirect:/allContacts";
+        return "friendZone";
     }
 
-    @RequestMapping(value = "/delete/{contact}", method = RequestMethod.GET)
-    public String deleteContact(@PathVariable("contact")
-                                    ContactDto contactDto) {
+    @RequestMapping(value = "/delete/{contactId}", method = RequestMethod.GET)
+    public String deleteContact(@PathVariable("contactId") Long contactId) {
 
-        contactService.deleteContact(contactDto);
+        contactService.deleteContact(contactId);
 
-        return "redirect:/allContacts";
+        return "friendZone";
     }
 
-    @RequestMapping(value = "/look{contact}", method = RequestMethod.GET)
-    public String lookContact(@PathVariable("contact")
-                                ContactDto contactDto) {
+    @RequestMapping(value = "look/{contactId}", method = RequestMethod.GET)
+    public String showContact(@PathVariable("contactId") Long contactId, Model model){
 
-        contactService.getContactById(contactDto.getContactId());
+        model.addAttribute("contact", contactService.getContactById(contactId));
 
-        return "redirect:/allContacts";
+        return "friendZone";
     }
 }

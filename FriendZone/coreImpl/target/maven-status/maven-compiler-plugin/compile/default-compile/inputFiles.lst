@@ -2,9 +2,9 @@
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/App.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/PostServiceImpl.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/ContactServiceImpl.java
-/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/MessageServiceImpl.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/AlbumServiceImpl.java
+/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/MessageServiceImpl.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/LikePhotoServiceImpl.java
+/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/LikePostServiceImpl.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/PlaceServiceImpl.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/HobbyServiceImpl.java
-/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/coreImpl/src/main/java/com/bruyako/impl/LikePostServiceImpl.java

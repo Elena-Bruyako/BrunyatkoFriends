@@ -17,12 +17,12 @@
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/HobbyDao.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/converters/MyLocalDateConverter.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/entity/Message.java
-/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/entity/Post.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/AlbumDao.java
+/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/entity/Post.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/PhotoDao.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/impl/LikePhotoImpl.java
-/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/impl/PostDaoImpl.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/impl/HobbyDaoImpl.java
+/home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/impl/PostDaoImpl.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/entity/Place.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/MessageDao.java
 /home/brunyatko/Workspace/Projects/JavaCourses-FriendZone/FriendZone/dao/src/main/java/com/bruyako/PostDao.java

@@ -21,10 +21,10 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long contactId;
 
-    @Column(name = "Login", nullable = false)
+    @Column(name = "Login")
     private String login;
 
-    @Column(name = "Password", nullable = false)
+    @Column(name = "Password")
     private String password;
 
     @Column(name = "First_Name", nullable = false)
@@ -43,22 +43,22 @@ public class Contact implements Serializable {
     @OneToMany(mappedBy = "photoForContact")
     private Set<Photo> allPhotos;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "Contact_Hobby", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Hobby_id"))
     private Set<Hobby> hobbies;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "Contact_Place", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Place_id"))
     private Set<Place> places;
 
     @OneToMany(mappedBy = "postOfContact")
     private Set<Post> posts;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "Message", joinColumns = @JoinColumn(name = "Contact_From_id"), inverseJoinColumns = @JoinColumn(name = "Contact_To_id"))
     private List<Message> conversation;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "Contact_Friendship", joinColumns = @JoinColumn(name = "Contact_id"), inverseJoinColumns = @JoinColumn(name = "Friend_id"))
     private Set<Contact> friends;
 

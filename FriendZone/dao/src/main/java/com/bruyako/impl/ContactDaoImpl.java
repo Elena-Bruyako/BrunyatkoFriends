@@ -3,11 +3,13 @@ package com.bruyako.impl;
 import com.bruyako.ContactDao;
 import com.bruyako.entity.*;
 import com.bruyako.model.*;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,7 +164,7 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public List<ContactDto> getAllContacts() {
 
-        List<Contact> contacts = sessionFactory.getCurrentSession().createSQLQuery("select * from Contact c").addEntity(Contact.class).list();
+        List<Contact> contacts = sessionFactory.getCurrentSession().createQuery("from Contact c").list();
 
         List<ContactDto> result = new ArrayList<ContactDto>(contacts.size());
 
@@ -175,11 +177,8 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public ContactDto getById(Long id) {
 
-        List<Contact> contacts = sessionFactory.getCurrentSession().createSQLQuery("select * from Contact where Contact.Contact_id = :id").addEntity(Contact.class).setParameter("id", id).list();
-        if (contacts.isEmpty()) {
-            return null;
-        } else {
-            return EntityDtoConverter.convert(contacts.get(0));
-        }
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, id);
+        return EntityDtoConverter.convert(contact);
+
     }
 }

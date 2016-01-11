@@ -3,7 +3,6 @@ package com.bruyako;
 import com.bruyako.model.*;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by brunyatko on 10.11.15.
@@ -12,11 +11,7 @@ public interface ContactService {
 
     void addContact(ContactDto contactDto);
 
-    void deleteContact(ContactDto contactDto);
-
-    Set<ContactDto> addFriendList(ContactDto contactDto);
-
-    Set<ContactDto> getFriendList(ContactDto contactDto);
+    void deleteContact(Long contactId);
 
     List<ContactDto> getAllContacts();
 

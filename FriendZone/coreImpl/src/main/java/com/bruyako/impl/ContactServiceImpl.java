@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by brunyatko on 10.11.15.
@@ -36,20 +35,11 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void deleteContact(ContactDto contactDto) {
+    public void deleteContact(Long contactId) {
+
+        ContactDto contactDto = contactDao.getById(contactId);
+
         contactDao.delete(contactDto);
-    }
-
-    @Override
-    public Set<ContactDto> addFriendList(ContactDto contactDto) {
-
-        return contactDto.getFriends();
-    }
-
-    @Override
-    public Set<ContactDto> getFriendList(ContactDto contactDto) {
-
-        return contactDto.getFriends();
     }
 
     @Override
