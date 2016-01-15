@@ -11,9 +11,11 @@ public interface PlaceService {
 
     void addPlace(PlaceDto placeDto);
 
-    void deletePlace(PlaceDto placeDto);
+    void deletePlace(Long placeId);
 
     Set<PlaceDto> getAllPlaceForContact(Long contactId);
+
+    Set<PlaceDto> getAllPlaces();
 
     PlaceDto getById(Long placeId);
 }

@@ -2,7 +2,6 @@ package com.bruyako;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
 /**
  * Created by brunyatko on 24.09.15.
  */
@@ -12,9 +11,9 @@ public class App {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-
         ContactService contactService = context.getBean(ContactService.class);
-        System.out.println(contactService.getAllContacts());
+
+        contactService.addHobbyToContact(1L, 4L);
 
         context.close();
     }

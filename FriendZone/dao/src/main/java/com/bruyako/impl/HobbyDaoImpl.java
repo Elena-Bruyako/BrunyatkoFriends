@@ -6,7 +6,6 @@ import com.bruyako.entity.Hobby;
 import com.bruyako.model.HobbyDto;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,16 +28,24 @@ public class HobbyDaoImpl implements HobbyDao {
 
         Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
         Set<Hobby> hobbies = contact.getHobbies();
-//                 sessionFactory.getCurrentSession().createSQLQuery("select h.title, h.description from Hobby h join Contact_Hobby ch" +
-//                " on h.hobby_id = ch.hobby_id join Contact c on ch.contact_id = c.contact_id " +
-//                "where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Hobby.class)).setParameter("contactId", contactId).list();
-
         Set<HobbyDto> result = new HashSet<>(hobbies.size());
 
         for (Hobby hobby : hobbies) {
 
             result.add(EntityDtoConverter.convert(hobby));
+        }
+        return result;
+    }
 
+    @Override
+    public List<HobbyDto> getAllHobby() {
+
+        List<Hobby> hobbies = sessionFactory.getCurrentSession().createQuery("from Hobby h").list();
+
+        List<HobbyDto> result = new ArrayList<HobbyDto>(hobbies.size());
+
+        for (Hobby hobby : hobbies) {
+            result.add(EntityDtoConverter.convert(hobby));
         }
         return result;
     }
@@ -53,9 +60,10 @@ public class HobbyDaoImpl implements HobbyDao {
 
     @Transactional(readOnly = false)
     @Override
-    public void delete(HobbyDto hobbyDto) {
+    public void delete(Long hobbyId) {
 
-        Hobby hobby = EntityDtoConverter.convert(hobbyDto);
+        Hobby hobby = new Hobby();
+        hobby.setHobbyId(hobbyId);
         sessionFactory.getCurrentSession().delete(hobby);
     }
 

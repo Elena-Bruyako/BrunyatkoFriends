@@ -3,6 +3,7 @@ package com.bruyako.impl;
 import com.bruyako.AlbumDao;
 import com.bruyako.converters.EntityDtoConverter;
 import com.bruyako.entity.Album;
+import com.bruyako.entity.Contact;
 import com.bruyako.model.AlbumDto;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -28,8 +29,8 @@ public class AlbumDaoImpl implements AlbumDao {
     @Override
     public Set<AlbumDto> getAllAlbumForContact(Long contactId) {
 
-        List<Album> albums = sessionFactory.getCurrentSession().createSQLQuery("select a.name from Album a join Contact c on a.contact_id = c.contact_id " +
-                " where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Album.class)).setParameter("contactId", contactId).list();
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Set<Album> albums = contact.getAlbums();
 
         Set<AlbumDto> result = new HashSet<>(albums.size());
 
@@ -49,20 +50,17 @@ public class AlbumDaoImpl implements AlbumDao {
     }
 
     @Override
-    public void delete(AlbumDto albumDto) {
+    public void delete(Long albumId) {
 
-        Album album = EntityDtoConverter.convert(albumDto);
+        Album album = new Album();
+        album.setAlbumId(albumId);
         sessionFactory.getCurrentSession().delete(album);
     }
 
     @Override
     public AlbumDto getById(Long albumId) {
 
-        List<Album> albums = sessionFactory.getCurrentSession().createSQLQuery("select a from Album a where a.id = :id").setParameter("id", albumId).list();
-        if (albums.isEmpty()) {
-            return null;
-        } else {
-            return EntityDtoConverter.convert(albums.get(0));
-        }
+        Album album = (Album) sessionFactory.getCurrentSession().get(Album.class, albumId);
+        return EntityDtoConverter.convert(album);
     }
 }

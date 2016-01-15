@@ -24,7 +24,9 @@
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+    <mvc:resources mapping="/look/webjars/**" location="classpath:/META-INF/resources/webjars/" />
 
     <mvc:annotation-driven />
+    <mvc:default-servlet-handler/>
 
 </beans>

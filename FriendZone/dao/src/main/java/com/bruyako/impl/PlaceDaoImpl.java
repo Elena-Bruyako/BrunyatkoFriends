@@ -2,6 +2,7 @@ package com.bruyako.impl;
 
 import com.bruyako.PlaceDao;
 import com.bruyako.converters.EntityDtoConverter;
+import com.bruyako.entity.Contact;
 import com.bruyako.entity.Place;
 import com.bruyako.model.PlaceDto;
 import org.hibernate.SessionFactory;
@@ -26,13 +27,24 @@ public class PlaceDaoImpl implements PlaceDao {
     @Override
     public Set<PlaceDto> getAllPlaceForContact(Long contactId) {
 
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
 
-        List<Place> places = sessionFactory.getCurrentSession().createSQLQuery("select p.title, p.description from Place p join Contact_Place cp" +
-                " on p.place_id = cp.place_id join Contact c on cp.contact_id = c.contact_id " +
-                "where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Place.class)).setParameter("contactId", contactId).list();
-
+        Set<Place> places = contact.getPlaces();
         Set<PlaceDto> result = new HashSet<>(places.size());
 
+        for (Place place : places) {
+
+            result.add(EntityDtoConverter.convert(place));
+
+        }
+        return result;
+    }
+
+    @Override
+    public Set<PlaceDto> getAllPlaces() {
+
+        List<Place> places = sessionFactory.getCurrentSession().createQuery("from Place p").list();
+        Set<PlaceDto> result = new HashSet<>(places.size());
         for (Place place : places) {
 
             result.add(EntityDtoConverter.convert(place));
@@ -51,20 +63,17 @@ public class PlaceDaoImpl implements PlaceDao {
 
     @Transactional(readOnly = false)
     @Override
-    public void delete(PlaceDto placeDto) {
+    public void delete(Long placeId) {
 
-        Place place = EntityDtoConverter.convert(placeDto);
+        Place place = new Place();
+        place.setPlaceId(placeId);
         sessionFactory.getCurrentSession().delete(place);
     }
 
     @Override
     public PlaceDto getById(Long placeId) {
 
-        List<Place> places = sessionFactory.getCurrentSession().createQuery("select p from Place p where p.id = :id").setParameter("id", placeId).list();
-        if (places.isEmpty()) {
-            return null;
-        } else {
-            return EntityDtoConverter.convert(places.get(0));
-        }
+        Place place = (Place) sessionFactory.getCurrentSession().get(Place.class, placeId);
+        return EntityDtoConverter.convert(place);
     }
 }

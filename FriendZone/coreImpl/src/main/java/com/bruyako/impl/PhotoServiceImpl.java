@@ -34,8 +34,8 @@ public class PhotoServiceImpl implements PhotoService {
         photoDao.add(photoDto);
     }
 
-    @Override
-    public void deletePhoto(PhotoDto photoDto) {
-        photoDao.delete(photoDto);
-    }
+//    @Override
+//    public void deletePhoto(PhotoDto photoDto) {
+//        photoDao.delete(photoDto);
+//    }
 }

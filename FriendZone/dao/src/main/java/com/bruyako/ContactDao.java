@@ -11,29 +11,29 @@ public interface ContactDao extends AbstractDao<ContactDto, Long> {
 
     List<ContactDto> getAllContacts();
 
-    void addFriendship(ContactDto contactDto, ContactDto secondContactDto);
+    void addFriendship(Long firstContactId, Long secondContactId);
 
-    void deleteFriendship(ContactDto contactDto, ContactDto secondContactDto);
+    void deleteFriendship(Long firstContactId, Long secondContactId);
 
-    void addAlbumToContact(ContactDto contactDto, AlbumDto albumDto);
+    void addAlbumToContact(Long contactId, Long albumId);
 
-    void deleteAlbumToContact(ContactDto contactDto, AlbumDto albumDto);
+    void deleteAlbumToContact(Long contactId, Long albumId);
 
-    void addHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto);
+    void addHobbyToContact(Long contactId, Long hobbyId);
 
-    void deleteHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto);
+    void deleteHobbyToContact(Long contactId, Long hobbyId);
 
-    void addPlaceToContact(ContactDto contactDto, PlaceDto placeDto);
+    void addPlaceToContact(Long contactId, Long placeId);
 
-    void deletePlaceToContact(ContactDto contactDto, PlaceDto placeDto);
+    void deletePlaceToContact(Long contactId, Long placeId);
 
-    void addPhotoToContact(ContactDto contactDto, PhotoDto photoDto);
+    void addPhotoToContact(Long contactId, Long photoId);
 
-    void deletePhotoToContact(ContactDto contactDto, PhotoDto photoDto);
+    void deletePhotoToContact(Long contactId, Long photoId);
 
-    void addPostToContact(ContactDto contactDto, PostDto postDto);
+    void addPostToContact(Long contactId, Long postId);
 
-    void deletePostToContact(ContactDto contactDto, PostDto postDto);
+    void deletePostToContact(Long contactId, Long postId);
 
 }
 

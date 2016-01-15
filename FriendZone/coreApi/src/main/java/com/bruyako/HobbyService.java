@@ -1,8 +1,8 @@
 package com.bruyako;
 
-import com.bruyako.model.ContactDto;
 import com.bruyako.model.HobbyDto;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,9 +12,11 @@ public interface HobbyService {
 
     void addHobby(HobbyDto hobbyDto);
 
-    void deleteHobby(HobbyDto hobbyDto);
+    void deleteHobby(Long hobbyId);
 
     Set<HobbyDto> getAllHobbyForContact(Long contactId);
+
+    List<HobbyDto> getAllHobbies();
 
     HobbyDto getById(Long hobbyId);
 }

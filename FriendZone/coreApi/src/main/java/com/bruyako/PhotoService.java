@@ -15,5 +15,5 @@ public interface PhotoService {
 
     void addPhoto(PhotoDto photoDto);
 
-    void deletePhoto(PhotoDto photoDto);
+//    void deletePhoto(PhotoDto photoDto);
 }

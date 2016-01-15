@@ -3,13 +3,11 @@ package com.bruyako.impl;
 import com.bruyako.ContactDao;
 import com.bruyako.entity.*;
 import com.bruyako.model.*;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,121 +24,121 @@ public class ContactDaoImpl implements ContactDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void addFriendship(ContactDto contactDto, ContactDto secondContactDto) {
+    public void addFriendship(Long firstContactId, Long secondContactId) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Contact secondContact = EntityDtoConverter.convert(secondContactDto);
-        contact.getFriends().add(secondContact);
+        Contact firstContact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, firstContactId);
+        Contact secondContact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, secondContactId);
+        firstContact.setFriend(secondContact);
+        sessionFactory.getCurrentSession().saveOrUpdate(firstContact);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void deleteFriendship(Long firstContactId, Long secondContactId) {
+
+        Contact firstContact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, firstContactId);
+        Contact secondContact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, secondContactId);
+        firstContact.getFriends().remove(secondContact);
+        sessionFactory.getCurrentSession().saveOrUpdate(firstContact);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void addAlbumToContact(Long contactId, Long albumId) {
+
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Album album = (Album) sessionFactory.getCurrentSession().get(Album.class, albumId);
+        contact.setAlbum(album);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void deleteFriendship(ContactDto contactDto, ContactDto secondContactDto) {
+    public void deleteAlbumToContact(Long contactId, Long albumId) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Contact secondContact = EntityDtoConverter.convert(secondContactDto);
-        contact.getFriends().remove(secondContact);
-        sessionFactory.getCurrentSession().saveOrUpdate(contact);
-    }
-
-    @Transactional(readOnly = false)
-    @Override
-    public void addAlbumToContact(ContactDto contactDto, AlbumDto albumDto) {
-
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Album album = EntityDtoConverter.convert(albumDto);
-        contact.getAlbums().add(album);
-        sessionFactory.getCurrentSession().saveOrUpdate(contact);
-    }
-
-    @Transactional(readOnly = false)
-    @Override
-    public void deleteAlbumToContact(ContactDto contactDto, AlbumDto albumDto) {
-
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Album album = EntityDtoConverter.convert(albumDto);
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Album album = (Album) sessionFactory.getCurrentSession().get(Album.class, albumId);
         contact.getAlbums().remove(album);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void addHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto) {
+    public void addHobbyToContact(Long contactId, Long hobbyId) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Hobby hobby = EntityDtoConverter.convert(hobbyDto);
-        contact.getHobbies().add(hobby);
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Hobby hobby = (Hobby) sessionFactory.getCurrentSession().get(Hobby.class, hobbyId);
+        contact.setHobby(hobby);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void addPlaceToContact(ContactDto contactDto, PlaceDto placeDto) {
+    public void deleteHobbyToContact(Long contactId, Long hobbyId) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Place place = EntityDtoConverter.convert(placeDto);
-        contact.getPlaces().add(place);
-        sessionFactory.getCurrentSession().saveOrUpdate(contact);
-    }
-
-    @Transactional(readOnly = false)
-    @Override
-    public void addPostToContact(ContactDto contactDto, PostDto postDto) {
-
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Post post = EntityDtoConverter.convert(postDto);
-        contact.getPosts().add(post);
-        sessionFactory.getCurrentSession().saveOrUpdate(contact);
-    }
-
-    @Transactional(readOnly = false)
-    @Override
-    public void deleteHobbyToContact(ContactDto contactDto, HobbyDto hobbyDto) {
-
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Hobby hobby = EntityDtoConverter.convert(hobbyDto);
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Hobby hobby = (Hobby) sessionFactory.getCurrentSession().get(Hobby.class, hobbyId);
         contact.getHobbies().remove(hobby);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void deletePlaceToContact(ContactDto contactDto, PlaceDto placeDto) {
+    public void addPlaceToContact(Long contactId, Long placeId) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Place place = EntityDtoConverter.convert(placeDto);
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Place place = (Place) sessionFactory.getCurrentSession().get(Place.class, placeId);
+        contact.setPlace(place);
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void deletePlaceToContact(Long contactId, Long placeId) {
+
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Place place = (Place) sessionFactory.getCurrentSession().get(Place.class, placeId);
         contact.getPlaces().remove(place);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void addPhotoToContact(ContactDto contactDto, PhotoDto photoDto) {
+    public void addPostToContact(Long contactId, Long postId) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Photo photo = EntityDtoConverter.convert(photoDto);
-        contact.getAllPhotos().add(photo);
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Post post = (Post) sessionFactory.getCurrentSession().get(Post.class, postId);
+        contact.setPost(post);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void deletePhotoToContact(ContactDto contactDto, PhotoDto photoDto) {
+    public void deletePostToContact(Long contactId, Long postId) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Photo photo = EntityDtoConverter.convert(photoDto);
-        contact.getAllPhotos().remove(photo);
-        sessionFactory.getCurrentSession().saveOrUpdate(contact);
-    }
-
-    @Transactional(readOnly = false)
-    @Override
-    public void deletePostToContact(ContactDto contactDto, PostDto postDto) {
-
-        Contact contact = EntityDtoConverter.convert(contactDto);
-        Post post = EntityDtoConverter.convert(postDto);
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Post post = (Post) sessionFactory.getCurrentSession().get(Post.class, postId);
         contact.getPosts().remove(post);
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void addPhotoToContact(Long contactId, Long photoId) {
+
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Photo photo = (Photo) sessionFactory.getCurrentSession().get(Photo.class, photoId);
+        contact.setPhoto(photo);
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void deletePhotoToContact(Long contactId, Long photoId) {
+
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Photo photo = (Photo) sessionFactory.getCurrentSession().get(Photo.class, photoId);
+        contact.getPosts().remove(photo);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
     }
 
@@ -154,9 +152,10 @@ public class ContactDaoImpl implements ContactDao {
 
     @Transactional(readOnly = false)
     @Override
-    public void delete(ContactDto contactDto) {
+    public void delete(Long contactId) {
 
-        Contact contact = EntityDtoConverter.convert(contactDto);
+        Contact contact = new Contact();
+        contact.setContactId(contactId);
         sessionFactory.getCurrentSession().delete(contact);
     }
 

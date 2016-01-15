@@ -48,10 +48,10 @@ public class PhotoDaoImpl implements PhotoDao {
     }
 
     @Override
-    public void delete(PhotoDto photoDto) {
+    public void delete(Long photoId) {
 
-        Photo photo = EntityDtoConverter.convert(photoDto);
-        sessionFactory.getCurrentSession().delete(photo);
+//        Photo photo = EntityDtoConverter.convert(photoDto);
+//        sessionFactory.getCurrentSession().delete(photo);
     }
 
     @Override

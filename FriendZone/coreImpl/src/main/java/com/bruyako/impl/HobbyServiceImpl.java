@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,14 +27,19 @@ public class HobbyServiceImpl implements HobbyService {
     }
 
     @Override
-    public void deleteHobby(HobbyDto hobbyDto) {
-        hobbyDao.delete(hobbyDto);
+    public void deleteHobby(Long hobbyId) {
+        hobbyDao.delete(hobbyId);
     }
 
     @Override
     public Set<HobbyDto> getAllHobbyForContact(Long contactId) {
 
         return hobbyDao.getAllHobbyForContact(contactId);
+    }
+
+    @Override
+    public List<HobbyDto> getAllHobbies() {
+        return hobbyDao.getAllHobby();
     }
 
     @Override

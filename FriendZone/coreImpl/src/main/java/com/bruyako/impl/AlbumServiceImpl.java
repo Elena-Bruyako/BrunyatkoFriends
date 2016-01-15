@@ -34,9 +34,9 @@ public class AlbumServiceImpl implements AlbumService {
         albumDao.add(albumDto);
     }
 
-    @Override
-    public void deleteAlbum(AlbumDto albumDto) {
-        albumDao.delete(albumDto);
-    }
+//    @Override
+//    public void deleteAlbum(AlbumDto albumDto) {
+//        albumDao.delete(albumDto);
+//    }
 
 }

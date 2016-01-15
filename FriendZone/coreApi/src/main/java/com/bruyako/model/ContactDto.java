@@ -14,7 +14,6 @@ public class ContactDto{
     private String firstName;
     private String lastName;
     private String dateStr;
-
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public long getContactId() {
@@ -75,9 +74,10 @@ public class ContactDto{
     @Override
     public String toString() {
         return "ContactDto{" +
+                "contactId=" + contactId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", dateStr=" + dateStr +
+                ", dateStr='" + dateStr + '\'' +
                 '}';
     }
 }

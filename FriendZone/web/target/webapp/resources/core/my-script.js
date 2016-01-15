@@ -20,10 +20,10 @@ $(document).ready(function(){
         $("#contact-tab").parent('li').addClass("active");
     });
 
-    $("#friend-tab").click(function(){
+    $("#friends-tab").click(function(){
         clearNavSelection();
-        $("#friend-panel").removeClass("hidden");
-        $("#friend-tab").parent('li').addClass("active");
+        $("#friends-panel").removeClass("hidden");
+        $("#friends-tab").parent('li').addClass("active");
     });
 
     $("#hobbies-tab").click(function(){
@@ -64,12 +64,27 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data:'{"firstName": "' + firstName + '", "lastName": "' + lastName + '", "dateStr": "' + dateStr + '"}',
-            success: function(data) {
-                if (data.status === 'OK') {
-                    updatePage(data.barStatus);
-                } else {
-                    alert(data.errorMessage);
-                }
+            success: function(result){
+                alert('Новый контакт добавлен');
+            }
+//            success: function(data) {
+//                if (data.status === 'OK') {
+//                    updatePage(data.barStatus);
+//                } else {
+//                    alert(data.errorMessage);
+//                }
+//            }
+        });
+        $('#requestModal').modal('toggle');
+
+    });
+
+    $('#addHobbyToContact').click(function(){
+        $.ajax({
+            type: "POST",
+            url: '/addHobbyToContact/{contactId}/{hobbyId}',
+            success: function(result) {
+                alert('Новое хобби добавлено');
             }
         });
         $('#requestModal').modal('toggle');

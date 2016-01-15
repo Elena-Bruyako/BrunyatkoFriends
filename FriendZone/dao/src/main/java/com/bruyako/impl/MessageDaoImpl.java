@@ -2,6 +2,7 @@ package com.bruyako.impl;
 
 import com.bruyako.MessageDao;
 import com.bruyako.converters.EntityDtoConverter;
+import com.bruyako.entity.Contact;
 import com.bruyako.entity.Message;
 import com.bruyako.model.MessageDto;
 import org.hibernate.SessionFactory;
@@ -24,10 +25,9 @@ public class MessageDaoImpl implements MessageDao {
     @Override
     public List<MessageDto> getConversation(Long contactFromId, Long contactToId) {
 
-        List<Message> messages = sessionFactory.getCurrentSession().createSQLQuery("select * from Message m where (m.Contact_From_id = :contactFromId and " +
-                "m.Contact_To_id = :contactToId) or (m.Contact_From_id = :contactToId and m.Contact_To_id = :contactFromId) " +
-                "order by Message_Time asc").addEntity(Message.class).setParameter("contactFromId", contactFromId).setParameter("contactToId", contactToId).list();
-
+        Contact fromContact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactFromId);
+        Contact toContact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactToId);
+        List<Message> messages = fromContact.getConversation();
 
         List<MessageDto> result = new ArrayList<>(messages.size());
 

@@ -27,13 +27,13 @@ public class Contact implements Serializable {
     @Column(name = "Password")
     private String password;
 
-    @Column(name = "First_Name", nullable = false)
+    @Column(name = "First_Name")
     private String firstName;
 
-    @Column(name = "Last_Name", nullable = false)
+    @Column(name = "Last_Name")
     private String lastName;
 
-    @Column(name = "Birth_Date", nullable = false)
+    @Column(name = "Birth_Date")
     @Convert(converter = MyLocalDateConverter.class)
     private LocalDate birthDate;
 
@@ -121,12 +121,20 @@ public class Contact implements Serializable {
         this.allPhotos = allPhotos;
     }
 
+    public void setPhoto(Photo photo) {
+        this.allPhotos.add(photo);
+    }
+
     public Set<Hobby> getHobbies() {
         return hobbies;
     }
 
     public void setHobbies(Set<Hobby> hobbies) {
         this.hobbies = hobbies;
+    }
+
+    public void setHobby(Hobby hobby) {
+        this.hobbies.add(hobby);
     }
 
     public Set<Place> getPlaces() {
@@ -137,12 +145,20 @@ public class Contact implements Serializable {
         this.places = places;
     }
 
+    public void setPlace(Place place) {
+        this.places.add(place);
+    }
+
     public Set<Post> getPosts() {
         return posts;
     }
 
     public void setPosts(Set<Post> posts) {
         this.posts = posts;
+    }
+
+    public void setPost(Post post) {
+        this.posts.add(post);
     }
 
     public List<Message> getConversation() {
@@ -153,6 +169,10 @@ public class Contact implements Serializable {
         this.conversation = conversation;
     }
 
+    public void setMessage(Message message) {
+        this.conversation.add(message);
+    }
+
     public Set<Contact> getFriends() {
         return friends;
     }
@@ -161,12 +181,20 @@ public class Contact implements Serializable {
         this.friends = friends;
     }
 
+    public void setFriend(Contact friend) {
+        this.friends.add(friend);
+    }
+
     public Set<Album> getAlbums() {
         return albums;
     }
 
     public void setAlbums(Set<Album> albums) {
         this.albums = albums;
+    }
+
+    public void setAlbum(Album album) {
+        this.albums.add(album);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.bruyako.impl;
 
 import com.bruyako.PostDao;
 import com.bruyako.converters.EntityDtoConverter;
+import com.bruyako.entity.Contact;
 import com.bruyako.entity.Post;
 import com.bruyako.model.PostDto;
 import org.hibernate.SessionFactory;
@@ -25,8 +26,8 @@ public class PostDaoImpl implements PostDao {
     @Override
     public Set<PostDto> getAllPostsForContact(Long contactId) {
 
-        List<Post> posts = sessionFactory.getCurrentSession().createSQLQuery("select p.title, p.content from Post p join Contact c on p.contact_id = c.contact_id " +
-                " where c.contact_id = :contactId").setResultTransformer(Transformers.aliasToBean(Post.class)).setParameter("contactId", contactId).list();
+        Contact contact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactId);
+        Set<Post> posts = contact.getPosts();
         Set<PostDto> result = new HashSet<>(posts.size());
 
         for (Post post : posts) {
@@ -46,9 +47,10 @@ public class PostDaoImpl implements PostDao {
 
     @Transactional(readOnly = false)
     @Override
-    public void delete(PostDto postDto) {
+    public void delete(Long postId) {
 
-        Post post = EntityDtoConverter.convert(postDto);
+        Post post = new Post();
+        post.setPostId(postId);
         sessionFactory.getCurrentSession().delete(post);
     }
 
@@ -56,11 +58,7 @@ public class PostDaoImpl implements PostDao {
     @Override
     public PostDto getById(Long postId) {
 
-        List<Post> posts = sessionFactory.getCurrentSession().createQuery("select p from Post p where p.id = :id").setParameter("id", postId).list();
-        if (posts.isEmpty()) {
-            return null;
-        } else {
-            return EntityDtoConverter.convert(posts.get(0));
-        }
+        Post post = (Post) sessionFactory.getCurrentSession().get(Post.class, postId);
+        return EntityDtoConverter.convert(post);
     }
 }

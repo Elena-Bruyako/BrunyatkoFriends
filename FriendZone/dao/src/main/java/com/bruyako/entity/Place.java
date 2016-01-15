@@ -16,7 +16,7 @@ public class Place implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long placeId;
 
-    @Column(name = "Title", nullable = false)
+    @Column(name = "Title")
     private String title;
 
     @Column(name = "Longitude")
@@ -25,7 +25,7 @@ public class Place implements Serializable {
     @Column(name = "Latitude")
     private double latitude;
 
-    @Column(name = "Description", nullable = false)
+    @Column(name = "Description")
     private String description;
 
     public Place() {

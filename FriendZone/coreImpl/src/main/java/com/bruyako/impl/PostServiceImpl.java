@@ -25,11 +25,11 @@ public class PostServiceImpl implements PostService {
         postDao.add(postDto);
     }
 
-    @Override
-    public void deletePost(PostDto postDto) {
-
-        postDao.delete(postDto);
-    }
+//    @Override
+//    public void deletePost(PostDto postDto) {
+//
+//        postDao.delete(postDto);
+//    }
 
 
     @Override
