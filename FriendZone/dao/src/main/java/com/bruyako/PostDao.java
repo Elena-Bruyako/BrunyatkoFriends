@@ -11,4 +11,5 @@ public interface PostDao extends AbstractDao<PostDto, Long> {
 
     Set<PostDto> getAllPostsForContact(Long contactId);
 
+    Set<PostDto> getAllPosts();
 }

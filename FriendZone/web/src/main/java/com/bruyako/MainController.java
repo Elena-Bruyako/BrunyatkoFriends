@@ -2,6 +2,7 @@ package com.bruyako;
 
 import com.bruyako.model.ContactDto;
 import com.bruyako.model.HobbyDto;
+import com.bruyako.model.PlaceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,8 @@ public class MainController {
 
         model.addAttribute("allContacts", contactService.getAllContacts());
         model.addAttribute("allHobbies", hobbyService.getAllHobbies());
-
+        model.addAttribute("allPlaces", placeService.getAllPlaces());
+        model.addAttribute("allPosts", postService.getAllPost());
         return "friendZone";
     }
 
@@ -37,7 +39,25 @@ public class MainController {
 
         contactService.addContact(contact);
 
-        return "redirect:/friendZone";
+        return "friendZone";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "addNewHobby", method = RequestMethod.POST)
+    public String addNewHobby(@RequestBody HobbyDto hobbyDto) {
+
+        hobbyService.addHobby(hobbyDto);
+
+        return "friendZone";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "addNewPlace", method = RequestMethod.POST)
+    public String addNewPlace(@RequestBody PlaceDto placeDto) {
+
+        placeService.addPlace(placeDto);
+
+        return "friendZone";
     }
 
     @ResponseBody
@@ -46,7 +66,7 @@ public class MainController {
 
         contactService.deleteContact(contactId);
 
-        return "redirect:/friendZone";
+        return "friendZone";
     }
 
     @RequestMapping(value = "/look/{contactId}", method = RequestMethod.GET)
@@ -57,17 +77,10 @@ public class MainController {
         model.addAttribute("place", placeService.getAllPlaceForContact(contactId));
         model.addAttribute("post", postService.getAllPostsForContact(contactId));
         model.addAttribute("allHobbies", hobbyService.getAllHobbies());
+        model.addAttribute("allPlaces", placeService.getAllPlaces());
+        model.addAttribute("allPosts", postService.getAllPost());
 
         return "contactInfo";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "addNewHobby", method = RequestMethod.POST)
-    public String addNewHobby(@RequestBody HobbyDto hobbyDto) {
-
-        hobbyService.addHobby(hobbyDto);
-
-        return "redirect:/contactInfo";
     }
 
     @ResponseBody
@@ -75,18 +88,15 @@ public class MainController {
     public String addHobbyToContact(@PathVariable("contactId") Long contactId, @PathVariable("hobbyId") Long hobbyId) {
 
         contactService.addHobbyToContact(contactId, hobbyId);
-
-        return "redirect:/contactInfo";
+        return "contactInfo";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/delete/{hobbyId}", method = RequestMethod.GET)
-    public String deleteHobby(@PathVariable("hobbyId") Long hobbyId) {
+    @RequestMapping(value = "/delete/{contactId}/{hobbyId}", method = RequestMethod.GET)
+    public String deleteHobby(@PathVariable("contactId") Long contactId, @PathVariable("hobbyId") Long hobbyId) {
 
-        contactService.deleteContact(hobbyId);
+        contactService.deleteHobbyToContact(contactId, hobbyId);
 
-        return "redirect:/contactInfo";
+        return "contactInfo";
     }
-
-
 }

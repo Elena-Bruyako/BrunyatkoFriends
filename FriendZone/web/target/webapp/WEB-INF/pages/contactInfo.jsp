@@ -19,23 +19,43 @@
     <jsp:useBean id="place" scope="request" type="java.util.HashSet"/>
     <jsp:useBean id="post" scope="request" type="java.util.HashSet"/>
     <jsp:useBean id="allHobbies" scope="request" type="java.util.List"/>
+    <jsp:useBean id="allPlaces" scope="request" type="java.util.Set"/>
+    <jsp:useBean id="allPosts" scope="request" type="java.util.Set"/>
 
 </head>
 <body>
 
 <div class="container-fluid">
     <div class="page-header text-centred">
-        <h1>Contact Info</h1>
-        <div class="row">
-            <div class="col-lg-offset-3 col-lg-6">
-                <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="#" id="friend-tab">Friends</a></li>
-                    <li role="presentation"><a href="#" id="hobbies-tab">Hobbies</a></li>
-                    <li role="presentation"><a href="#" id="message-tab">Message</a></li>
-                    <li role="presentation"><a href="#" id="places-tab">Places</a></li>
-                    <li role="presentation"><a href="#" id="posts-tab">Posts</a></li>
-                </ul>
+        <div class="row top-buffer">
+            <div class="col-lg-offset-4 col-lg-5">
+                <table class="table table-hover">
+                    <thread>
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Birth date</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                        <tr>
+                            <td>${contact.firstName}</td>
+                            <td>${contact.lastName}</td>
+                            <td>${contact.birthDate}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-lg-offset-5 col-lg-4">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#" id="hobbies-tab">Hobbies</a></li>
+                <li role="presentation"><a href="#" id="places-tab">Places</a></li>
+                <li role="presentation"><a href="#" id="posts-tab">Posts</a></li>
+            </ul>
         </div>
     </div>
 
@@ -46,7 +66,6 @@
                     Add new Hobby
                 </button>
             </div>
-
             <div class="modal fade" id="requestModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -62,7 +81,7 @@
                                 <tr>
                                     <td>${hobbies.title}</td>
                                     <td>${hobbies.description}</td>
-                                    <td><a href="/look/${contact.contactId}/${hobbies.hobbyId}">Add</a></td>
+                                    <td><a href="/look/${contact.contactId}/${hobbies.hobbyId}" onclick="window.location.reload();">Add</a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -86,11 +105,67 @@
                     <tr>
                         <td>${hobby.title}</td>
                         <td>${hobby.description}</td>
-                        <td><a href="delete/${hobby.hobbyId}">Delete</a></td>
+                        <td><a href="/delete/${contact.contactId}/${hobby.hobbyId}">Delete</a></td>
                     </tr>
                     </c:forEach>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="top-buffer tab-panel hidden" id="places-panel">
+        <div class="row top-buffer">
+            <div class="page-header text-centred">
+                <div class="col-lg-offset-4 col-lg-5">
+                    <table class="table table-hover">
+                        <thread>
+                            <tr>
+                                <th>Title</th>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                                <th>Description</th>
+                            </tr>
+                        </thread>
+                        <tbody>
+                        <c:forEach items="${place}" var="place">
+                            <tr>
+                                <td>${place.title}</td>
+                                <td>${place.longitude}</td>
+                                <td>${place.latitude}</td>
+                                <td>${place.description}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="top-buffer tab-panel hidden" id="posts-panel">
+        <div class="row top-buffer">
+            <div class="page-header text-centred">
+                <div class="col-lg-offset-4 col-lg-5">
+                    <table class="table table-hover">
+                        <thread>
+                            <tr>
+                                <th>Title</th>
+                                <th>Content</th>
+                                <th>Date Post</th>
+                            </tr>
+                        </thread>
+                        <tbody>
+                        <c:forEach items="${post}" var="post">
+                            <tr>
+                                <td>${post.title}</td>
+                                <td>${post.content}</td>
+                                <td>${post.date}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

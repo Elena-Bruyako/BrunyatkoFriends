@@ -8,10 +8,10 @@ $(document).ready(function(){
         $('.tab-panel').addClass("hidden");
     };
 
-    $("#allcontact-tab").click(function(){
+    $("#allContacts-tab").click(function(){
         clearNavSelection();
-        $("#allContact-panel").removeClass("hidden");
-        $("#allContact-tab").parent('li').addClass("active");
+        $("#allContacts-panel").removeClass("hidden");
+        $("#allContacts-tab").parent('li').addClass("active");
     });
 
     $("#contact-tab").click(function(){
@@ -20,22 +20,10 @@ $(document).ready(function(){
         $("#contact-tab").parent('li').addClass("active");
     });
 
-    $("#friends-tab").click(function(){
-        clearNavSelection();
-        $("#friends-panel").removeClass("hidden");
-        $("#friends-tab").parent('li').addClass("active");
-    });
-
     $("#hobbies-tab").click(function(){
         clearNavSelection();
         $("#hobbies-panel").removeClass("hidden");
         $("#hobbies-tab").parent('li').addClass("active");
-    });
-
-    $("#message-tab").click(function(){
-        clearNavSelection();
-        $("#message-panel").removeClass("hidden");
-        $("#message-tab").parent('li').addClass("active");
     });
 
     $("#places-tab").click(function(){
@@ -50,10 +38,6 @@ $(document).ready(function(){
         $("#posts-tab").parent('li').addClass("active");
     });
 
-    function updatePage(barStatus) {
-        alert("vse horosho");
-    }
-
     $('#addNew').click(function(){
         var firstName = $('#newFirstName').val();
         var lastName = $('#newLastName').val();
@@ -63,32 +47,44 @@ $(document).ready(function(){
             url: '/addNewContact',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            data:'{"firstName": "' + firstName + '", "lastName": "' + lastName + '", "dateStr": "' + dateStr + '"}',
-            success: function(result){
-                alert('Новый контакт добавлен');
-            }
-//            success: function(data) {
-//                if (data.status === 'OK') {
-//                    updatePage(data.barStatus);
-//                } else {
-//                    alert(data.errorMessage);
-//                }
-//            }
+            data:'{"firstName": "' + firstName + '", "lastName": "' + lastName + '", "dateStr": "' + dateStr + '"}'
         });
         $('#requestModal').modal('toggle');
 
+    });
+
+    $('#addNewHobby').click(function(){
+        var title = $('#newTitleHobby').val();
+        var description= $('#newDescriptionHobby').val();
+        $.ajax({
+            type: "POST",
+            url: '/addNewHobby',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data:'{"title": "' + title + '", "description": "' + description + '"}'
+        });
+    });
+
+    $('#addNewPlace').click(function(){
+        var title = $('#newTitlePlace').val();
+        var longitude = $('#newLongitudePlace').val();
+        var latitude = $('#newLatitudePlace').val();
+        var description = $('#newDescriptionPlace').val();
+        $.ajax({
+            type: "POST",
+            url: '/addNewPlace',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data:'{"title": "' + title + '", "longitude": "' + longitude + '", "latitude": "' + latitude + '", "description": "' + description + '"}'
+        });
     });
 
     $('#addHobbyToContact').click(function(){
         $.ajax({
             type: "POST",
-            url: '/addHobbyToContact/{contactId}/{hobbyId}',
-            success: function(result) {
-                alert('Новое хобби добавлено');
-            }
+            url: '/addHobbyToContact/{contactId}/{hobbyId}'
         });
         $('#requestModal').modal('toggle');
 
     });
-
 });

@@ -27,6 +27,7 @@ public class MessageDaoImpl implements MessageDao {
 
         Contact fromContact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactFromId);
         Contact toContact = (Contact) sessionFactory.getCurrentSession().get(Contact.class, contactToId);
+
         List<Message> messages = fromContact.getConversation();
 
         List<MessageDto> result = new ArrayList<>(messages.size());

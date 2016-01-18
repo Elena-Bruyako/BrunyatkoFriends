@@ -25,17 +25,22 @@ public class PostServiceImpl implements PostService {
         postDao.add(postDto);
     }
 
-//    @Override
-//    public void deletePost(PostDto postDto) {
-//
-//        postDao.delete(postDto);
-//    }
+    @Override
+    public void deletePost(Long postId) {
+
+        postDao.delete(postId);
+    }
 
 
     @Override
     public Set<PostDto> getAllPostsForContact(Long contactId) {
 
         return postDao.getAllPostsForContact(contactId);
+    }
+
+    @Override
+    public Set<PostDto> getAllPost() {
+        return postDao.getAllPosts();
     }
 
     @Override

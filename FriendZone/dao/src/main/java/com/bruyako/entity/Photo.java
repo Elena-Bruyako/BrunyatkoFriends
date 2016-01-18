@@ -18,7 +18,7 @@ public class Photo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long photoId;
 
-    @Column(name = "Img", nullable = false)
+    @Column(name = "Img")
     private byte[] img;
 
     @ManyToOne
@@ -66,10 +66,6 @@ public class Photo implements Serializable {
 
     public void setLikePhoto(LikePhoto likePhoto) {
         this.likePhoto = likePhoto;
-    }
-
-    public void setPhotoId(long photoId) {
-        this.photoId = photoId;
     }
 
     public Album getAlbumOfContact() {

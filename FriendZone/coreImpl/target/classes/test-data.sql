@@ -1,42 +1,43 @@
-insert into contact (id, first_name, last_name, birth_date) values (1, 'Elena', 'Bruyako', CURRENT_DATE);
-insert into contact (id, first_name, last_name, birth_date) values (2, 'Anton', 'Valiuh', CURRENT_DATE);
-insert into contact (id, first_name, last_name, birth_date) values (3, 'Inna', 'Bruyako', CURRENT_DATE);
-insert into contact (id, first_name, last_name, birth_date) values (4, 'Eugene', 'Trostian', CURRENT_DATE);
+insert into FriendZone.Contact (Contact_id, Login, Password, first_name, last_name, birth_date) values (1, null , null, 'Elena', 'Bruyako', CURRENT_DATE);
+insert into FriendZone.Contact (Contact_id, Login, Password, first_name, last_name, birth_date) values (2, null , null, 'Anton', 'Valiuh', CURRENT_DATE);
+insert into FriendZone.Contact (Contact_id, Login, Password, first_name, last_name, birth_date) values (3, null , null, 'Inna', 'Bruyako', CURRENT_DATE);
+insert into FriendZone.Contact (Contact_id, Login, Password, first_name, last_name, birth_date) values (4, null , null, 'Julia', 'Oleksenko', CURRENT_DATE);
 
-insert into hobby (id, title, description) values (1,'Photo', 'Take a photo nature');
-insert into hobby (id, title, description) values (2,'Science', 'Space and history');
-insert into hobby (id, title, description) values (3,'Creation', 'Dancer');
-insert into hobby (id, title, description) values (4,'Science', 'Programming');
+insert into FriendZone.Hobby(Hobby_id, Title, Description) values (1, 'Photo', 'Take a photo');
+insert into FriendZone.Hobby(Hobby_id, Title, Description) values (2, 'Science', 'Math, Space');
+insert into FriendZone.Hobby(Hobby_id, Title, Description) values (3, 'Dance', 'Hip-Hop, Tango');
+insert into FriendZone.Hobby(Hobby_id, Title, Description) values (4, 'Music', 'Rock, Jazz, Classic');
+insert into FriendZone.Hobby(Hobby_id, Title, Description) values (5, 'Movie', 'Drama, Fantasy');
 
-insert into place (id, title, description, longitude, latitude) values (1,'Tbilisi', 'Sightseeing', 44.833680, 41.694110);
-insert into place (id, title, description, longitude, latitude) values (2, 'Wien', 'Traveling', 16.372080, 48.208490);
-insert into place (id, title, description, longitude, latitude) values (3, 'Kiev', 'Relaxing', 30.523800, 50.454660);
-insert into place (id, title, description, longitude, latitude) values (4, 'Dnepropetrovsk', 'Working', 34.983330, 48.450000);
+insert into FriendZone.Place(Place_id, Title, Longitude, Latitude, Description) values (1, 'Georgia', 44.83368, 41.69411, 'Tbilisi, Batumi');
+insert into FriendZone.Place(Place_id, Title, Longitude, Latitude, Description) values (2, 'Brussels', 4.34878, 50.85045, 'Brugge, Gent');
+insert into FriendZone.Place(Place_id, Title, Longitude, Latitude, Description) values (3, 'Ukraine', 30.5238, 50.45466, 'Kiev, Lviv, Dnepr, Odessa');
+insert into FriendZone.Place(Place_id, Title, Longitude, Latitude, Description) values (4, 'Netherlands', 4.88969, 52.37403, 'Amsterdam');
 
-insert into post (id, contact_id, title, content, date_post) values (1, 1, 'Life', 'Do not worry, be happy', CURRENT_DATE);
-insert into post (id, contact_id, title, content, date_post) values (2, 2, 'Sport', 'We are the champion', CURRENT_DATE);
-insert into post (id, contact_id, title, content, date_post) values (3, 3, 'Music', 'Respect Nazareth', CURRENT_DATE);
-insert into post (id, contact_id, title, content, date_post) values (4, 4, 'Science', 'The Big Bang Theory', CURRENT_DATE);
+insert into FriendZone.Post(Post_id, Title, Content, Date_Post, Contact_id) values (1, 'Happy', 'I am Happy!',null, 1);
+insert into FriendZone.Post(Post_id, Title, Content, Date_Post, Contact_id) values (2, 'Travel', 'We were in Europe!', null, 2);
+insert into FriendZone.Post(Post_id, Title, Content, Date_Post, Contact_id) values (3, 'World and Space', 'Space X', null, 3);
+insert into FriendZone.Post(Post_id, Title, Content, Date_Post, Contact_id) values (4, 'Auto', 'Tesla',null, 2);
+insert into FriendZone.Post(Post_id, Title, Content, Date_Post, Contact_id) values (5, 'Music', 'Rock - the best!',null, 1);
 
-insert into contact_hobby (contact_id, hobby_id) values (1, 2);
-insert into contact_hobby (contact_id, hobby_id) values (2, 3);
-insert into contact_hobby (contact_id, hobby_id) values (2, 4);
-insert into contact_hobby (contact_id, hobby_id) values (3, 2);
-insert into contact_hobby (contact_id, hobby_id) values (4, 1);
-insert into contact_hobby (contact_id, hobby_id) values (4, 4);
+insert into FriendZone.Contact_Hobby(Contact_id, Hobby_id) values (1, 2);
+insert into FriendZone.Contact_Hobby(Contact_id, Hobby_id) values (1, 1);
+insert into FriendZone.Contact_Hobby(Contact_id, Hobby_id) values (2, 3);
+insert into FriendZone.Contact_Hobby(Contact_id, Hobby_id) values (1, 3);
+insert into FriendZone.Contact_Hobby(Contact_id, Hobby_id) values (3, 1);
+insert into FriendZone.Contact_Hobby(Contact_id, Hobby_id) values (2, 1);
 
-insert into contact_place (contact_id, place_id) values (1, 2);
-insert into contact_place (contact_id, place_id) values (1, 1);
-insert into contact_place (contact_id, place_id) values (2, 3);
-insert into contact_place (contact_id, place_id) values (3, 3);
-insert into contact_place (contact_id, place_id) values (2, 1);
+insert into FriendZone.Contact_Place(Contact_id, Place_id) values (1, 1);
+insert into FriendZone.Contact_Place(Contact_id, Place_id) values (1, 2);
+insert into FriendZone.Contact_Place(Contact_id, Place_id) values (1, 3);
+insert into FriendZone.Contact_Place(Contact_id, Place_id) values (1, 4);
+insert into FriendZone.Contact_Place(Contact_id, Place_id) values (2, 1);
+insert into FriendZone.Contact_Place(Contact_id, Place_id) values (3, 2);
+insert into FriendZone.Contact_Place(Contact_id, Place_id) values (2, 4);
+insert into FriendZone.Contact_Place(Contact_id, Place_id) values (4, 2);
 
-insert into message (id, message_time, contact_from_id, contact_to_id, content) values (1, CURRENT_TIMESTAMP , 1, 2, 'what is app');
-insert into message (id, message_time, contact_from_id, contact_to_id, content) values (2, CURRENT_TIMESTAMP, 2, 1, 'hi baby',);
-insert into message (id, message_time, contact_from_id, contact_to_id, content) values (3, CURRENT_TIMESTAMP, 1, 4, 'what the weather? ',);
-insert into message (id, message_time, contact_from_id, contact_to_id, content) values (4, CURRENT_TIMESTAMP, 4, 1, 'It is cold',);
-
-insert into contact_friendship (contact_id, friend_id) values (1, 2);
-insert into contact_friendship (contact_id, friend_id) values (1, 4);
-insert into contact_friendship (contact_id, friend_id) values (2, 4);
-insert into contact_friendship (contact_id, friend_id) values (3, 4);
+insert into FriendZone.Contact_Friendship(Contact_id, Friend_id) values (1, 2);
+insert into FriendZone.Contact_Friendship(Contact_id, Friend_id) values (1, 3);
+insert into FriendZone.Contact_Friendship(Contact_id, Friend_id) values (1, 4);
+insert into FriendZone.Contact_Friendship(Contact_id, Friend_id) values (2, 3);
+insert into FriendZone.Contact_Friendship(Contact_id, Friend_id) values (3, 4);

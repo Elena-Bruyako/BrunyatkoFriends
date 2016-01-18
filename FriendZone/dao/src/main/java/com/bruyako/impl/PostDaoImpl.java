@@ -6,7 +6,6 @@ import com.bruyako.entity.Contact;
 import com.bruyako.entity.Post;
 import com.bruyako.model.PostDto;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +35,20 @@ public class PostDaoImpl implements PostDao {
         }
         return result;
     }
+
+    @Override
+    public Set<PostDto> getAllPosts() {
+
+        List<Post> posts = sessionFactory.getCurrentSession().createQuery("from Post p").list();
+        Set<PostDto> result = new HashSet<>(posts.size());
+        for (Post post : posts) {
+
+            result.add(EntityDtoConverter.convert(post));
+
+        }
+        return result;
+    }
+
 
     @Transactional(readOnly = false)
     @Override

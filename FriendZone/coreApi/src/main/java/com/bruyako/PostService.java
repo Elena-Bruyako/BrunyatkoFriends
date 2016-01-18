@@ -11,9 +11,11 @@ public interface PostService {
 
     void addPost(PostDto postDto);
 
-//    void deletePost(PostDto postDto);
+    void deletePost(Long postId);
 
     Set<PostDto> getAllPostsForContact(Long contactId);
+
+    Set<PostDto> getAllPost();
 
     PostDto getById(Long postId);
 }

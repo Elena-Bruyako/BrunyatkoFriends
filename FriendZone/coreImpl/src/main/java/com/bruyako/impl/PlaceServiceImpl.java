@@ -26,8 +26,8 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public void deletePlace(Long placeIdo) {
-        placeDao.delete(placeIdo);
+    public void deletePlace(Long placeId) {
+        placeDao.delete(placeId);
     }
 
     @Override
