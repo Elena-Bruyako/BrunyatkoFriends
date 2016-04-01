@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/core/my-style.css">
 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <jsp:useBean id="contact" scope="request" type="com.bruyako.model.ContactDto"/>
+    <jsp:useBean id="contact" scope="request" type="com.bruyako.dto.ContactDto"/>
     <jsp:useBean id="hobby" scope="request" type="java.util.HashSet"/>
     <jsp:useBean id="place" scope="request" type="java.util.HashSet"/>
     <jsp:useBean id="post" scope="request" type="java.util.HashSet"/>
