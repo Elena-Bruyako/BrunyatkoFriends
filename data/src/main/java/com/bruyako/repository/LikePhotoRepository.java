@@ -1,5 +1,7 @@
 package com.bruyako.repository;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -7,6 +9,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class LikePhotoRepository {
+
+    @Autowired
+    public SessionFactory sessionFactory;
 
 
 }

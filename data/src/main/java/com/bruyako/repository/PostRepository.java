@@ -1,9 +1,10 @@
 package com.bruyako.repository;
 
-import com.bruyako.BaseRepository;
 import com.bruyako.entity.Post;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,10 @@ import java.util.List;
  * Created by brunyatko on 21.09.15.
  */
 @Repository
-public class PostRepository extends BaseRepository<Post, Long> {
+public class PostRepository implements BaseRepository<Post, Long> {
+
+    @Autowired
+    public SessionFactory sessionFactory;
 
     @Override
     public void create(Post post) {

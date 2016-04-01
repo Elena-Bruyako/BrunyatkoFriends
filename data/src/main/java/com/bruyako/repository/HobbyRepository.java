@@ -1,9 +1,10 @@
 package com.bruyako.repository;
 
 import com.bruyako.entity.Hobby;
-import com.bruyako.BaseRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -11,7 +12,10 @@ import java.util.*;
  * Created by brunyatko on 21.09.15.
  */
 @Repository
-public class HobbyRepository extends BaseRepository <Hobby, Long> {
+public class HobbyRepository implements BaseRepository <Hobby, Long> {
+
+    @Autowired
+    public SessionFactory sessionFactory;
 
     @Override
     public void create(Hobby hobby) {

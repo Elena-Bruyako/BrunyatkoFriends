@@ -1,9 +1,10 @@
 package com.bruyako.repository;
 
 import com.bruyako.entity.Message;
-import com.bruyako.BaseRepository;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -12,7 +13,10 @@ import java.util.*;
  * Created by brunyatko on 21.09.15.
  */
 @Repository
-public class MessageRepository extends BaseRepository <Message, Long> {
+public class MessageRepository implements BaseRepository <Message, Long> {
+
+    @Autowired
+    public SessionFactory sessionFactory;
 
     @Override
     public void create(Message message) {

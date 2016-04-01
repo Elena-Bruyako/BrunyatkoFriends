@@ -1,4 +1,4 @@
-package com.bruyako;
+package com.bruyako.util;
 
 import com.bruyako.dto.*;
 import com.bruyako.entity.*;
